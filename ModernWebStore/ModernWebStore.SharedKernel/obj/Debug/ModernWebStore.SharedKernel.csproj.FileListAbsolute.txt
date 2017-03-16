@@ -1,0 +1,5 @@
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\bin\Debug\ModernWebStore.SharedKernel.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\bin\Debug\ModernWebStore.SharedKernel.pdb
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.csprojResolveAssemblyReference.cache
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.pdb

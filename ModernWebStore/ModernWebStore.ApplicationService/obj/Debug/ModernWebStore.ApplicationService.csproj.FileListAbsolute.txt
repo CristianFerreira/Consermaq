@@ -1,0 +1,13 @@
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.ApplicationService.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.ApplicationService.pdb
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Domain.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Infra.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.SharedKernel.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\EntityFramework.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Domain.pdb
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Infra.pdb
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.SharedKernel.pdb
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\EntityFramework.xml
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.csprojResolveAssemblyReference.cache
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.dll
+C:\Renan\mwa-api\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.pdb
