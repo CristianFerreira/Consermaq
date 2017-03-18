@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="travel_World">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="KTAX SOS Workflow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel World</title>
+    <base href="/">
+
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg=="
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="app/build/css/app-style.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900,900i" rel="stylesheet">
+</head>
+
+<body ng-cloak>
+    <div ng-controller="SideBarController as vm" class="deepNavbar" layout="row" flex="100">
+       
+        <!--<md-nav-bar md-selected-nav-item="vm.currentNavItem" nav-bar-aria-label="navigation links" layout-align="center center">-->
+        <div flex="10"></div>
+        <div flex="90">
+               
+                <!--<md-nav-item md-nav-click="goto('page1')" ng-mouseenter="vm.openMenu($mdOpenMenu, $event)" name="page1" name="page1">
+                    Home-->
+
+                    <!--<md-menu-content ng-mouseleave="vm.closeMenu($mdCloseMenu, $event)" width="4">
+                        <md-menu-item ng-repeat="city in vm.cities">
+                            <md-menu>                    
+                                <md-button ng-mouseenter="$mdMenu.open()">{{city.country.continent.name}}</md-button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-menu>
+                                        <md-button ng-mouseenter="$mdMenu.open()">{{city.country.name}}</md-button>
+                                         <md-menu-content>
+                                         <md-menu-item>
+                                             <md-button ng-click="">{{city.name}}</md-button>
+                                        </md-menu-item>
+                                         </md-menu-content>
+                                        </md-menu>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
+                    </md-menu-content>-->
+<!--
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('page2')" name="page2">Europa</md-nav-item>
+                <md-nav-item md-nav-click="goto('page3')" name="page3">America do Norte</md-nav-item>
+                <md-nav-item md-nav-href="#categorias" name="page4">Categorias</md-nav-item>-->
+            <md-menu-bar>
+                <md-menu>
+                    <button ng-click="vm.home()">
+                        HOME
+                    </button>   
+                </md-menu>
+                <md-menu>
+                 <button ng-click="vm.openMenu($mdOpenMenu, $event)">
+                    DESTINOS
+                 </button>
+                    </md-content>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="city in vm.cities">
+                            <md-menu>                    
+                                <md-button ng-mouseenter="$mdMenu.open()">{{city.country.continent.name}}</md-button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-menu>
+                                        <md-button ng-mouseenter="$mdMenu.open()">{{city.country.name}}</md-button>
+                                         <md-menu-content>
+                                         <md-menu-item>
+                                             <md-button ng-click="vm.listCity(city.name)">{{city.name}}</md-button>
+                                        </md-menu-item>
+                                         </md-menu-content>
+                                        </md-menu>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu>
+                    <button ng-href="contato">
+                        CONTATO
+                    </button>   
+                </md-menu>
+                <md-menu ng-if="!sistemaContexo.usuarioLogado">
+                    <button ng-click="vm.openMenu($mdOpenMenu, $event)">
+              GERENCIAMENTO
+            </button>
+                    <md-menu-content width="4">
+                        <md-menu-item>                  
+                             <md-button ng-click="vm.categorias()">Categorias</md-button>
+                        </md-menu-item>
+                        <md-menu-item>                 
+                             <md-button ng-click="vm.continentes()">Continentes</md-button>
+                        </md-menu-item>
+                        <md-menu-item>                  
+                             <md-button ng-click="vm.paises()">Paises</md-button>
+                        </md-menu-item>
+                        <md-menu-item>                  
+                             <md-button ng-click="vm.cidades()">Cidades</md-button>
+                        </md-menu-item>
+                       <md-menu-divider></md-menu-divider>
+                          <md-menu-item>                  
+                             <md-button ng-click="vm.postagem()">Postagem</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>    
+                <md-menu>
+                    <button ng-if="sistemaContexo.usuarioLogado" ng-click="vm.logout()">
+                        Sair
+                    </button>   
+                </md-menu>
+            </md-menu>
+        </md-menu-bar>
+
+
+
+        </div>
+        </md-nav-bar>
+
+    </div>
+    <md-divider layout-padding></md-divider>
+    <div ng-view autoscroll="true"></div>
+
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="app/build/js/app-scripts.min.js"></script>
+    <script src="app/build/js/app-ts.min.js"></script>
+    <script id="dsq-count-scr" src="//travelworld-1.disqus.com/count.js" async></script>
+
+</body>
+
+</html>

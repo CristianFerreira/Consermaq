@@ -1,0 +1,35 @@
+
+<div class="col-md-4 col-md-offset-4" ng-cloak>
+    <div class="panel panel-default well">
+        <form name="form" ng-submit="vm.login()" novalidate>
+            <div layout="row" flex="100" layout-align="center center" layout-margin layout-padding>
+                <h3>Acesso restrito</h3>
+            </div>
+            <md-dialog-content>
+                <div class="md-dialog-content ">
+                    <md-input-container class="md-block" flex="100">
+                        <label>E-mail</label>
+                        <input required name="email" ng-model="vm.loginModel.email" ng-minlength="4" ng-maxlength="100">
+                        <div ng-messages="form.email.$error">
+                            <div ng-message="required">E-mail é obrigatório.</div>
+                            <div ng-message="minlength">E-mail deve ter no minimo 4 caracteres.</div>
+                            <div ng-message="maxlength">E-mail deve ter no maximo 100 caracteres.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="100">
+                        <label>Senha</label>
+                        <input required type="password" name="senha" ng-model="vm.loginModel.password" ng-minlength="4" ng-maxlength="100">
+                        <div ng-messages="form.senha.$error">
+                            <div ng-message="required">Senha é obrigatório.</div>
+                            <div ng-message="minlength">Senha deve ter no minimo 4 caracteres.</div>
+                            <div ng-message="maxlength">Senha deve ter no máximo 8 caracteres.</div>
+                        </div>
+                    </md-input-container>
+                    <div flex-sm="50" layout layout-align="center center" class="padding-top-20">
+                        <md-button ng-disabled="form.$invalid || !form.$dirty" class="md-raised md-primary" aria-label="Close dialog" type="submit">Efetuar login</md-button>
+                    </div>
+                </div>
+            </md-dialog-content>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+
+<div class="modal-header">
+    <button type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            ng-click="vm.cancel()"
+            aria-hidden="true">&times;</button>
+
+    <h4 class="modal-title text-left">
+        Tempos da tarefa<br>
+        {{ vm.workflow.idTarefa + " - " + vm.workflow.strTitulo }}
+    </h4>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group text-center">
+                <span class="label label-default"> Estimadas / Realizadas / Faltantes</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group text-center">
+                <b>
+                    {{ vm.horasEstimadas.toString() }} /
+                    {{ vm.horasRealizadasTemp.toString() }} / 
+                    {{ vm.horasFaltantes.toString() }}
+                </b>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group text-center">
+                <span class="label label-default">Lançamento</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 pull-rigth">
+            <div class="form-group text-center">
+                <div style="padding-left: 40%" 
+                    uib-timepicker 
+                    ng-model="vm.horasLancamento" 
+                    ng-change="vm.refresh()" 
+                    hour-step="1" 
+                    minute-step="15"
+                    show-meridian="false">
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.cancel()">Cancelar</button>
+    <button type="button" class="btn btn-primary" ng-click="vm.save()">Salvar</button>
+</div>>

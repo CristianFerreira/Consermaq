@@ -1,0 +1,29 @@
+﻿<nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" style="border-top:darkblue 1px double">
+        <ul class="nav navbar-nav">
+            <li>
+                <!--<a href="#/"><span class="glyphicon"></span>Cadastro de relatórios</a>-->
+            </li>
+        </ul>
+        <ul class="nav navbar-nav" style="padding-top: 8px">
+            <a href="#/">
+                <img src="app/assets/images/logoKPMG-mini.png" alt="KPMG" style="max-width:100px; margin-top: -7px;float: left">
+                <span style="font-size:x-large;color:white;">
+                    KTAX SOS Workflow
+                </span>
+            </a>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-if="sistemaContexo.usuarioLogado" style="padding-top: 14px;">
+                <span style="color:white;">
+                     <i style="margin-right: 10px">{{ sistemaContexo.usuarioLogado.strNomeUsuario }}</i>
+                     <a style="color: white;" ng-click="vm.logout()">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        Sair
+                    </a>
+                </span>
+            </li>
+        </ul>
+        <ul></ul>
+    </div>
+</nav>

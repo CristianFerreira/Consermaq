@@ -1,0 +1,31 @@
+<form name="form">
+        <div layout="row" layout-xs="column" layout-padding layout-margin>
+            <div flex="100" layout-align="center center">
+                <md-input-container flex="100" layout="row" layout-padding>
+                    <label>Titulo</label>
+                    <input ng-model="vm.post.title">
+                </md-input-container>
+                <md-input-container class="md-block" flex="100" layout="row" layout-padding>
+                    <md-select ng-model="vm.post.cityId" name="city" placeholder="Informe a cidade" required>
+                        <md-option ng-repeat="city in vm.cities" ng-value="city.id">
+                            {{city.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex="100" layout="row" layout-padding>
+                    <md-select ng-model="vm.post.categoryId" name="category" placeholder="Informe a categoria" required>
+                        <md-option ng-repeat="category in vm.categorys" ng-value="category.id">
+                            {{category.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Faça sua postagem</label>
+                    <textarea froala ng-model="vm.post.text"></textarea>
+                </md-input-container>
+                <div flex-sm="50" layout layout-align="center center" class="padding-top-20">
+                    <md-button class="md-raised md-primary" aria-label="Close dialog" type="submit" ng-click="vm.savePost()">Salvar Postagem</md-button>
+                </div>
+            </div>
+        </div>
+</form>

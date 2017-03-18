@@ -1,0 +1,5 @@
+<select class="form-control" ng-model="configuracaoValor.valor">
+      <option value="">Selecione {{configuracaoValor.tipoTarefaTela.strLabelCampo}}</option>
+      <option ng-repeat="item in configuracaoValor.tipoTarefaTela.workflowSelecionaChaveValor">{{item.chave}} - {{item.valor}}</option>
+</select>       
+  

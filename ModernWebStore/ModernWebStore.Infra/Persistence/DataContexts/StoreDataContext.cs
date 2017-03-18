@@ -7,7 +7,7 @@ namespace ModernWebStore.Infra.Persistence.DataContexts
     public class StoreDataContext : DbContext
     {
         public StoreDataContext() :
-            base("StoreConnectionString")
+            base("ConsermaqConnectionString")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
@@ -18,6 +18,8 @@ namespace ModernWebStore.Infra.Persistence.DataContexts
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<PessoaFisica> pf { get; set; }
+        public DbSet<PessoaJuridica> pj { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +28,8 @@ namespace ModernWebStore.Infra.Persistence.DataContexts
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new OrderMap());
             modelBuilder.Configurations.Add(new OrderItemMap());
+            modelBuilder.Configurations.Add(new PessoaFisicaMap());
+            modelBuilder.Configurations.Add(new PessoaJuridicaMap());
         }
     }
 }

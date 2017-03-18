@@ -1,0 +1,44 @@
+<form name="formConfiguracao">
+    <div class="modal-header">
+        <button type="button" 
+                class="close" 
+                data-dismiss="modal" 
+                ng-click="vm.cancel()"
+                aria-hidden="true">&times;
+        </button>
+        <h4 class="modal-title text-left">Configuração<br></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">             
+                <div ng-repeat="configuracaoValor in vm.configuracao.configuracaoValores">                  
+                        <div class="form-group">  
+                            <label ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'string'">{{configuracaoValor.tipoTarefaTela.strLabelCampo}}</label>
+                            <div ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'string'" 
+                                 ng-include="'app/views/workflow/templates/componente-input.html'"></div>  
+                        </div>                        
+                </div> 
+                <div ng-repeat="configuracaoValor in vm.configuracao.configuracaoValores">
+                        <div class="form-group">      
+                            <label ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'tipo'">{{configuracaoValor.tipoTarefaTela.strLabelCampo}}</label>
+                            <div ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'tipo'" 
+                                 ng-include="'app/views/workflow/templates/componente-checkbox.html'"></div>                       
+                        </div>       
+                </div>                            
+                <div ng-repeat="configuracaoValor in vm.configuracao.configuracaoValores">              
+                        <div class="form-group">
+                            <label ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'select'">{{configuracaoValor.tipoTarefaTela.strLabelCampo}}</label>
+                            <div ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'select'" 
+                                 ng-include="'app/views/workflow/templates/componente-select.html'"></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.salvaConfiguracao()">
+            <span class="glyphicon  glyphicon glyphicon-ok"></span>
+        </button>
+    </div>
+</form>

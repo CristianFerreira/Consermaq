@@ -1,0 +1,258 @@
+<div layout="row" layout-xs="column" ng-cloak>
+    <div flex="10" layout-align="center center">
+        <section flex></section>
+    </div>
+    <!-- lista de Posts -->
+    <div ng-if="vm.posts" flex="50" layout-align="center center">
+        <section flex>
+            <div layout-padding layout-margin ng-repeat="post in vm.posts | filter: vm.filterSearch | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                <md-card>
+                    <md-toolbar class="md-grey toolbar-post" layout="row" layout-align="center center">
+                        <div class="md-toolbar-tools">
+                            <md-truncate flex>
+                                <a href="" ng-click="vm.postById(post.id)" class="title">
+                                    <h2 class="title-post">{{post.title | uppercase}}</h2>
+                                </a>
+                            </md-truncate>
+                            <md-button class="md-fab md-mini" ng-click="vm.listCategory(post.category.name)" aria-label="Viagem" style="background-color: rgb(206, 195, 116)">
+                                <md-icon class="material-icons icon">{{post.icon}}</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+                    <md-card-content>
+                        <p ng-bind-html="post.text | limitHtml: 1000 | unsafe" style="max-width: 630px; overflow: hidden;"> {{post.text.length > 1000 ? '...' : ''}}</p>
+                        <div layout="row" layout-align="end center">
+                             <md-button class="md-raised md-icon-button" type="button" ng-click="vm.confirmarExclusao($event,post.id)">
+                                <md-icon md-svg-src="app/assets/img/icons/delete.svg" aria-label="books "></md-icon>
+                            </md-button>
+
+                            
+                            <md-button class="md-raised md-icon-button" type="button" ng-click="vm.editPost(post.id)">
+                                <md-icon md-svg-src="app/assets/img/icons/edit.svg" aria-label="books "></md-icon>
+                            </md-button>
+                            <md-button ng-if="post.text.length > 1000" class="md-raised md-primary" type="button" ng-click="vm.postById(post.id)">
+                                Leia mais
+                            </md-button>
+                        </div>
+                  </md-card-content>
+                  <md-divider></md-divider>
+                 <md-card-actions layout="row" class="rodapePost" flex="100">
+                        <div layout="row" layout-align="start center" flex="70">
+                            <h5>Publicado em {{post.date | date:"dd 'de' MMMM 'de' yyyy 'por' 'Thais da Rosa Lima' "}} </h5>
+                        </div>
+                        <div layout="row" layout-align="end center" flex="30">
+                            <a facebook-feed-share class="facebookShare" data-url='http://google.com' data-shares='shares' , data-caption='example caption'
+                                style="margin-top: -8px;" data-picture='http://plnkr.co/img/plunker.png' data-description="Example text" data-callback='callback'>{{ shares }}</a>
+                    <a twitter data-lang="en" data-count='vertical' data-url='http://localhost:8080/postagem/{{post.id}}' data-via='notsosleepy'
+                        data-size="medium" data-text='Compartilhar postagem no twitter'></a>
+                    </div>
+               </md-card-actions>
+        </md-card>
+</div>
+
+</section>
+<section layout="row">
+    <cl-paging flex cl-pages="vm.imagePath.length" , cl-limit="vm.query.limit" , cl-steps="6" , cl-page-changed="vm.loadPages()"
+        , cl-align="center center" , cl-current-page="vm.query.page">
+    </cl-paging>
+</section>
+</div>
+
+<!-- Somente um Post -->
+<div ng-if="vm.post" flex="50" layout-align="center center">
+    <section flex layout-padding layout-margin>
+        <md-card style="padding: 8px;">
+<md-toolbar class="md-grey toolbar-post" layout="row" layout-align="center center">
+    <div class="md-toolbar-tools">
+        <md-truncate flex>
+            <a href="" ng-click="vm.postById(vm.post.id)">
+                <h2 class="title-post">{{vm.post.title | uppercase}}</h2>
+            </a>
+        </md-truncate>
+        <md-button class="md-fab md-mini" ng-click="vm.listCategory(vm.post.category.name)" aria-label="Viagem" style="background-color: rgb(206, 195, 116)">
+<md-icon class="material-icons icon">{{vm.post.icon}}</md-icon>
+</md-button>
+</div>
+</md-toolbar>
+<md-card-content>
+    <p ng-bind-html="vm.post.text | unsafe" style="max-width: 630px; overflow: hidden;"></p>
+     <div layout="row" layout-align="end center">
+         <md-button class="md-raised md-danger" type="button" ng-click="vm.deletePost(vm.post.id)">
+             Excluir
+         </md-button>
+         <md-button class="md-raised md-success" type="button" ng-click="vm.editPost(vm.post.id)">
+             Editar Postagem
+         </md-button>
+     </div>
+</md-card-content>
+<md-divider></md-divider>
+<md-card-actions layout="row" layout-align="end center" class="rodapePost" flex="100">
+    <div layout="row" layout-align="start center" flex="70">
+        <h5>Publicado em {{vm.post.date | date:"dd 'de' MMMM 'de' yyyy 'por' 'Thais da Rosa Lima' "}} </h5>
+    </div>
+    <div layout="row" layout-align="end center" flex="30">
+        <a facebook-feed-share class="facebookShare" data-url='http://google.com' data-shares='shares' , data-caption='example caption'
+            style="margin-top: -8px;" data-picture='http://plnkr.co/img/plunker.png' data-description="Example text" data-callback='callback'>{{ shares }}</a>
+<a twitter data-lang="en" data-count='vertical' data-url='http://localhost:8080/postagem/{{post.id}}' data-via='notsosleepy'
+    data-size="medium" data-text='Compartilhar postagem no twitter'></a>
+</div>
+</md-card-actions>
+</md-card>
+
+</section>
+
+<div layout-padding layout-margin>
+    <h2 class="txtComentario">COMENTÁRIOS</h2>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//travelworld-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+<div flex="5" layout-align="center center">
+    <section flex></section>
+</div>
+<div flex="25" style="margin-top: 25px" ng-cloak>
+<div layout="row" layout-xs="column" layout-align="space-around center" flex>
+    <a href="https://www.facebook.com/Travel-World-1186118991505137/">
+        <md-icon class="icon" md-svg-src="app/assets/img/icons/facebook.svg" aria-label="facebook"></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Facebook </md-tooltip>
+    </a>
+    <a href="https://www.facebook.com/Travel-World-1186118991505137/">
+        <md-icon class="icon" md-svg-src="app/assets/img/icons/twitter.svg" aria-label="twitter"></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Twitter </md-tooltip>
+    </a>
+    <a href="https://www.facebook.com/Travel-World-1186118991505137/">
+        <md-icon class="icon" md-svg-src="app/assets/img/icons/snapchat.svg" aria-label="snapchat"></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Snapchat </md-tooltip>
+    </a>
+    <a href="https://www.facebook.com/Travel-World-1186118991505137/">
+        <md-icon class="icon" md-svg-src="app/assets/img/icons/instagram.svg" aria-label="instagram"></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Instagram </md-tooltip>
+    </a>
+    <a href="https://www.facebook.com/Travel-World-1186118991505137/">
+        <md-icon class="icon" md-svg-src="app/assets/img/icons/email.svg" aria-label="email"></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Email </md-tooltip>
+    </a>
+</div>
+
+<md-card flex style="margin-top: 20px;">
+<img ng-src="app/assets/img/teste/thais.jpg" style="margin: 10px 0px 0px 10px; max-height: 320px;max-width: 300px;" class="md-media-lg card-media" style="max-height: 500px;"/>
+<md-card-content>
+    <p>
+        Oi eu sou thais.
+    </p>
+</md-card-content>
+</md-card>
+
+<div class="cristian"></div>
+<div flex layout="row" style="margin-top: 20px; margin-bottom: 20px;">
+<div class="foto" flex="30">
+</div>
+<md-card flex="70">
+    <div>
+        <div class="nome"> Cristian</div>
+        <br>
+        <i style="padding: 0px 20px;">Oi eu sou o cristian.</i>
+</div>
+</md-card>
+</div>
+
+
+<md-toolbar style="background-color: #afb1b1;" layout="row" layout-align="center center" flex>
+<h3>O que você quer ler hoje?</h3>
+</md-toolbar>
+<md-content style="padding: 10px;background-color: #f7f1f1;" flex>
+<section layout="row" layout-xs="column" layout-align="space-around center" flex>
+    <md-button class="md-fab fabIcon" aria-label="Livros">
+        <md-icon md-svg-src="app/assets/img/icons/books.svg" aria-label="books "></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Livros </md-tooltip>
+    </md-button>
+    <md-button class="md-fab fabIcon" aria-label="Viagem">
+        <md-icon class="material-icons icon">flight</md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Viagem </md-tooltip>
+    </md-button>
+    <md-button class="md-fab fabIcon" aria-label="Comidas">
+        <md-icon class="material-icons icon mb-fab">restaurant menu</md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Comidas </md-tooltip>
+    </md-button>
+</section>
+<section layout="row" layout-xs="column" layout-align="space-around center" flex>
+    <md-button class="md-fab fabIcon" aria-label="Beleza">
+        <md-icon md-svg-src="app/assets/img/icons/beleza.svg" aria-label="beleza "></md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Beleza </md-tooltip>
+    </md-button>
+    <md-button class="md-fab fabIcon" aria-label="Musicas">
+        <md-icon class="material-icons icon">headset</md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Músicas </md-tooltip>
+    </md-button>
+    <md-button class="md-fab fabIcon" aria-label="Tecnologias">
+        <md-icon class="material-icons icon">computer</md-icon>
+        <md-tooltip md-visible="false" md-direction="Right"> Tecnologias </md-tooltip>
+    </md-button>
+</section>
+</md-content>
+
+<md-content layout-align="center center" flex style="margin-top: 20px;">
+<div style="text-align: center;">
+<img src="app/assets/img/png/facebook.png" class="md-card-image" alt="image caption">
+</div>
+<div class="facebook fb_iframe_widget" data-href="https://www.facebook.com/Travel-World-1186118991505137" data-width="285"
+    data-height="300" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"
+    fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=866051253422075&amp;color_scheme=light&amp;container_width=300&amp;header=false&amp;height=300&amp;href=https%3A%2F%2Fwww.facebook.com%2FTaciAlcolea&amp;locale=en_US&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=285">
+    <span style="vertical-align: bottom; width: 320px; height: 300px;"><iframe name="f3ed7eda4fd796" width="320px" height="300px" frameborder="0" allowtransparency="true" allowfullscreen="true"
+    scrolling="no" title="fb:like_box Facebook Social Plugin" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTravel-World-1186118991505137%2F&tabs=timeline&width=320&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1222747444433418"
+    style="border: none; visibility: visible; width: 320px; height: 300px;" class=""></iframe>
+</span>
+</div>
+</md-content>
+<md-content layout-align="center center" flex style="margin-top: 20px;">
+<div style="text-align: center;">
+<img src="app/assets/img/png/instagram.png" class="md-card-image" alt="image caption">
+</div>
+<div class="instagram-box fb_iframe_widget">
+    <iframe src="https://snapwidget.com/embed/317592" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no"
+        style="border:none; overflow:hidden; max-width:600px; height:390px;"></iframe>
+</div>
+</md-content>
+</div>
+<div flex="10" layout-align="center center">
+    <section flex></section>
+</div>
+</div>
+
+<back-top scrollSpeed=200 ng-cloak>
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Voltar ao topo" style="position: fixed !important">
+<md-icon md-svg-src="app/assets/img/icons/seta-up.svg" aria-label="Voltar ao topo"></md-icon>
+<md-tooltip md-visible="false" md-direction="top"> Voltar ao topo </md-tooltip>
+</md-button>
+</back-top>
+<div layout="row" ng-cloak>
+    <footer class="footer" flex>
+        <div layout="row" layout-align="center center">
+            <button ng-click="vm.login()">
+                Login
+             </button>
+            <h2>Footer</h2>
+        </div>
+    </footer>
+</div>

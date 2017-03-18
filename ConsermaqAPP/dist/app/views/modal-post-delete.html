@@ -1,0 +1,23 @@
+
+<md-dialog aria-label="Excluir postagem" flex="20">
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h4 class="center">Excluir a postagem ?</h4>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-svg-src="app/assets/img/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">                
+                        <div class="padding-top-20" layout="row" layout-align="center center" flex="100">
+                            <md-button class="md-raised md-default" aria-label="Close dialog"  type="submit" ng-click="vm.cancel()">Cancelar</md-button>
+                            <md-button class="md-raised md-warn" aria-label="Close dialog"  type="submit" ng-click="vm.deletePost()">Excluir</md-button>
+                        </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

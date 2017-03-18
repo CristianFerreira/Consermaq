@@ -1,0 +1,39 @@
+<md-dialog aria-label="Login" flex="40" ng-cloak>
+    <form name="form" ng-submit="vm.login()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Acesso restrito</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-svg-src="app/assets/img/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content ">
+                <md-input-container class="md-block" flex="100">
+                    <label>E-mail</label>
+                    <input required name="email" ng-model="vm.loginModel.email" ng-minlength="4" ng-maxlength="100">
+                    <div ng-messages="form.email.$error">
+                       <div ng-message="required">E-mail é obrigatório.</div>
+                       <div ng-message="minlength">E-mail deve ter no minimo 4 caracteres.</div>
+                       <div ng-message="maxlength">E-mail deve ter no maximo 100 caracteres.</div>
+                    </div>                               
+                </md-input-container>
+                <md-input-container class="md-block" flex="100">
+                    <label>Senha</label>
+                    <input required type="password" name="senha" ng-model="vm.loginModel.password" ng-minlength="4" ng-maxlength="100">
+                    <div ng-messages="form.senha.$error">
+                       <div ng-message="required">Senha é obrigatório.</div>
+                       <div ng-message="minlength">Senha deve ter no minimo 4 caracteres.</div>
+                       <div ng-message="maxlength">Senha deve ter no máximo 8 caracteres.</div>
+                    </div>                               
+                </md-input-container>
+                <div flex-sm="50" layout layout-align="center center" class="padding-top-20">
+                        <md-button ng-disabled="form.$invalid || !form.$dirty" class="md-raised md-primary" aria-label="Close dialog" type="submit">Efetuar login</md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

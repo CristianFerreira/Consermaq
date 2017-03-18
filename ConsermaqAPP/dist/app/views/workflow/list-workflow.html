@@ -1,0 +1,35 @@
+
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <section class="content-wrapper main-content clear-fix">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Workflows</h2>
+                </div>
+            </div>
+            <form class="well" style="padding: 12px !important; background-color: #FFF;" novalidate="novalidate">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="workflow-filter">Filtrar</label>
+                                <input class="form-control" id="workflow-filter" ng-model="filter" type="text" placeholder="Buscar workflow">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div ui-grid="vm.filtrarWorkflows(vm.workflows | filter : filter)" 
+                                external-scopes="vm"
+                                class="grid">
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </form>          
+        </section>
+    </div>
+</div>

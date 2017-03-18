@@ -1,5 +1,9 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.OAuth;
+using ModernWebStore.Api.Sistema;
 using ModernWebStore.Domain.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
@@ -34,13 +38,33 @@ namespace ModernWebStore.Api.Security
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-            identity.AddClaim(new Claim(ClaimTypes.Name, user.Email));
-            identity.AddClaim(new Claim(ClaimTypes.Role, user.IsAdmin ? "admin" : ""));
+            // adiciona o sistema logado para identificacao na tela
+            var props = new AuthenticationProperties();
 
-            GenericPrincipal principal = new GenericPrincipal(identity, new string[] { user.IsAdmin ? "admin" : "" });
-            Thread.CurrentPrincipal = principal;
+            var sistemaContexto = new SistemaContexto
+            {
+                UsuarioLogado = user
+            };
 
-            context.Validated(identity);
+            var sistemaContextoJson = JsonConvert.SerializeObject(sistemaContexto, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            identity.AddClaim(new Claim("sistema_contexto", sistemaContextoJson));
+
+            props.Dictionary.Add("sistema_contexto", sistemaContextoJson);
+
+
+            //var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+
+            //identity.AddClaim(new Claim(ClaimTypes.Name, user.Email));
+            //identity.AddClaim(new Claim(ClaimTypes.Role, user.IsAdmin ? "admin" : ""));
+
+            //GenericPrincipal principal = new GenericPrincipal(identity, new string[] { user.IsAdmin ? "admin" : "" });
+            //Thread.CurrentPrincipal = principal;
+
+            //context.Validated(identity);
         }
     }
 }

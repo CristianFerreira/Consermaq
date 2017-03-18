@@ -1,0 +1,10 @@
+<div class="text-center"> 
+   <a class="btn primary"
+        uib-tooltip="Click para lançar horas" 
+        tooltip-placement="bottom-left"
+        tooltip-trigger="'mouseenter'"
+        tooltip-enable="true"
+        ng-click="grid.appScope.vm.abrirModalLancamentoHoras(row.entity)">
+       {{ row.entity.horas }}
+   </a>
+</div>

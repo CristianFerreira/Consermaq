@@ -1,0 +1,31 @@
+
+<md-dialog aria-label="Adicionar categoria" flex="40">
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Editar categoria</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-svg-src="app/assets/img/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block" flex="100">
+                    <label>Nome da categoria</label>
+                    <input required name="name" ng-model="vm.category.name" ng-minlength="3" ng-maxlength="50">
+                    <div ng-messages="form.name.$error">
+                       <div ng-message="required">Nome é obrigatório.</div>
+                       <div ng-message="minlength">Nome deve ter no minimo 3 caracteres.</div>
+                       <div ng-message="maxlength">Nome deve ter no maximo 50 caracteres.</div>
+                    </div>  
+                    <div flex-sm="50" layout layout-align="center center" class="padding-top-20">
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" type="submit" ng-click="vm.editCategory()">Criar Categoria</md-button>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+
