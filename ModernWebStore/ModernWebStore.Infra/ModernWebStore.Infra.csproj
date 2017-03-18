@@ -49,21 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201507291613487_InitialCreate.cs" />
-    <Compile Include="Migrations\201507291613487_InitialCreate.Designer.cs">
-      <DependentUpon>201507291613487_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507311846595_v1.cs" />
-    <Compile Include="Migrations\201507311846595_v1.Designer.cs">
-      <DependentUpon>201507311846595_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507311850033_v2.cs" />
-    <Compile Include="Migrations\201507311850033_v2.Designer.cs">
-      <DependentUpon>201507311850033_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507311855468_v3.cs" />
-    <Compile Include="Migrations\201507311855468_v3.Designer.cs">
-      <DependentUpon>201507311855468_v3.cs</DependentUpon>
+    <Compile Include="Migrations\201703182016320_Profile.cs" />
+    <Compile Include="Migrations\201703182016320_Profile.Designer.cs">
+      <DependentUpon>201703182016320_Profile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\DataContexts\StoreDataContext.cs" />
@@ -85,20 +73,6 @@
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507291613487_InitialCreate.resx">
-      <DependentUpon>201507291613487_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507311846595_v1.resx">
-      <DependentUpon>201507311846595_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507311850033_v2.resx">
-      <DependentUpon>201507311850033_v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507311855468_v3.resx">
-      <DependentUpon>201507311855468_v3.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -107,6 +81,11 @@
       <Project>{13edc3e0-a443-4320-9930-45bc42e632c5}</Project>
       <Name>ModernWebStore.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703182016320_Profile.resx">
+      <DependentUpon>201703182016320_Profile.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,6 @@ namespace ModernWebStore.Infra.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "ModernWebStore.Infra.Persistence.DataContexts.StoreDataContext";
         }
 
         protected override void Seed(ModernWebStore.Infra.Persistence.DataContexts.StoreDataContext context)

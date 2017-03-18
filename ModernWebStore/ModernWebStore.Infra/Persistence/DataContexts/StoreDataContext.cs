@@ -4,6 +4,7 @@ using System.Data.Entity;
 
 namespace ModernWebStore.Infra.Persistence.DataContexts
 {
+    //[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class StoreDataContext : DbContext
     {
         public StoreDataContext() :
