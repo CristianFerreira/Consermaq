@@ -1,0 +1,67 @@
+<div class="icon-grid-center">
+   <div class="row">
+   <div ng-if="row.entity.strNomeUsuario == null " class="col-md-2">
+           <label uib-tooltip="Chamado aberto" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               class="icon-grid"
+               ng-click="grid.appScope.vm.atualizaUsuarioTarefa(row.entity)">
+              <span class="fa fa-hand-paper-o"></span>
+           </label>
+       </div>
+       <div ng-if="row.entity.strNomeUsuario != null" class="col-md-2">
+           <label uib-tooltip="Chamado em andamento" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               class="icon-grid">
+              <span class="fa fa-hand-grab-o"></span>
+           </label>
+       </div>     
+        <div class="col-md-2">
+           <label uib-tooltip="Configurações" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               ng-click="grid.appScope.vm.verificacaoAbrirModalConfiguracao(row.entity)">
+               <span class="glyphicon glyphicon-cog"></span>
+           </label>
+       </div>
+       <div class="col-md-2" >
+           <label uib-tooltip="Especificação" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               ng-click="grid.appScope.vm.abrirModalEspecificacao(row.entity)">
+               <span class="glyphicon glyphicon-list-alt"></span>
+           </label>
+       </div>
+       <div class="col-md-2" style="text-align: center;">
+           <label uib-tooltip="{{ row.entity.checked ? 'Marcado para próxima' : 'Marcar para próxima' }}" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               uib-btn-checkbox
+               ng-model="row.entity.checked"
+               ng-click="grid.appScope.vm.incluirParaExecucaoEmMassa(row.entity)">
+               <span class="glyphicon" ng-class="row.entity.checked ? 'glyphicon-check' : 'glyphicon-unchecked'"></span>
+           </label>
+       </div>
+       <div class="col-md-2">
+           <label ng-show="!row.entity.checked" 
+               uib-tooltip="Click para próxima" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-append-to-body="true"
+               tooltip-enable="true"
+               ng-click="grid.appScope.vm.abrirModalComentarioEncerramento(row.entity)">
+               <span class="glyphicon glyphicon-forward"></span>
+           </label>
+       </div>
+</div>

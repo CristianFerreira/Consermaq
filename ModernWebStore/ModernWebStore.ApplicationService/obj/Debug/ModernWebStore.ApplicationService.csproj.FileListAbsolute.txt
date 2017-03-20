@@ -24,3 +24,16 @@ C:\dev\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\Enti
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.csprojResolveAssemblyReference.cache
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.dll
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.ApplicationService.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.ApplicationService.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Domain.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Infra.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.SharedKernel.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\EntityFramework.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Domain.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.Infra.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\ModernWebStore.SharedKernel.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\bin\Debug\EntityFramework.xml
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.csprojResolveAssemblyReference.cache
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.ApplicationService\obj\Debug\ModernWebStore.ApplicationService.pdb

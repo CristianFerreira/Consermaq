@@ -49,9 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201703182016320_Profile.cs" />
-    <Compile Include="Migrations\201703182016320_Profile.Designer.cs">
-      <DependentUpon>201703182016320_Profile.cs</DependentUpon>
+    <Compile Include="Migrations\201703190100452_Profile.cs" />
+    <Compile Include="Migrations\201703190100452_Profile.Designer.cs">
+      <DependentUpon>201703190100452_Profile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\DataContexts\StoreDataContext.cs" />
@@ -83,8 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703182016320_Profile.resx">
-      <DependentUpon>201703182016320_Profile.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703190100452_Profile.resx">
+      <DependentUpon>201703190100452_Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

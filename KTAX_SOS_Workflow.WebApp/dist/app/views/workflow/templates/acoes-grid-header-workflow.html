@@ -1,0 +1,28 @@
+<div class="ui-grid-top-panel" style="text-align: center;padding-top:5px;">
+   <div class="row">
+       <div class="col-md-5" style="text-align: right;"></div>
+       <div class="col-md-3" style="text-align: center;">
+           <a uib-tooltip="{{ grid.appScope.vm.todosMarcadosParaExecucao() ? 'Todos marcados para próxima' : 'Marcar todos para próxima' }}" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               uib-btn-checkbox
+               ng-model="grid.appScope.vm.todosMarcados"
+               ng-click="grid.appScope.vm.incluirTodosParaExecucaoEmMassa()">
+               <span class="glyphicon" ng-class="grid.appScope.vm.todosMarcadosParaExecucao() ? 'glyphicon-check' : 'glyphicon-unchecked'"></span>
+           </a>
+       </div>
+       <div class="col-md-4" style="text-align: left;">                                            
+           <a ng-show="grid.appScope.vm.workflowsExecucaoEmMassa.length" 
+               uib-tooltip="Enviar marcados para próxima" 
+               tooltip-placement="bottom-left"
+               tooltip-trigger="'mouseenter'"
+               tooltip-enable="true"
+               tooltip-append-to-body="true"
+               ng-click="grid.appScope.vm.abrirModalComentarioEncerramento()">
+               <span class="glyphicon glyphicon-fast-forward"></span>
+           </a>
+       </div>
+   </div>
+</div>

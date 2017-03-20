@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" ng-app="Consermaq">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="KTAX SOS Workflow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KTAX SOS Workflow</title>
+
+    <link rel="stylesheet" href="app/build/css/app-style.min.css">
+    
+
+</head>
+<body>
+    <div class="row clearfix">
+        <div class="col-md-12" style="padding: 0 0;">
+            
+            <div ng-include="'app/views/shared/header.html'" 
+                ng-controller="SharedController as vm"></div>
+
+            <div class="container-fluid">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <script src="app/build/js/app-scripts.min.js"></script>
+    <script src="app/build/js/app-ts.min.js"></script>
+    
+</body>
+</html>

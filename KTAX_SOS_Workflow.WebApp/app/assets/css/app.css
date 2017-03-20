@@ -1,0 +1,47 @@
+.cabecalho { height: 15%; background: #01257B; text-decoration: none; border-width: 0; }
+.topBarTopMenu { text-align: right; margin-top: 5px; width: 400px; font-family: Arial, Helvetica, sans-serif; float: right; height: 30px; color: #ffffff; font-size: 8pt; margin-right: 10px; color: White; }
+
+.link-color-black {
+    color: black !important;
+}
+
+.icon-filter-hand {
+    font-size: 36px; 
+    /*padding-top: 20px;*/
+}
+
+.icon-grid-center{
+    padding: 4px 0px 0px 0px;
+}
+
+.icon-grid {
+    font-size: 16px;
+}
+
+@media(min-height:500px) {
+.grid {
+    height: 450px !important;
+  }
+}
+
+@media (min-height: 900px) {
+  .ui-grid, .ui-grid-viewport {
+    height: 580px !important;
+  }
+}
+
+a.icon-filter-hand {
+    color: #484646;
+    text-decoration: none;
+}
+
+a.icon-filter-hand :hover 
+{
+     color:#000; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+.btn.icon-filter-hand {
+    padding: 0px 0px 0px 0px !important;
+}

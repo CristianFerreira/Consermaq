@@ -1,6 +1,6 @@
 /// <reference path="_all.ts" />
 
-module Travel_World {
+module Consermaq {
     'use strict';
 
     function config() {

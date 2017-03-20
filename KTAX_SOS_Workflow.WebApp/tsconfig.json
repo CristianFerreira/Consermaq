@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "es5",
+    "outFile": "app/build/js/app-ts.min.js"
+  },
+  "files": [
+    "app/configs/_all.ts"
+  ]
+}

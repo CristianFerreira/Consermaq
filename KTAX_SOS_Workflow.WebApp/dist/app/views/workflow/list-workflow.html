@@ -1,0 +1,51 @@
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <section class="content-wrapper main-content clear-fix">
+            <form class="well" style="padding: 12px !important; background-color: #FFF;" novalidate="novalidate">
+                <div class="row">
+                            <div class="form-group row">
+                                <div class="col-md-11" style="padding-top:3px;">
+                                        <input class="form-control" id="workflow-filter" ng-model="filter" ng-change="vm.filtrarWorkflows(vm.workflowsUsuarioTarefa | filter : filter)" type="text" placeholder="Pesquise aqui...">
+                                </div>
+                                <div class="col-md-1" ng-if="vm.tarefaUsuario == true">
+                                   <a  class="btn default ui-grid-filter-container fa fa-hand-grab-o icon-filter-hand" ng-click="vm.filtrarTarefa()"
+                                            uib-tooltip="Meus chamados" 
+                                            tooltip-placement="bottom-left"
+                                            tooltip-trigger="'mouseenter'"
+                                            tooltip-enable="true"
+                                            tooltip-append-to-body="true"
+                                            ng-model="vm.tarefaUsuario" 
+                                            ng-click="vm.filtrarTarefa()">                
+                                    </a>
+                           
+                                </div>
+                                <div class="col-md-1" ng-if="vm.tarefaUsuario == false">
+                                    <a class="btn default ui-grid-filter-container fa fa-hand-paper-o icon-filter-hand" 
+                                        ng-click="vm.filtrarTarefa()"
+                                        uib-tooltip="Chamados abertos" 
+                                            tooltip-placement="bottom-left"
+                                            tooltip-trigger="'mouseenter'"
+                                            tooltip-enable="true"
+                                            tooltip-append-to-body="true"
+                                            ng-model="vm.tarefaUsuario" 
+                                            ng-click="vm.filtrarTarefa()">
+                                    </a>
+                                </div>
+                            </div>                      
+                </div>  
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div ui-grid="vm.gridOptions" 
+                                external-scopes="vm"
+                                class="grid">
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+      
+            </form>          
+        </section>
+    </div>
+</div>

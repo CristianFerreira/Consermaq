@@ -1,0 +1,6 @@
+F:\Cristian\Acesso KTAX\dev\KTAX_SOS_Workflow.WebApp\bin\KTAX_SOS_Workflow.WebApp.dll.config
+F:\Cristian\Acesso KTAX\dev\KTAX_SOS_Workflow.WebApp\bin\KTAX_SOS_Workflow.WebApp.dll
+F:\Cristian\Acesso KTAX\dev\KTAX_SOS_Workflow.WebApp\bin\KTAX_SOS_Workflow.WebApp.pdb
+F:\Cristian\Acesso KTAX\dev\KTAX_SOS_Workflow.WebApp\obj\Debug\KTAX_SOS_Workflow.WebApp.csprojResolveAssemblyReference.cache
+F:\Cristian\Acesso KTAX\dev\KTAX_SOS_Workflow.WebApp\obj\Debug\KTAX_SOS_Workflow.WebApp.dll
+F:\Cristian\Acesso KTAX\dev\KTAX_SOS_Workflow.WebApp\obj\Debug\KTAX_SOS_Workflow.WebApp.pdb

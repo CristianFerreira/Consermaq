@@ -1,0 +1,71 @@
+<form name="formConfiguracao"  novalidate>
+    <div class="modal-header">
+        <button type="button" 
+                class="close" 
+                data-dismiss="modal" 
+                ng-click="vm.cancel()"
+                aria-hidden="true">&times;
+        </button>
+        <h4 class="modal-title text-left">Configuração<br></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">           
+                <div class="form-group">
+                    <label>ID Chave</label>
+                    <input class="form-control" ng-model="vm.workflow.idGenerico" ng-disabled="true"/>
+                </div> 
+                <div ng-repeat="configuracaoValor in vm.configuracao.configuracaoValores">                  
+                        <div class="form-group" ng-class="{ 'has-error' : formConfiguracao.tipoCampo.$invalid && formConfiguracao.tipoCampo.$dirty}">  
+                            <label ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'string'">{{configuracaoValor.tipoTarefaTela.strLabelCampo}}</label>
+                            <div ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'string'" 
+                                 ng-include="'app/views/workflow/templates/componente-input.html'">
+                            </div>  
+                        </div>                        
+                </div> 
+                <div ng-repeat="configuracaoValor in vm.configuracao.configuracaoValores">
+                        <div class="form-group">      
+                            <label ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'tipo'">{{configuracaoValor.tipoTarefaTela.strLabelCampo}}</label>
+                            <div ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'tipo'" 
+                                 ng-include="'app/views/workflow/templates/componente-checkbox.html'">
+                            </div>                       
+                        </div>       
+                </div>                            
+                <div ng-repeat="configuracaoValor in vm.configuracao.configuracaoValores">              
+                        <div class="form-group">
+                            <label ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'select'">{{configuracaoValor.tipoTarefaTela.strLabelCampo}}</label>
+                            <div ng-if="configuracaoValor.tipoTarefaTela.strTipoCampo == 'select'" 
+                                 ng-include="'app/views/workflow/templates/componente-select.html'">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-disabled="formConfiguracao.$invalid"  
+                uib-popover-template="'ConfirmPopover.html'"
+                popover-title="Salvar configuração ?"
+                popover-is-open="configuracao.popoverIsOpen"
+                popover-placement="bottom"
+                class="btn btn-default" 
+                data-dismiss="modal">
+            <span class="glyphicon  glyphicon glyphicon-ok"></span>
+        </button>
+    </div>
+
+      <script type="text/ng-template" id="ConfirmPopover.html">
+           <div style="min-width: 150px;min-height: 60px;text-align: left;">
+                <div></div>    
+                     <div class="btn-group pull-right">
+                           <a class="btn btn-default" ng-click="configuracao.popoverIsOpen=false">
+                                 Cancelar
+                            </a>
+                            <a class="btn btn-default" ng-disabled="formConfiguracao.$invalid"
+                                ng-click="vm.salvaConfiguracao();">
+                             <span class="glyphicon glyphicon-ok"></span>
+                            </a>
+                     </div>
+            </div>                                                       
+      </script>
+</form>

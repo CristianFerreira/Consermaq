@@ -102,15 +102,15 @@ gulp.task('css', function () {
     
     gulp.src(paths.css.src)
        .pipe(concat(paths.css.file))
-       //.pipe(cssmin())
+       .pipe(cssmin())
        .pipe(gulp.dest(paths.css.destProject))
        .pipe(gulp.dest(paths.css.dest));
 
     var filterEot = filter("**/fonts/**.eot", { restore: true });
     var filterSvg = filter("**/fonts/**.svg", { restore: true });
-    // var filterTtf = filter("**/fonts/**.ttf", { restore: true });
-    // var filterWoff = filter("**/fonts/**.woff", { restore: true });
-    // var filterWoff2 = filter("**/fonts/**.woff2", { restore: true });
+    var filterTtf = filter("**/fonts/**.ttf", { restore: true });
+    var filterWoff = filter("**/fonts/**.woff", { restore: true });
+    var filterWoff2 = filter("**/fonts/**.woff2", { restore: true });
 
     gulp.src(paths.cssFonts.src)
         .pipe(filterEot)
@@ -118,30 +118,30 @@ gulp.task('css', function () {
         .pipe(gulp.dest(paths.cssFonts.dest))
         .pipe(filterEot.restore)
 
-        // .pipe(filterWoff)
-        // .pipe(gulp.dest(paths.cssFonts.destProject))
-        // .pipe(gulp.dest(paths.cssFonts.dest))
-        // .pipe(filterWoff.restore)
+        .pipe(filterWoff)
+        .pipe(gulp.dest(paths.cssFonts.destProject))
+        .pipe(gulp.dest(paths.cssFonts.dest))
+        .pipe(filterWoff.restore)
 
-        // .pipe(filterWoff2)
-        // .pipe(gulp.dest(paths.cssFonts.destProject))
-        // .pipe(gulp.dest(paths.cssFonts.dest)
-        // .pipe(filterWoff2.restore)
+        .pipe(filterWoff2)
+        .pipe(gulp.dest(paths.cssFonts.destProject))
+        .pipe(gulp.dest(paths.cssFonts.dest)
+        .pipe(filterWoff2.restore)
 
         .pipe(filterSvg)
         .pipe(gulp.dest(paths.cssFonts.destProject))
         .pipe(gulp.dest(paths.cssFonts.dest))
         .pipe(filterSvg.restore)
 
-        // .pipe(filterTtf)
-        // .pipe(gulp.dest(paths.cssFonts.destProject))
-        // .pipe(gulp.dest(paths.cssFonts.dest)));
+        .pipe(filterTtf)
+        .pipe(gulp.dest(paths.cssFonts.destProject))
+        .pipe(gulp.dest(paths.cssFonts.dest)));
 
     filterEot = filter("**/*.eot", { restore: true });
     filterSvg = filter("**/*.svg", { restore: true });
-    // filterTtf = filter("**/*.ttf", { restore: true });
-    // filterWoff = filter("**/*.woff", { restore: true });
-    // filterWoff2 = filter("**/*.woff2", { restore: true });
+    filterTtf = filter("**/*.ttf", { restore: true });
+    filterWoff = filter("**/*.woff", { restore: true });
+    filterWoff2 = filter("**/*.woff2", { restore: true });
 
     gulp.src(paths.cssFonts.src)
        .pipe(filterEot)
@@ -149,24 +149,24 @@ gulp.task('css', function () {
        .pipe(gulp.dest(paths.css.dest))
        .pipe(filterEot.restore)
 
-    //    .pipe(filterWoff)
-    //    .pipe(gulp.dest(paths.css.destProject))
-    //    .pipe(gulp.dest(paths.css.dest))
-    //    .pipe(filterWoff.restore)
+       .pipe(filterWoff)
+       .pipe(gulp.dest(paths.css.destProject))
+       .pipe(gulp.dest(paths.css.dest))
+       .pipe(filterWoff.restore)
 
-    //    .pipe(filterWoff2)
-    //    .pipe(gulp.dest(paths.css.destProject))
-    //    .pipe(gulp.dest(paths.css.dest))
-    //    .pipe(filterWoff2.restore)
+       .pipe(filterWoff2)
+       .pipe(gulp.dest(paths.css.destProject))
+       .pipe(gulp.dest(paths.css.dest))
+       .pipe(filterWoff2.restore)
 
        .pipe(filterSvg)
        .pipe(gulp.dest(paths.css.destProject))
        .pipe(gulp.dest(paths.css.dest))
        .pipe(filterSvg.restore)
 
-    //    .pipe(filterTtf)
-    //    .pipe(gulp.dest(paths.css.destProject))
-    //    .pipe(gulp.dest(paths.css.dest));
+       .pipe(filterTtf)
+       .pipe(gulp.dest(paths.css.destProject))
+       .pipe(gulp.dest(paths.css.dest));
 });
 
 gulp.task('ts', function () {
@@ -190,7 +190,7 @@ gulp.task('script', function () {
     gulp.src(paths.scripts.src)
         .pipe(jsvalidate())
         .pipe(concat(paths.scripts.file))
-        //.pipe(uglify({ mangle: false }))
+        .pipe(uglify({ mangle: false }))
         .pipe(gulp.dest(paths.scripts.destProject + jsDist))
         .pipe(gulp.dest(paths.scripts.dest + jsDist));
 });

@@ -1,7 +1,7 @@
 
 
 /// <reference path="../../configs/_all.ts" />
-module Travel_World {
+module Consermaq {
     export class LoginModel {
         public email: string;
         public password: string;

@@ -1,11 +1,11 @@
 /// <reference path="_all.ts" />
 
-module Travel_World {
+module Consermaq {
     'use strict';
 
-    function config($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) {
+    function config($routeProvider: ng.route.IRouteProvider) {
 
-        $locationProvider.html5Mode(true).hashPrefix('!'); 
+        // $locationProvider.html5Mode(true).hashPrefix('!'); 
 
         $routeProvider
             .when("/", {
@@ -75,7 +75,7 @@ module Travel_World {
             });
     }
 
-    config.$inject = ['$routeProvider','$locationProvider'];
+    config.$inject = ['$routeProvider'];
 
     angular.module(appConfig.appName).config(config);
 }

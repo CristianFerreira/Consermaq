@@ -2,7 +2,7 @@
 
 /// <reference path="../../configs/_all.ts" />
 
-module Travel_World {
+module Consermaq {
     export class LoginController {
 
         static $inject = ['$routeParams', 

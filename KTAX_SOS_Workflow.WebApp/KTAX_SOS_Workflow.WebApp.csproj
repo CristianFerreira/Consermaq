@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA470346-3442-4AAA-B345-8A6CE8A4F99F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KTAX_SOS_Workflow.WebApp</RootNamespace>
+    <AssemblyName>KTAX_SOS_Workflow.WebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\build\css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\build\css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\build\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\build\css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="app\build\css\ui-grid.eot" />
+    <Content Include="app\build\css\ui-grid.woff" />
+    <Content Include="app\build\fonts\fontawesome-webfont.eot" />
+    <Content Include="app\build\fonts\fontawesome-webfont.ttf" />
+    <Content Include="app\build\fonts\fontawesome-webfont.woff" />
+    <Content Include="app\build\fonts\fontawesome-webfont.woff2" />
+    <Content Include="app\build\fonts\FontAwesome.otf" />
+    <Content Include="app\build\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\build\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\build\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\build\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="app\build\js\app-ts.min.js.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\assets\css\app.css" />
+    <Content Include="app\assets\css\bootstrap-kpmg.css" />
+    <Content Include="app\assets\images\exemplo-grafico-drilldown.png" />
+    <Content Include="app\assets\images\exemplo-grafico-normal.png" />
+    <Content Include="app\assets\images\hand_closed.png" />
+    <Content Include="app\assets\images\hand_closed.svg" />
+    <Content Include="app\assets\images\hand_open.svg" />
+    <Content Include="app\assets\images\LogoKPMG-mini.png" />
+    <Content Include="app\assets\images\logoKPMG.png" />
+    <Content Include="app\build\css\app-style.min.css" />
+    <Content Include="app\build\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\build\fonts\fontawesome-webfont.svg" />
+    <Content Include="app\build\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\build\js\app-scripts.min.js" />
+    <Content Include="app\build\js\app-ts.min.js" />
+    <Content Include="app\views\autenticacao\login.html" />
+    <Content Include="app\views\shared\404.html" />
+    <Content Include="app\views\shared\header.html" />
+    <Content Include="app\views\workflow\list-workflow.html" />
+    <Content Include="app\views\workflow\modal-comentario-encerramento.html" />
+    <Content Include="app\views\workflow\modal-configuracao.html" />
+    <Content Include="app\views\workflow\modal-especificacao.html" />
+    <Content Include="app\views\workflow\modal-lancamento-horas.html" />
+    <Content Include="app\views\workflow\templates\acoes-grid-header-workflow.html" />
+    <Content Include="app\views\workflow\templates\acoes-grid-lancamento-horas.html" />
+    <Content Include="app\views\workflow\templates\acoes-grid-workflow.html" />
+    <Content Include="app\views\workflow\templates\componente-checkbox.html" />
+    <Content Include="app\views\workflow\templates\componente-input.html" />
+    <Content Include="app\views\workflow\templates\componente-select.html" />
+    <Content Include="app\views\workflow\templates\modal-configuracao.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\configs\AppConfig.ts" />
+    <TypeScriptCompile Include="app\configs\Modules.ts" />
+    <TypeScriptCompile Include="app\configs\Routes.ts" />
+    <TypeScriptCompile Include="app\configs\Startup.ts" />
+    <TypeScriptCompile Include="app\configs\_all.ts" />
+    <TypeScriptCompile Include="app\contracts\IHttpService.ts" />
+    <TypeScriptCompile Include="app\contracts\ILocationService.ts" />
+    <TypeScriptCompile Include="app\contracts\IModalService.ts" />
+    <TypeScriptCompile Include="app\contracts\IModalServiceInstance.ts" />
+    <TypeScriptCompile Include="app\contracts\IRootScope.ts" />
+    <TypeScriptCompile Include="app\contracts\IRouteParamsService.ts" />
+    <TypeScriptCompile Include="app\contracts\ITimeoutService.ts" />
+    <TypeScriptCompile Include="app\controllers\autenticacao\LoginController.ts" />
+    <TypeScriptCompile Include="app\controllers\autenticacao\LogoutController.ts" />
+    <TypeScriptCompile Include="app\controllers\shareds\SharedController.ts" />
+    <TypeScriptCompile Include="app\controllers\workflow\ListWorkflowController.ts" />
+    <TypeScriptCompile Include="app\controllers\workflow\ModalComentarioEncerramentoController.ts" />
+    <TypeScriptCompile Include="app\controllers\workflow\ModalConfiguracaoController.ts" />
+    <TypeScriptCompile Include="app\controllers\workflow\ModalEspecificacaoController.ts" />
+    <TypeScriptCompile Include="app\controllers\workflow\ModalLancamentoHorasController.ts" />
+    <TypeScriptCompile Include="app\models\api-models\ABS\WorkflowConfiguracao.ts" />
+    <TypeScriptCompile Include="app\models\api-models\ABS\WorkflowConfiguracaoValor.ts" />
+    <TypeScriptCompile Include="app\models\api-models\ABS\WorkflowSelecionaChaveValor.ts" />
+    <TypeScriptCompile Include="app\models\api-models\SistemaContexto.ts" />
+    <TypeScriptCompile Include="app\models\api-models\SosUsuario.ts" />
+    <TypeScriptCompile Include="app\models\api-models\Workflow.ts" />
+    <TypeScriptCompile Include="app\models\api-models\WorkflowTipoTarefa.ts" />
+    <TypeScriptCompile Include="app\models\api-models\WorkflowTipoTarefaTela.ts" />
+    <TypeScriptCompile Include="app\models\api-models\WorkflowTipoTarefaTelaInstrucao.ts" />
+    <TypeScriptCompile Include="app\models\app-models\HoraModel.ts" />
+    <TypeScriptCompile Include="app\models\app-models\LoginModel.ts" />
+    <TypeScriptCompile Include="app\services\app-service-base\AppServiceBase.ts" />
+    <TypeScriptCompile Include="app\services\app-service-base\IAppService.ts" />
+    <TypeScriptCompile Include="app\services\AutenticacaoService.ts" />
+    <TypeScriptCompile Include="app\services\SosTarefarealizadoService.ts" />
+    <TypeScriptCompile Include="app\services\WorkflowService.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\directives\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>40926</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:40926/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

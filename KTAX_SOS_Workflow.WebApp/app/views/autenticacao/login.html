@@ -1,0 +1,60 @@
+
+
+<br /><br />
+<div class="col-md-4 col-md-offset-4">
+    <div class="panel panel-default well">
+        <div class="panel-body">
+            <form name="loginForm" ng-submit="vm.login()" novalidate>
+                <div class="form-group" 
+                    ng-class="{ 'has-error' : loginForm.nomeUsuario.$invalid && loginForm.nomeUsuario.$dirty }">
+                    <label>Usuário</label>
+                    
+                    <input ng-model="vm.loginModel.nomeUsuario" 
+                            ng-minlength="4" 
+                            ng-maxlength="160" 
+                            type="text" 
+                            class="form-control" 
+                            id="nomeUsuario" 
+                            name="nomeUsuario" 
+                            placeholder="E-mail ou nome de usuário" 
+                            uib-tooltip-template="'nomeUsuarioTemplate.html'"
+                            tooltip-placement="top"
+                            
+                            tooltip-enable="loginForm.nomeUsuario.$invalid && loginForm.nomeUsuario.$dirty"
+                            required/>
+
+                        <script type="text/ng-template" id="nomeUsuarioTemplate.html">
+                            <div>E-mail ou nome de usuário inválido</div>
+                        </script>
+
+                    <div class="form-group" 
+                        ng-class="{ 'has-error' : loginForm.senha.$invalid && loginForm.senha.$dirty }">
+
+                        <label for="senha">Senha</label>
+                        <input ng-model="vm.loginModel.senha" 
+                            ng-minlength="2" 
+                            ng-maxlength="20" 
+                            type="password" 
+                            class="form-control" 
+                            id="senha" 
+                            name="senha"
+                            uib-tooltip-template="'senhaTemplate.html'"
+                            tooltip-placement="top"
+                            tooltip-trigger="'mouseenter'"
+                            tooltip-enable="loginForm.senha.$invalid && loginForm.senha.$dirty" 
+                            required />
+
+                        <script type="text/ng-template" id="senhaTemplate.html">
+                            <div>Senha inválida.</div>
+                        </script>
+                    </div>
+                </div>
+                <button ng-disabled="loginForm.$invalid || !loginForm.$dirty" 
+                        type="submit" 
+                        class="btn btn-primary btn-block">
+                    <span class="glyphicon glyphicon-log-in"></span> Efetuar login
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
