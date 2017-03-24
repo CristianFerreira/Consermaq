@@ -65,6 +65,18 @@ namespace ModernWebStore.Api.Security
             //Thread.CurrentPrincipal = principal;
 
             //context.Validated(identity);
+
+            var ticket = new AuthenticationTicket(identity, props);
+            context.Validated(ticket);
         }
+
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (var property in context.Properties.Dictionary)
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+
+            return Task.FromResult<object>(null);
+        }
+    
     }
 }

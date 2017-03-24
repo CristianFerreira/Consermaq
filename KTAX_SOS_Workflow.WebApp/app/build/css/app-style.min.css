@@ -8540,43 +8540,18 @@ md-backdrop.md-edit-dialog-backdrop{z-index:80}md-edit-dialog{display:-webkit-fl
     color: black !important;
 }
 
-.icon-filter-hand {
-    font-size: 36px; 
-    /*padding-top: 20px;*/
+.telaLogin {
+    background-color: #eee;
 }
 
-.icon-grid-center{
-    padding: 4px 0px 0px 0px;
-}
-
-.icon-grid {
-    font-size: 16px;
-}
-
-@media(min-height:500px) {
-.grid {
-    height: 450px !important;
-  }
-}
-
-@media (min-height: 900px) {
-  .ui-grid, .ui-grid-viewport {
-    height: 580px !important;
-  }
-}
-
-a.icon-filter-hand {
-    color: #484646;
-    text-decoration: none;
-}
-
-a.icon-filter-hand :hover 
-{
-     color:#000; 
-     text-decoration:none; 
-     cursor:pointer;  
-}
-
-.btn.icon-filter-hand {
-    padding: 0px 0px 0px 0px !important;
+.title-card-login{
+    position: relative;
+    z-index: 1;
+    border-left: 5px solid #01257b;
+    margin: 0 0 35px;
+    padding: 10px 0 0px 30px;
+    color: #9e9e9e;
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
