@@ -1,5 +1,6 @@
 ﻿using ModernWebStore.Domain.Entities;
 using ModernWebStore.Domain.Services;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace ModernWebStore.Api.Controllers
             return CreateResponse(HttpStatusCode.Created, PessoaJuridica);
         }
 
-        [HttpPut]
+        [HttpPost]
         //[Authorize]
         [Route("api/pessoajuridica/update")]
         public Task<HttpResponseMessage> Put(PessoaJuridica pj)
@@ -60,6 +61,15 @@ namespace ModernWebStore.Api.Controllers
         public Task<HttpResponseMessage> Delete(int id)
         {
             var PessoaJuridica = _service.Delete(id);
+            return CreateResponse(HttpStatusCode.OK, PessoaJuridica);
+        }
+
+        [HttpPost]
+        //[Authorize]
+        [Route("api/pessoajuridica/deleteAlot/")]
+        public Task<HttpResponseMessage> DeleteAlot(List<PessoaJuridica> pessoasjuridicas)
+        {
+            var PessoaJuridica = _service.DeleteAlot(pessoasjuridicas);
             return CreateResponse(HttpStatusCode.OK, PessoaJuridica);
         }
 

@@ -5,5 +5,6 @@ C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebS
 C:\Renan\mwa-api\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.pdb
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\bin\Debug\ModernWebStore.SharedKernel.dll
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\bin\Debug\ModernWebStore.SharedKernel.pdb
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.csprojResolveAssemblyReference.cache
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.dll
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.pdb

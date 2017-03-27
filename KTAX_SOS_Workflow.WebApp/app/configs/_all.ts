@@ -21,6 +21,9 @@
 
 /// <reference path="../models/api-models/User.ts" />
 /// <reference path="../models/api-models/SistemaContexto.ts" />
+/// <reference path="../models/api-models/Pessoa.ts" />
+/// <reference path="../models/api-models/PessoaFisica.ts" />
+/// <reference path="../models/api-models/PessoaJuridica.ts" />
 
 /// <reference path="../models/app-models/LoginModel.ts" />
 
@@ -28,12 +31,24 @@
 
 /// <reference path="../services/app-service-base/IAppService.ts" />
 /// <reference path="../services/app-service-base/AppServiceBase.ts" />
-/// <reference path="../services/WorkflowService.ts" />
+/// <reference path="../services/PessoaFisicaService.ts" />
+/// <reference path="../services/PessoaJuridicaService.ts" />
 /// <reference path="../services/AutenticacaoService.ts" />
+
 
 /// <reference path="../controllers/autenticacao/LoginController.ts" />
 /// <reference path="../controllers/autenticacao/LogoutController.ts" />
+
+/// <reference path="../controllers/cliente/pessoafisica/PessoaFisicaController.ts" />
+/// <reference path="../controllers/cliente/pessoafisica/ModalPessoaFisicaController.ts" />
+/// <reference path="../controllers/cliente/pessoafisica/ModalDeletePessoaFisicaController.ts" />
+
+/// <reference path="../controllers/cliente/pessoajuridica/PessoaJuridicaController.ts" />
+/// <reference path="../controllers/cliente/pessoajuridica/ModalPessoaJuridicaController.ts" />
+/// <reference path="../controllers/cliente/pessoajuridica/ModalDeletePessoaJuridicaController.ts" />
+
 /// <reference path="../controllers/shareds/SharedController.ts" />
+
 
 
 

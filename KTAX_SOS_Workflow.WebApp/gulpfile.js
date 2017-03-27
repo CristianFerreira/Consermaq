@@ -20,6 +20,7 @@ var paths = {
             'node_modules/angular-material-data-table/dist/md-data-table.min.css',
             'node_modules/angular-loading-bar/build/loading-bar.min.css',
             'node_modules/angular-material/angular-material.min.css',
+            'node_modules/material-design-icons/iconfont/material-icons.css',
             'app/assets/css/app.css',
         ],
         destProject: 'app/build/css/',
@@ -31,7 +32,8 @@ var paths = {
             'node_modules/bootstrap/dist/**',
             'node_modules/angular-ui-bootstrap/dist/**',
             'node_modules/angular-xeditable/dist/**',
-            'node_modules/angular-ui-grid/**'
+            'node_modules/angular-ui-grid/**',          
+            'node_modules/material-design-icons/iconfont/**',
         ],
         destProject: 'app/build/',
         dest: 'dist/app/build/'
@@ -62,6 +64,7 @@ var paths = {
             'node_modules/angular-material-data-table/dist/md-data-table.min.js',
             'node_modules/angular-loading-bar/build/loading-bar.min.js',
             'node_modules/angular-material/angular-material.min.js',
+            'node_modules/angular-ui-mask/dist/mask.js',
         ],
         destProject: 'app/build/',
         dest: 'dist/app/build/',

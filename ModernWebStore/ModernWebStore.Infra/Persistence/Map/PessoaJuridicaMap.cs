@@ -16,7 +16,7 @@ namespace ModernWebStore.Infra.Persistence.Map
                 .IsRequired();
 
             Property(x => x.CNPJ)
-                .HasMaxLength(11)
+                .HasMaxLength(18)
                 .IsRequired();
 
             Property(x => x.Rua)
@@ -32,11 +32,11 @@ namespace ModernWebStore.Infra.Persistence.Map
                 .IsRequired();
 
             Property(x => x.CEP)
-                .HasMaxLength(8)
+                .HasMaxLength(9)
                 .IsRequired();
 
             Property(x => x.Telefone)
-                .HasMaxLength(12)
+                .HasMaxLength(14)
                 .IsRequired();
         }
     }

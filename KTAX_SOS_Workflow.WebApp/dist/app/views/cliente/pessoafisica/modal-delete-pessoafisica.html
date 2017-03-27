@@ -1,0 +1,27 @@
+
+<md-dialog aria-label="Excluir Pessoa Fisica" flex="12">
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 style="font-size: 18px;" class="center">Excluir Pessoa Fisica</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons" style="color: #fff">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">              
+                    <div layout-align="center center">
+                            <h4 ng-if="vm.pessoasfisicas.length == 1" style="font-size: 16px;">Tem certeza que deseja excluir o item selecionado?</h4>
+                            <h4 ng-if="vm.pessoasfisicas.length > 1" style="font-size: 16px;">Tem certeza que deseja excluir os itens selecionados?</h4>
+                    <div>
+                    <div layout="row" layout-align="center center" flex="100" layout-padding-top="-20">
+                        <md-button class="md-raised md-default" aria-label="Close dialog"  type="submit" ng-click="vm.cancel()">Cancelar</md-button>
+                        <md-button class="md-accent md-raised md-hue-2" aria-label="Close dialog"  type="submit" ng-click="vm.delete()">Excluir</md-button>
+                    </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

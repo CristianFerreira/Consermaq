@@ -1,5 +1,6 @@
 ﻿using ModernWebStore.Domain.Entities;
 using ModernWebStore.Domain.Services;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace ModernWebStore.Api.Controllers
             return CreateResponse(HttpStatusCode.Created, PessoaFisica);
         }
 
-        [HttpPut]
+        [HttpPost]
         //[Authorize]
         [Route("api/pessoafisica/update")]
         public Task<HttpResponseMessage> Put(PessoaFisica pf)
@@ -63,6 +64,14 @@ namespace ModernWebStore.Api.Controllers
             return CreateResponse(HttpStatusCode.OK, PessoaFisca);
         }
 
+        [HttpPost]
+        //[Authorize]
+        [Route("api/pessoaFisica/deleteAlot/")]
+        public Task<HttpResponseMessage> DeleteAlot(List<PessoaFisica> pessoasfisicas)
+        {
+            var PessoaFisca = _service.DeleteAlot(pessoasfisicas);
+            return CreateResponse(HttpStatusCode.OK, PessoaFisca);
+        }
 
     }
 }

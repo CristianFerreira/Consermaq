@@ -15,5 +15,6 @@ namespace ModernWebStore.Domain.Services
         PessoaJuridica Create(PessoaJuridica pj);
         PessoaJuridica Update(PessoaJuridica pj);
         PessoaJuridica Delete(int id);
+        List<PessoaJuridica> DeleteAlot(List<PessoaJuridica> pessoasjuridicas);
     }
 }

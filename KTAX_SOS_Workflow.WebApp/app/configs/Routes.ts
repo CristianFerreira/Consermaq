@@ -6,8 +6,8 @@ module Consermaq {
     function config($routeProvider: ng.route.IRouteProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "app/views/autenticacao/login.html",
-                controller: "LoginController",
+                templateUrl: "app/views/cliente/pessoafisica/pessoafisica.html",
+                controller: "PessoaFisicaController",
                 controllerAs: "vm"
             })
             .when("/login", {
@@ -15,6 +15,17 @@ module Consermaq {
                 controller: "LoginController",
                 controllerAs: "vm"
             })
+            .when("/pessoafisica", {
+                templateUrl: "app/views/cliente/pessoafisica/pessoafisica.html",
+                controller: "PessoaFisicaController",
+                controllerAs: "vm"
+            })
+            .when("/pessoajuridica", {
+                templateUrl: "app/views/cliente/pessoajuridica/pessoajuridica.html",
+                controller: "PessoaJuridicaController",
+                controllerAs: "vm"
+            })
+
             .when("/logout", {
                 templateUrl: "app/views/autenticacao/login.html",
                 controller: "LogoutController",

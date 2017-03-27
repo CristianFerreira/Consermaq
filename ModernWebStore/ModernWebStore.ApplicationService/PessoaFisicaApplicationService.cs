@@ -38,6 +38,23 @@ namespace ModernWebStore.ApplicationService
             return null;
         }
 
+        public List<PessoaFisica> DeleteAlot(List<PessoaFisica> pessoasfisicas)
+        {
+            var listPF = new List<PessoaFisica>();
+            foreach (var pf in pessoasfisicas)
+            {
+                var pfDelete = _repository.Get(pf.Id);
+                _repository.Delete(pfDelete);
+
+                if (Commit())
+                    listPF.Add(pfDelete);
+                else
+                    return null;
+            }
+
+            return listPF;
+        }
+
         public List<PessoaFisica> Get()
         {
             return _repository.Get();

@@ -1,0 +1,75 @@
+<md-dialog aria-label="Adicionar Pessoa Juridica" flex="40" ng-cloak>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Cadastro de Pessoa Juridica</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons" style="color: #fff">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content ">
+                <md-input-container class="md-block" flex="100">
+                    <label>Nome</label>
+                    <input required name="nome" ng-model="vm.pj.nome" ng-minlength="3" ng-maxlength="60">
+                    <div ng-messages="form.nome.$error">
+                       <div ng-message="required">Nome é obrigatório.</div>
+                       <div ng-message="minlength">Nome deve ter no minimo 3 caracteres.</div>
+                       <div ng-message="maxlength">Nome deve ter no maximo 60 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>CNPJ</label>
+                    <input required name="cnpj" ng-model="vm.pj.cnpj"  type="text" ui-mask="99.999.999.9999-99">
+                    <div ng-messages="form.cnpj.$error">
+                       <div ng-message="required">CNPJ é obrigatório.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Rua</label>
+                    <input required name="rua" ng-model="vm.pj.rua" ng-maxlength="60">
+                    <div ng-messages="form.rua.$error">
+                       <div ng-message="required">Rua é obrigatório.</div>
+                       <div ng-message="maxlength">Rua deve ter no maximo 60 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>N°</label>
+                    <input required name="numero" ng-model="vm.pj.numero" ng-maxlength="10">
+                    <div ng-messages="form.numero.$error">
+                       <div ng-message="required">N° é obrigatório.</div>
+                       <div ng-message="maxlength">N° deve ter no maximo 10 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Bairro</label>
+                    <input required name="bairro" ng-model="vm.pj.bairro" ng-maxlength="60">
+                    <div ng-messages="form.bairro.$error">
+                       <div ng-message="required">Bairro é obrigatório.</div>
+                       <div ng-message="maxlength">Bairro deve ter no maximo 60 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                  <md-input-container class="md-block" flex="100">
+                    <label>CEP</label>
+                    <input required name="cep" ng-model="vm.pj.cep" type="text" ui-mask="99999-999">
+                    <div ng-messages="form.cep.$error">
+                       <div ng-message="required">CEP é obrigatório.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Telefone</label>
+                    <input required name="telefone" ng-model="vm.pj.telefone" type="text" ui-mask="99 99999-9999">
+                    <div ng-messages="form.telefone.$error">
+                       <div ng-message="required">Telefone é obrigatório.</div>   
+                    </div>                                        
+                </md-input-container>
+                <div flex-sm="50" layout layout-align="end center" class="padding-top-20">
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" type="submit" ng-click="vm.savePessoaJuridica()">Salvar</md-button>
+                </div> 
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

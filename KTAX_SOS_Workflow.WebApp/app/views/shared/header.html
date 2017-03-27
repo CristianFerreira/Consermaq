@@ -1,8 +1,8 @@
-﻿<nav class="navbar navbar-default navbar-inverse" role="navigation">
+﻿<!--<nav class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" style="border-top:darkblue 1px double">
         <ul class="nav navbar-nav">
             <li>
-                <!--<a href="#/"><span class="glyphicon"></span>Cadastro de relatórios</a>-->
+                <a href="#/"><span class="glyphicon"></span>Cadastro de relatórios</a>
             </li>
         </ul>
         <ul class="nav navbar-nav" style="padding-top: 8px">
@@ -26,4 +26,111 @@
         </ul>
         <ul></ul>
     </div>
+</nav>-->
+
+
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="nav navbar-nav" style="padding: 12px 25px;">
+            <a href="#/">
+                <img src="app/assets/images/logoConsermaq.svg" alt="Consermaq" style="max-width:100px; width: 35px;float: left">
+                <span style="font-size:x-large;color:white;">
+                    CONSERMAQ 
+                </span>
+            </a>
+        </div>
+        <div class="cabecalho" style="height: 60px;">
+        <div class="topBarTopMenu" style="color: White;">
+            
+            <div style="padding-top: 14px;" class="ng-scope">
+                <span style="color:white;">
+                     <i style="margin-right: 10px" class="ng-binding">{{ sistemaContexto.usuarioLogado.email }}</i>
+                     <a style="color: white;" ng-click="vm.logout()" href="">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        Sair
+                    </a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <div  class="collapse navbar-collapse uib-dropdown" id="bs-navbar-collapse-1" style="border-top:#01257b 1px double">
+        <ul class="nav navbar-nav">        
+            <li class="dropdown">
+                <div class="btn-group"  uib-dropdown keyboard-nav="true" >
+                    <button  type="button" style="border:#01257b 1px double;background-color:#01257b;" id="cadastro-button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                        Clientes <span class="caret"></span></a>
+                    </button>
+                <ul class="dropdown-menu"  uib-dropdown-menu role="menu" aria-labelledby="cadastro-button">                 
+                    <li role="menuitem" >
+                        <a href="#/pessoafisica"><span class="glyphicon"></span>Pessoa Fisica</a>
+                    </li>
+                     <li role="menuitem" >
+                        <a href="#/pessoajuridica"><span class="glyphicon"></span>Pessoa Juridica</a>
+                    </li>                    
+                </ul>
+                </div>
+            </li>
+            <li class="dropdown">
+                <div class="btn-group"  uib-dropdown keyboard-nav="true" >
+                    <button  type="button" style="border:#01257b 1px double;background-color:#01257b;" id="cadastro-button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                        Serviços <span class="caret"></span></a>
+                    </button>
+                    <ul class="dropdown-menu"  uib-dropdown-menu role="menu" aria-labelledby="cadastro-button">
+                        <li role="menuitem" >
+                            <a href="#/configs/list-agendamento-processos">     
+                                <span class="glyphicon"></span>Agendamento de Processos 
+                            </a> 
+                        </li>
+                        <li role="menuitem" >
+                            <a href="#/perfil/form-configuracao-funcionalidades">
+                                <span class="glyphicon"></span>Configuração de Permissões
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#/configs/list-logs-sistema">
+                                <span class="glyphicon"></span>Logs do Sistema
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="dropdown">
+                <div class="btn-group" uib-dropdown >
+                    <button id="cadastro-button" class="btn btn-primary" style="border:#01257b 1px double;background-color:#01257b;"  >
+                        <a href="#/cliente" style="color:white;">Material</a>
+                    </button>
+                </div>
+            </li>
+            <li class="dropdown">
+                <div class="btn-group"  uib-dropdown keyboard-nav="true" >
+                    <button  type="prosegur-button " class="btn btn-primary" style="border:#01257b 1px double;background-color:#01257b;" >
+                        <a href="#/carga-documentos" style="color:white;"> Fornecedor </a> 
+                    </button></a>
+                </div>
+            </li>
+        </ul>    
+        <ul class="nav navbar-nav navbar-right">
+            <div class="btn-group"  uib-dropdown keyboard-nav="true">
+                <button  type="button" style="border:#01257b 1px double;background-color:#01257b;" id="cadastro-button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    Ajuda <span class="caret"></span></a>
+                </button>
+                <ul class="dropdown-menu"  uib-dropdown-menu role="menu" aria-labelledby="cadastro-button">
+                    <li role="menuitem">
+                        <a href><span class="glyphicon"></span>Guia do Usuário</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href  ng-click="vm.abrirModalForm()"><span  class="glyphicon"></span>Navegadores Recomendados</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href><span class="glyphicon"></span>Contato</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href><span class="glyphicon"></span>Quadro de avisos</a>
+                    </li>                       
+                    
+                </ul>
+            </div>
+        </ul>
+    </div>
 </nav>
+<div id="loading-bar-container"></div>
