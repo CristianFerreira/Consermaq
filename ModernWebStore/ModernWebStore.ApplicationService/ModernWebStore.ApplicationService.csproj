@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ApplicationService.cs" />
     <Compile Include="CategoryApplicationService.cs" />
+    <Compile Include="ClienteApplicationService.cs" />
     <Compile Include="OrderApplicationService.cs" />
     <Compile Include="PessoaFisicaApplicationService.cs" />
     <Compile Include="PessoaJurificaApplicationService.cs" />

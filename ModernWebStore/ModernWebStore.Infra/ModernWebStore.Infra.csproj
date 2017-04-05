@@ -49,16 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201703270013501_Profile.cs" />
-    <Compile Include="Migrations\201703270013501_Profile.Designer.cs">
-      <DependentUpon>201703270013501_Profile.cs</DependentUpon>
+    <Compile Include="Migrations\201703310112131_Profile.cs" />
+    <Compile Include="Migrations\201703310112131_Profile.Designer.cs">
+      <DependentUpon>201703310112131_Profile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\DataContexts\StoreDataContext.cs" />
     <Compile Include="Persistence\IUnitOfWork.cs" />
     <Compile Include="Persistence\Map\CategoryMap.cs" />
-    <Compile Include="Persistence\Map\OrderItemMap.cs" />
-    <Compile Include="Persistence\Map\OrderMap.cs" />
+    <Compile Include="Persistence\Map\ClienteMap.cs" />
+    <Compile Include="Persistence\Map\OrdemServicoMap.cs" />
+    <Compile Include="Persistence\Map\ServicoItemMap.cs" />
+    <Compile Include="Persistence\Map\ServicoMap.cs" />
     <Compile Include="Persistence\Map\PessoaFisicaMap.cs" />
     <Compile Include="Persistence\Map\PessoaJuridicaMap.cs" />
     <Compile Include="Persistence\Map\ProductMap.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\Cliente.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PessoaFisicaRepository.cs" />
     <Compile Include="Repositories\PessoaJuridicaRepository.cs" />
@@ -83,8 +86,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703270013501_Profile.resx">
-      <DependentUpon>201703270013501_Profile.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703310112131_Profile.resx">
+      <DependentUpon>201703310112131_Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

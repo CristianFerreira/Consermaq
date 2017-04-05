@@ -6,11 +6,11 @@ namespace ModernWebStore.Domain.Scopes
 {
     public static class OrderScopes
     {
-        public static bool PlaceOrderScopeIsValid(this Order order)
+        public static bool PlaceOrderScopeIsValid(this Servico servico)
         {
             return AssertionConcern.IsSatisfiedBy
             (
-                AssertionConcern.AssertIsGreaterThan(order.OrderItems.Count(), 0, "Nenhum produto foi adicionado ao pedido")
+                AssertionConcern.AssertIsGreaterThan(servico.ServicoItems.Count(), 0, "Nenhum produto foi adicionado ao servico")
             );
         }
     }

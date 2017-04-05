@@ -30,6 +30,12 @@
      color: #A9A9A9;
   }
 
+.maskInput {
+      background-color: transparent;
+      border: none;
+      text-align: right;
+      max-width: 120px;
+}
 
 
 .telaLogin {

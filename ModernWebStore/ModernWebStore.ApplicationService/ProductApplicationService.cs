@@ -38,6 +38,23 @@ namespace ModernWebStore.ApplicationService
             return null;
         }
 
+        public List<Product> DeleteAlot(List<Product> produtos)
+        {
+            var listProduto = new List<Product>();
+            foreach (var produto in produtos)
+            {
+                var produtoDelete = _repository.Get(produto.Id);
+                _repository.Delete(produtoDelete);
+
+                if (Commit())
+                    listProduto.Add(produtoDelete);
+                else
+                    return null;
+            }
+
+            return listProduto;
+        }
+
         public List<Product> Get()
         {
             return _repository.GetProductsInStock();

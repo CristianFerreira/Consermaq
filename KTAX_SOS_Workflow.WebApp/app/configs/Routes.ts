@@ -25,7 +25,16 @@ module Consermaq {
                 controller: "PessoaJuridicaController",
                 controllerAs: "vm"
             })
-
+             .when("/produtos", {
+                templateUrl: "app/views/produto/produto.html",
+                controller: "ProdutoController",
+                controllerAs: "vm"
+            })
+            .when("/novaOrdemServico", {
+                templateUrl: "app/views/ordemServico/novaOrdemServico.html",
+                controller: "NovaOrdemServicoController",
+                controllerAs: "vm"
+            })
             .when("/logout", {
                 templateUrl: "app/views/autenticacao/login.html",
                 controller: "LogoutController",

@@ -1,0 +1,61 @@
+<md-dialog aria-label="Adicionar Produto" flex="40" ng-cloak>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Cadastro de Produto</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons" style="color: #fff">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content ">
+                <md-input-container class="md-block" flex="100">
+                    <label>Código do Produto</label>
+                    <input required name="codigo" ng-model="vm.produto.codeProduct" ng-maxlength="50">
+                    <div ng-messages="form.codigo.$error">
+                       <div ng-message="required">Código do Produto é obrigatório.</div>
+                       <div ng-message="maxlength">Código do Produto deve ter no maximo 50 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Nome</label>
+                    <input required name="nome" ng-model="vm.produto.title" ng-maxlength="50">
+                    <div ng-messages="form.nome.$error">
+                       <div ng-message="required">Nome é obrigatório.</div>
+                       <div ng-message="maxlength">Nome deve ter no maximo 50 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Descrição</label>
+                    <input name="descricao" ng-model="vm.produto.description" ng-maxlength="100">
+                    <div ng-messages="form.descricao.$error">
+                       <div ng-message="maxlength">Descrição deve ter no maximo 100 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Quantidade</label>
+                    <input required name="quantidade" ng-model="vm.produto.quantityOnHand" ng-maxlength="6" number-only="">
+                    <div ng-messages="form.quantidade.$error">
+                       <div ng-message="required">Quantidade é obrigatório.</div>
+                       <div ng-message="maxlength">Quantidade deve ter no maximo 8 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 <md-input-container class="md-block" flex="100">
+                    <label>Preço de Compra</label>
+                    <input required name="preco" ng-model="vm.produto.priceBuy" ng-maxlength="10" currency: 'R$' number-only=".">
+                    <div ng-messages="form.preco.$error">
+                       <div ng-message="required">Preço de Compra é obrigatório.</div>
+                       <div ng-message="maxlength">Preço de Compra deve ter no maximo 10 caracteres.</div>
+                    </div>                                        
+                </md-input-container>
+                 
+                <div flex-sm="50" layout layout-align="end center" class="padding-top-20">
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" type="submit" ng-click="vm.saveProduto()">Salvar</md-button>
+                </div> 
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

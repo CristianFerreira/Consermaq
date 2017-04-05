@@ -9,46 +9,46 @@ using System.Collections.Generic;
 
 namespace ModernWebStore.ApplicationService
 {
-    public class OrderApplicationService : ApplicationService, IOrderApplicationService
+    public class OrderApplicationService : ApplicationService, IServicoApplicationService
     {
-        private IOrderRepository _orderRepository;
+        private IServicoRepository _servicoRepository;
         private IUserRepository _userRepository;
         private IProductRepository _productRepository;
 
-        public OrderApplicationService(IOrderRepository orderRepository, IUserRepository userRepository, IProductRepository productRepository, IUnitOfWork unitOfWork) : base(unitOfWork)
+        public OrderApplicationService(IServicoRepository servicoRepository, IUserRepository userRepository, IProductRepository productRepository, IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            this._orderRepository = orderRepository;
+            this._servicoRepository = servicoRepository;
             this._userRepository = userRepository;
             this._productRepository = productRepository;
         }
 
         public void Cancel(int id, string email)
         {
-            var order = _orderRepository.GetHeader(id, email);
-            order.Cancel();
-            _orderRepository.Update(order);
+            var servico = _servicoRepository.GetHeader(id, email);
+            servico.Cancel();
+            _servicoRepository.Update(servico);
 
             Commit();
         }
 
-        public Order Create(CreateOrderCommand command, string email)
+        public Servico Create(Servico servico, string email)
         {
             var user = _userRepository.GetByEmail(email);
-            var orderItems = new List<OrderItem>();
-            foreach (var item in command.OrderItems)
+            var serviceItems = new List<ServicoItem>();
+            foreach (var item in servico.ServicoItems)
             {
-                var orderItem = new OrderItem();
-                var product = _productRepository.Get(item.Product);
-                orderItem.AddProduct(product, item.Quantity, item.Price);
-                orderItems.Add(orderItem);
+                var serviceItem = new ServicoItem();
+                var product = _productRepository.Get(item.ProductId);
+                serviceItem.AddProduct(product, item.Quantity);
+                serviceItems.Add(serviceItem);
             }
 
-            var order = new Order(orderItems, user.Id);
-            order.Place();
-            _orderRepository.Create(order);
+            var newServico = new Servico(serviceItems, user.Id, servico.OrdemServicoId);
+            //service.Place();
+            _servicoRepository.Create(newServico);
 
             if (Commit())
-                return order;
+                return newServico;
 
             return null;
         }
@@ -58,32 +58,32 @@ namespace ModernWebStore.ApplicationService
             throw new NotImplementedException();
         }
 
-        public List<Order> Get(string email, int skip, int take)
+        public List<Servico> Get(string email, int skip, int take)
         {
             throw new NotImplementedException();
         }
 
-        public List<Order> GetCanceled(string email)
+        public List<Servico> GetCanceled(string email)
         {
             throw new NotImplementedException();
         }
 
-        public List<Order> GetCreated(string email)
+        public List<Servico> GetCreated(string email)
         {
             throw new NotImplementedException();
         }
 
-        public List<Order> GetDelivered(string email)
+        public List<Servico> GetDelivered(string email)
         {
             throw new NotImplementedException();
         }
 
-        public Order GetDetails(int id, string email)
+        public Servico GetDetails(int id, string email)
         {
             throw new NotImplementedException();
         }
 
-        public List<Order> GetPaid(string email)
+        public List<Servico> GetPaid(string email)
         {
             throw new NotImplementedException();
         }

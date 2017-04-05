@@ -45,7 +45,7 @@ C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\bin\Debug\EntityFramework.x
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\bin\Debug\EntityFramework.SqlServer.xml
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\bin\Debug\ModernWebStore.SharedKernel.pdb
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.csprojResolveAssemblyReference.cache
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.dll
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.pdb
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.Migrations.Profile.resources
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.csproj.GenerateResource.Cache
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.dll
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.pdb

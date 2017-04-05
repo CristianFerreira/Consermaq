@@ -796,7 +796,9 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\OrdemServicoController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\PessoaFisicaController.cs" />
     <Compile Include="Controllers\PessoaJuridicaController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -833,6 +835,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Cliente\" />
+    <Folder Include="Views\OrdemServico\" />
     <Folder Include="Views\PessoaFisica\" />
     <Folder Include="Views\PessoaJuridica\" />
     <Folder Include="wwwroot\admin\public\dist\" />
@@ -853,7 +857,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51240</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4100/</IISUrl>
+          <IISUrl>http://localhost:4000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

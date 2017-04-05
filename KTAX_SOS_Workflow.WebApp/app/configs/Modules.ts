@@ -14,6 +14,9 @@ module Consermaq {
     modules.push('toastr');
     modules.push('angular-loading-bar');
     modules.push('ui.mask');
+    modules.push('ng-currency');
+    modules.push('ngPrint');
+    modules.push('mdPickers');
 
     angular.module(appConfig.appName, modules);
 }

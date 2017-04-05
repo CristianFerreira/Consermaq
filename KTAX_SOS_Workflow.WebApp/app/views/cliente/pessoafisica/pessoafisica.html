@@ -63,12 +63,12 @@
                         <tr md-row md-select="pf" md-on-select="logItem" ng-repeat="pf in vm.pessoasFisicas | filter: vm.filterSearch | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
                             <td md-cell>{{pf.id}}</td>
                             <td md-cell>{{pf.nome}}</td>
-                            <td md-cell>{{pf.cpf}}</td>
+                            <td md-cell><input class="maskInput" type="text" ng-disabled="true" ui-mask="999.999.999-99" ng-model="pf.cpf" /></td>
                             <td md-cell>{{pf.rua}}</td>
                             <td md-cell>{{pf.numero}}</td>
                             <td md-cell>{{pf.bairro}}</td>
-                            <td md-cell>{{pf.cep}}</td>
-                            <td md-cell>{{pf.telefone}}</td>
+                            <td md-cell><input class="maskInput" type="text" ng-disabled="true" ui-mask="99999-999" ng-model="pf.cep" /></td>
+                            <td md-cell><input class="maskInput" type="text" ng-disabled="true" ui-mask="99 99999-9999" ng-model="pf.telefone" /></td>
                             <td md-cell>
                             <md-button class="md-icon-button" ng-click="vm.modalEditPessoaFisica($event, pf)">
                                    <md-icon>edit</md-icon>

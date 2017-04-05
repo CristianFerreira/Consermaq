@@ -8,7 +8,7 @@ namespace ModernWebStore.Infra.Persistence.DataContexts
     public class StoreDataContext : DbContext
     {
         public StoreDataContext() :
-            base("ConsermaqConnectionString")
+            base("Consermaq")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
@@ -17,20 +17,22 @@ namespace ModernWebStore.Infra.Persistence.DataContexts
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<PessoaFisica> pf { get; set; }
-        public DbSet<PessoaJuridica> pj { get; set; }
+        public DbSet<Servico> Servicos { get; set; }
+        public DbSet<ServicoItem> ServicosItems { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<OrdemServico> OrdemServico { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new CategoryMap());
             modelBuilder.Configurations.Add(new ProductMap());
-            modelBuilder.Configurations.Add(new OrderMap());
-            modelBuilder.Configurations.Add(new OrderItemMap());
-            modelBuilder.Configurations.Add(new PessoaFisicaMap());
-            modelBuilder.Configurations.Add(new PessoaJuridicaMap());
+            modelBuilder.Configurations.Add(new ServicoMap());
+            modelBuilder.Configurations.Add(new ServicoItemMap());
+            modelBuilder.Configurations.Add(new ClienteMap());
+            //modelBuilder.Configurations.Add(new PessoaFisicaMap());
+            //modelBuilder.Configurations.Add(new PessoaJuridicaMap());
+            modelBuilder.Configurations.Add(new OrdemServicoMap());
         }
     }
 }

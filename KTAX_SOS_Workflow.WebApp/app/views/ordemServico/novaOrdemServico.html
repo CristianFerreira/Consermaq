@@ -1,0 +1,119 @@
+<div layout="row" layout-align="center" ng-cloak flex="100">
+   <div layout-align="center" flex="60" ng-cloak>
+        <md-toolbar class="md-whiteframe-z2" flex>
+            <div>
+                 <h1 style="font-size: 20px;">Nova Ordem de Serviço</h1>
+            </div>
+        </md-toolbar>
+            <md-content layout-padding layout-align="center center" flex>
+            <form ng-submit="$event.preventDefault()" name="ordemServicoForm">
+                <div layout-gt-xs="row">
+                    <md-input-container flex="30">
+                        <label>Informe o tipo de cliente</label>
+                        <md-select name="tipoCliente" ng-model="tipoCliente" required>
+                            <md-option value="pf" ng-click="vm.clearSelectItem()">Pessoa Física</md-option>
+                            <md-option value="pj" ng-click="vm.clearSelectItem()">Pessoa Jurídica</md-option>
+                        </md-select>
+                        <div ng-messages="ordemServicoForm.tipoCliente.$error">
+                            <div ng-message="required">Selecione o tipo de cliente</div>
+                        </div>
+                    </md-input-container>
+                    <md-autocomplete ng-if="tipoCliente && tipoCliente == 'pf'" flex required
+                            md-input-name="autocompleteField"
+                            md-input-minlength="2"
+                            md-input-maxlength="18"
+                            md-no-cache="vm.noCache"
+                            md-selected-item="vm.selectedItem"
+                            md-search-text="vm.searchText"
+                            md-items="item in vm.buscarPF(vm.searchText)"
+                            md-item-text="item.cpf"    
+                            md-require-match
+                            md-floating-label="Informe o Nome ou CPF...">
+                        <md-item-template>
+                            <span md-highlight-text="vm.searchText">{{item.nome}} - {{item.cpf}}</span>
+                        </md-item-template>
+                        <!--<div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+                            <div ng-message="required">You <b>must</b> have a favorite state.</div>
+                            <div ng-message="md-require-match">Please select an existing state.</div>
+                            <div ng-message="minlength">Your entry is not long enough.</div>
+                            <div ng-message="maxlength">Your entry is too long.</div>
+                        </div>-->
+                    </md-autocomplete>
+                    <md-autocomplete ng-if="tipoCliente && tipoCliente == 'pj'" flex required
+                            md-input-name="autocompleteField"
+                            md-input-minlength="2"
+                            md-input-maxlength="18"
+                            md-no-cache="vm.noCache"
+                            md-selected-item="vm.selectedItem"
+                            md-search-text="vm.searchText"
+                            md-items="item in vm.buscarPJ(vm.searchText)"
+                            md-item-text="item.cnpj"
+                            md-require-match
+                            md-floating-label="Informe o Nome ou CNPJ...">
+                        <md-item-template>
+                            <span md-highlight-text="vm.searchText">{{item.nome}} - {{item.cnpj}}</span>
+                        </md-item-template>
+                        
+                    </md-autocomplete>           
+                </div>
+
+                <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Serviço solicitado</label>
+                    <input ng-model="vm.ordemServico.servicoSolicitado">
+                </md-input-container>
+                </div>  
+
+                <!--<div layout-gt-xs="row">
+                    <mdp-date-picker mdp-placeholder="Date" ng-model="currentDate"></mdp-date-picker>
+                    <mdp-time-picker ng-model="currentDate"></mdp-time-picker>
+                </div>-->
+            </form>
+        </md-content>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" ng-click="vm.save()">Salvar</md-button>
+            <md-button class="md-raised md-primary" ng-print print-element-id="printThisElement"><i class="fa fa-print"></i> Imprimir</md-button>
+        </div>
+   </div>
+</div>
+
+
+
+
+
+    
+
+
+
+
+<!--IMPRESSAO ORDEMSERVICO-->
+<div id="printThisElement" class="impressaoOrdemServico">
+      <div layout="row" flex>
+         <img src="app/assets/images/cabecalho2.jpg" alt="Consermaq" style="width: 100%;float: left;">
+      </div>
+      <div>
+           <div flex=100>
+               </br><h4 style="margin-left: 15px;"><strong>ORDEM DE SERVIÇO:</strong> 23332 </h4>
+               <h4 style="margin-left: 150px;"><strong>DATA DE ABERTURA:</strong> 01/04/2017 - 17:00</h4></br></br>
+           </div>
+           <div flex=100>
+              </br><h4 style="margin-left: 15px;"><strong><i>INFORMAÇÕES DO CLIENTE</i></strong></h4></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Nome: </strong> Cristian Santos Ferreira - 031.831.200-03</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Rua: </strong> Av.Souza Mello - N° 937</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Bairro: </strong> Sarandi - Porto Alegre</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Telefone:</strong> 51 3207-5076</h5></br></br></br>
+           </div>
+      </div>
+      <div layout="row" flex>
+          <img src="app/assets/images/corpoOrdemServico.png" alt="Consermaq" style="width: 100%;">
+      </div>
+</div>
+    

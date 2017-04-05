@@ -3,12 +3,12 @@
 module Consermaq {
     export class PessoaJuridicaController {
 
-        static $inject = ['$location', 'PessoaJuridicaService', 'toastr', '$mdDialog', '$timeout'];
+        static $inject = ['$location', 'ClienteService', 'toastr', '$mdDialog', '$timeout'];
 
      
         private $location: ILocationService;
-        private pessoaJuridicaService: PessoaJuridicaService;
-        public pessoasJuridicas: Array<PessoaJuridica>;
+        private clienteService: ClienteService;
+        public pessoasJuridicas: Array<Cliente>;
         public toastr: Toastr;
         public mdDialog: any;
         public timeout: ITimeoutService;
@@ -22,17 +22,17 @@ module Consermaq {
         public filterSearch: string;
 
         constructor($location: ILocationService, 
-                    pessoaJuridicaService: PessoaJuridicaService, 
+                    clienteService: ClienteService, 
                     toastr: Toastr,
                     mdDialog: any,
                     timeout: ITimeoutService) {
 
             this.$location = $location;
-            this.pessoaJuridicaService = pessoaJuridicaService;
+            this.clienteService = clienteService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.timeout = timeout;
-            this.pessoasJuridicas = new Array<PessoaJuridica>();
+            this.pessoasJuridicas = new Array<Cliente>();
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
             this.options = {
@@ -56,7 +56,7 @@ module Consermaq {
         }
 
         public loadPessoaJuridica() : void {
-           this.pessoaJuridicaService.listAll()
+           this.clienteService.listAllPJ()
                 .then((data) => {                 
                     this.pessoasJuridicas = data;                               
                 })
@@ -99,7 +99,7 @@ module Consermaq {
         });
      } 
 
-       public modalEditPessoaJuridica (ev: any, pj: PessoaJuridica) : void {
+       public modalEditPessoaJuridica (ev: any, pj: Cliente) : void {
         var index = this.pessoasJuridicas.indexOf(pj);  
          this.mdDialog.show({
             controller: "ModalPessoaJuridicaController",
@@ -120,7 +120,7 @@ module Consermaq {
             });
      } 
 
-    public modalDeletePessoaJuridica (ev: any, pessoasJuridicas: Array<PessoaJuridica>) : void {      
+    public modalDeletePessoaJuridica (ev: any, pessoasJuridicas: Array<Cliente>) : void {      
          this.mdDialog.show({
            controller: "ModalDeletePessoaJuridicaController",
             templateUrl: 'app/views/cliente/pessoajuridica/modal-delete-pessoajuridica.html',

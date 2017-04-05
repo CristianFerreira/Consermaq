@@ -1,0 +1,22 @@
+@media screen {
+    #printSection {
+        display: none;
+    }
+}
+
+@media print {
+    body * {
+        display:none;
+        background-color: blue;
+    }
+
+    #printSection, #printSection * {
+        display: inline;
+    }
+
+    #printSection {
+        position:absolute;
+        left:0;
+        top:0;
+    }
+}

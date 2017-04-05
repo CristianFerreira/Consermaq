@@ -1,6 +1,7 @@
 ﻿using ModernWebStore.Domain.Commands.ProductCommands;
 using ModernWebStore.Domain.Entities;
 using ModernWebStore.Domain.Services;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace ModernWebStore.Api.Controllers
 
         [HttpGet]
         //[Authorize]
-        [Route("api/products")]
+        [Route("api/products/listAll")]
         public Task<HttpResponseMessage> Get()
         {
             var products = _service.Get();
@@ -46,7 +47,7 @@ namespace ModernWebStore.Api.Controllers
 
         [HttpPost]
         //[Authorize]
-        [Route("api/products")]
+        [Route("api/product/create")]
         public Task<HttpResponseMessage> Post(Product product)
         {
 
@@ -54,13 +55,22 @@ namespace ModernWebStore.Api.Controllers
             return CreateResponse(HttpStatusCode.Created, productCreate);
         }
 
-        [HttpPut]
+        [HttpPost]
         //[Authorize]
-        [Route("api/products/{id:int:min(1)}")]
+        [Route("api/product/update")]
         public Task<HttpResponseMessage> Put(Product product)
         {
             var productUpdate = _service.UpdateBasicInformation(product);
             return CreateResponse(HttpStatusCode.OK, productUpdate);
+        }
+
+        [HttpPost]
+        //[Authorize]
+        [Route("api/product/deleteAlot/")]
+        public Task<HttpResponseMessage> DeleteAlot(List<Product> produtos)
+        {
+            var Produto = _service.DeleteAlot(produtos);
+            return CreateResponse(HttpStatusCode.OK, Produto);
         }
     }
 }

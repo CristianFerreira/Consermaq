@@ -1,0 +1,78 @@
+    <div layout="column" flex>
+        <md-card flex>
+           <md-toolbar class="md-table-toolbar md-default ng-hide" ng-hide="vm.selected.length || vm.filterShow" aria-hidden="true">
+            <div class="md-toolbar-tools">
+                <span>Produto</span>
+                <span flex></span>
+
+                <md-button ng-show="vm.produtos.length > 0" class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude ng-click="vm.filterShow = true"
+                    aria-label="Filtrar">
+                    <md-icon class="material-icons">filter_list</md-icon>
+                    <div class="md-ripple-container"></div>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="vm.modalCreateProduto($event)">
+                    <md-icon class="material-icons">add circle</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-toolbar class="md-table-toolbar md-default" ng-show="vm.filterShow && !vm.selected.length" aria-hidden="false">
+            <form flex name="filter.form" class="ng-pristine ng-valid flex">
+                <div class="md-toolbar-tools" flex>
+                    <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
+                        <md-icon class="material-icons">search</md-icon>
+                        <input ng-model="vm.filterSearch" type="text" placeholder="Pesquisar">
+                    </md-input-container>
+
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.removeFilter()" aria-label="close">
+                        <md-icon class="material-icons">close</md-icon>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </div>
+            </form>
+        </md-toolbar>
+
+
+            <md-toolbar class="md-table-toolbar alternate" ng-show="vm.options.rowSelection && vm.selected.length">
+                <div class="md-toolbar-tools">
+                    <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selecionado</span>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="vm.modalDeleteProduto($event, vm.selected)">
+                        <md-icon style="color: #fff;">delete</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+          
+            <md-table-container>
+                <table md-table md-row-select="vm.options.rowSelection" multiple="{{vm.options.multiSelect}}" ng-model="vm.selected" md-progress="vm.promise">
+                    <thead ng-show="vm.produtos.length > 0" ng-if="!vm.options.decapitate" md-head md-order="vm.query.order" md-on-reorder="logOrder">
+                        <tr md-row>                        
+                            <th md-column md-numeric md-order-by="codeProduct"><span>Código</span></th>
+                            <th md-column md-numeric md-order-by="title"><span>Nome</span></th>
+                            <th md-column md-numeric md-order-by="description"><span>Descrição</span></th>
+                            <th md-column md-numeric md-order-by="quantityOnHand"><span>Qntd</span></th>
+                            <th md-column md-numeric md-order-by="priceBuy"><span>Preço de compra</span></th>                    
+                            <th md-column md-numeric><span>Editar</span></th>                            
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="produto" md-on-select="logItem" ng-repeat="produto in vm.produtos | filter: vm.filterSearch | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                            <td md-cell>{{produto.codeProduct}}</td>
+                            <td md-cell>{{produto.title}}</td>
+                            <td md-cell>{{produto.description}}</td>
+                            <td md-cell>{{produto.quantityOnHand}} un.</td>
+                            <td md-cell>{{produto.priceBuy | currency: 'R$'}}</td>
+                            <td md-cell>
+                            <md-button class="md-icon-button" ng-click="vm.modalEditProduto($event, produto)">
+                                   <md-icon>edit</md-icon>
+                             </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+           
+            <md-table-pagination ng-show="vm.produtos.length > 0" md-limit="vm.query.limit" md-limit-options="vm.limitOptions" md-page="vm.query.page" md-total="{{vm.produtos.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+        </md-card>
+    </div>

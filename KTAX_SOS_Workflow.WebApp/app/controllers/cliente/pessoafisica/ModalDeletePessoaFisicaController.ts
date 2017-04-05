@@ -2,22 +2,22 @@
 module Consermaq {
     export class ModalDeletePessoaFisicaController {
 
-        static $inject = ['PessoaFisicaService', 'toastr', '$mdDialog', 'pessoasfisicas'];
+        static $inject = ['ClienteService', 'toastr', '$mdDialog', 'pessoasfisicas'];
 
-        public pessoaFisicaService: PessoaFisicaService;
+        public clienteService: ClienteService;
         public toastr: Toastr;
         public mdDialog: any;
-        public pessoasfisicas: Array<PessoaFisica>;
+        public pessoasfisicas: Array<Cliente>;
 
-        constructor(pessoaFisicaService: PessoaFisicaService, toastr: Toastr, mdDialog: any, pessoasfisicas: Array<PessoaFisica>) {
-            this.pessoaFisicaService = pessoaFisicaService;
+        constructor(clienteService: ClienteService, toastr: Toastr, mdDialog: any, pessoasfisicas: Array<Cliente>) {
+            this.clienteService = clienteService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.pessoasfisicas = pessoasfisicas;
         }
 
         public delete() :void {   
-             this.pessoaFisicaService.deletePessoaFisicaAlot(this.pessoasfisicas)
+             this.clienteService.deleteAlot(this.pessoasfisicas)
                 .then((data) => {  
                     if(data.length > 1)
                         this.toastr.success("Pessoas Fisicas excluidas com sucesso!"); 

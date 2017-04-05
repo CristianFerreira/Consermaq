@@ -2,15 +2,15 @@
 module Consermaq {
     export class ModalPessoaJuridicaController {
 
-        static $inject = ['PessoaJuridicaService', 'toastr', '$mdDialog', 'pj'];
+        static $inject = ['ClienteService', 'toastr', '$mdDialog', 'pj'];
 
-        public pessoaJuridicaService: PessoaJuridicaService;
+        public clienteService: ClienteService;
         public toastr: Toastr;
         public mdDialog: any;
-        public pj: PessoaJuridica;
+        public pj: Cliente;
 
-        constructor(pessoaJuridicaService: PessoaJuridicaService, toastr: Toastr, mdDialog: any, pj: PessoaJuridica) {
-            this.pessoaJuridicaService = pessoaJuridicaService;
+        constructor(clienteService: ClienteService, toastr: Toastr, mdDialog: any, pj: Cliente) {
+            this.clienteService = clienteService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.pj = pj;
@@ -18,7 +18,7 @@ module Consermaq {
 
         public savePessoaJuridica() :void {
             if(!this.pj.id){
-                 this.pessoaJuridicaService.savePessoaJuridica(this.pj)
+                 this.clienteService.save(this.pj)
                 .then((data) => {                 
                     this.mdDialog.hide({NewPessoaJuridica: data}); 
                     this.toastr.success("Cliente cadastrado com sucesso!");                          
@@ -27,7 +27,7 @@ module Consermaq {
                     this.toastr.error('Cliente não pode ser cadastrado!');
                 }) 
             }else{
-                this.pessoaJuridicaService.editPessoaJuridica(this.pj)
+                this.clienteService.edit(this.pj)
                 .then((data) => {                 
                     this.mdDialog.hide({UpdatePessoaJuridica: data}); 
                     this.toastr.success("Cliente Pessoa Juridica editado com sucesso!");                          

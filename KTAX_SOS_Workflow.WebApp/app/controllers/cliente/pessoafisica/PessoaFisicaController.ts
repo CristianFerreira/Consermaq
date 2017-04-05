@@ -3,12 +3,12 @@
 module Consermaq {
     export class PessoaFisicaController {
 
-        static $inject = ['$location', 'PessoaFisicaService', 'toastr', '$mdDialog', '$timeout'];
+        static $inject = ['$location', 'ClienteService', 'toastr', '$mdDialog', '$timeout'];
 
      
         private $location: ILocationService;
-        private pessoaFisicaService: PessoaFisicaService;
-        public pessoasFisicas: Array<PessoaFisica>;
+        private clienteService: ClienteService;
+        public pessoasFisicas: Array<Cliente>;
         public toastr: Toastr;
         public mdDialog: any;
         public timeout: ITimeoutService;
@@ -22,17 +22,17 @@ module Consermaq {
         public filterSearch: string;
 
         constructor($location: ILocationService, 
-                    pessoaFisicaService: PessoaFisicaService, 
+                    clienteService: ClienteService, 
                     toastr: Toastr,
                     mdDialog: any,
                     timeout: ITimeoutService) {
 
             this.$location = $location;
-            this.pessoaFisicaService = pessoaFisicaService;
+            this.clienteService = clienteService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.timeout = timeout;
-            this.pessoasFisicas = new Array<PessoaFisica>();
+            this.pessoasFisicas = new Array<Cliente>();
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
             this.options = {
@@ -56,7 +56,7 @@ module Consermaq {
         }
 
         public loadPessoaFisica() : void {
-           this.pessoaFisicaService.listAll()
+           this.clienteService.listAllPF()
                 .then((data) => {                 
                     this.pessoasFisicas = data;                               
                 })
@@ -99,7 +99,7 @@ module Consermaq {
         });
      } 
 
-       public modalEditPessoaFisica (ev: any, pf: PessoaFisica) : void {
+       public modalEditPessoaFisica (ev: any, pf: Cliente) : void {
         var index = this.pessoasFisicas.indexOf(pf);  
          this.mdDialog.show({
             controller: "ModalPessoaFisicaController",
@@ -120,7 +120,7 @@ module Consermaq {
             });
      } 
 
-    public modalDeletePessoaFisica (ev: any, pessoasfisicas: Array<PessoaFisica>) : void {      
+    public modalDeletePessoaFisica (ev: any, pessoasfisicas: Array<Cliente>) : void {      
          this.mdDialog.show({
            controller: "ModalDeletePessoaFisicaController",
             templateUrl: 'app/views/cliente/pessoafisica/modal-delete-pessoafisica.html',
