@@ -79,7 +79,8 @@ namespace ModernWebStore.Infra.Migrations
             
             DropTable("dbo.OrderItems");
             DropTable("dbo.Order");
-           
+            DropTable("dbo.PessoaFisica");
+            DropTable("dbo.PessoaJuridica");
         }
         
         public override void Down()
@@ -89,13 +90,13 @@ namespace ModernWebStore.Infra.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CNPJ = c.String(nullable: false, maxLength: 18),
+                        CNPJ = c.String(nullable: false, maxLength: 11),
                         Nome = c.String(nullable: false, maxLength: 60),
                         Rua = c.String(nullable: false, maxLength: 60),
                         Numero = c.String(nullable: false, maxLength: 10),
                         Bairro = c.String(nullable: false, maxLength: 60),
-                        CEP = c.String(nullable: false, maxLength: 9),
-                        Telefone = c.String(nullable: false, maxLength: 14),
+                        CEP = c.String(nullable: false, maxLength: 8),
+                        Telefone = c.String(nullable: false, maxLength: 12),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -104,13 +105,13 @@ namespace ModernWebStore.Infra.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CPF = c.String(nullable: false, maxLength: 14),
+                        CPF = c.String(nullable: false, maxLength: 11),
                         Nome = c.String(nullable: false, maxLength: 60),
                         Rua = c.String(nullable: false, maxLength: 60),
                         Numero = c.String(nullable: false, maxLength: 10),
                         Bairro = c.String(nullable: false, maxLength: 60),
-                        CEP = c.String(nullable: false, maxLength: 9),
-                        Telefone = c.String(nullable: false, maxLength: 14),
+                        CEP = c.String(nullable: false, maxLength: 8),
+                        Telefone = c.String(nullable: false, maxLength: 12),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -1,12 +1,16 @@
-﻿using System;
+﻿using ModernWebStore.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ModernWebStore.Domain.Repositories
 {
-    interface IOrdemServicoRepository
+    public interface IOrdemServicoRepository
     {
+        List<OrdemServico> Get();
+        List<OrdemServico> Get(int skip, int take);
+        OrdemServico Get(int id);
+        void Create(OrdemServico ordemServico);
+        void Update(OrdemServico ordemServico);
+        void Delete(OrdemServico ordemServico);
     }
 }

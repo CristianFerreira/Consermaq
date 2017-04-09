@@ -1,11 +1,7 @@
 ﻿using ModernWebStore.Domain.Repositories;
 using ModernWebStore.Domain.Services;
 using ModernWebStore.Infra.Persistence;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ModernWebStore.Domain.Entities;
 
 namespace ModernWebStore.ApplicationService

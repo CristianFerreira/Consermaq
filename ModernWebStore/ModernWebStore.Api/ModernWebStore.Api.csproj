@@ -799,8 +799,6 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
-    <Compile Include="Controllers\PessoaFisicaController.cs" />
-    <Compile Include="Controllers\PessoaJuridicaController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Helpers\DomainEventsContainer.cs" />

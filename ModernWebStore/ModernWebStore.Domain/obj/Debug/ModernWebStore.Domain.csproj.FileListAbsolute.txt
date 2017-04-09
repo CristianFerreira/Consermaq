@@ -5,13 +5,6 @@ C:\Renan\mwa-api\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.S
 C:\Renan\mwa-api\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
 C:\Renan\mwa-api\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
 C:\Renan\mwa-api\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.dll
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.pdb
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.dll
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.pdb
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
-C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.dll
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.pdb
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.dll
@@ -19,3 +12,10 @@ C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.S
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.pdb
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
+C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
