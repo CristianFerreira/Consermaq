@@ -1,0 +1,92 @@
+    <div layout="column" flex>
+        <md-card flex>
+           <md-toolbar class="md-table-toolbar md-default ng-hide" ng-hide="vm.selected.length || vm.filterShow" aria-hidden="true">
+            <div class="md-toolbar-tools">
+                <span>Ordem de Serviço</span>
+                <span flex></span>
+
+                <md-button ng-show="vm.ordemServicos.length > 0" class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude ng-click="vm.filterShow = true"
+                    aria-label="Filtrar">
+                    <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
+                    <md-icon class="material-icons">filter_list</md-icon>
+                    <div class="md-ripple-container"></div>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="vm.createOrdemServico()">
+                    <md-tooltip md-direction="bottom">Nova Ordem de Serviço</md-tooltip>
+                    <md-icon class="material-icons">add circle</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-toolbar class="md-table-toolbar md-default" ng-show="vm.filterShow && !vm.selected.length" aria-hidden="false">
+            <form flex name="filter.form" class="ng-pristine ng-valid flex">
+                <div class="md-toolbar-tools" flex>
+                   <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
+                        <md-icon class="material-icons">search</md-icon>
+                        <input ng-model="filterName" type="text" placeholder="Pesquisar">
+                    </md-input-container>
+
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.removeFilter()" aria-label="close">
+                        <md-tooltip md-direction="bottom">Fechar</md-tooltip>
+                        <md-icon class="material-icons">close</md-icon>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </div>
+            </form>
+        </md-toolbar>
+
+
+            <md-toolbar class="md-table-toolbar alternate" ng-show="vm.selected.length">
+                <div class="md-toolbar-tools">
+                    <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selecionado</span>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="vm.modalDeleteOrdemServico($event, vm.selected)">
+                        <md-tooltip md-direction="bottom">Excluir</md-tooltip>
+                        <md-icon style="color: #fff;">delete</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+           <div ng-hide="true">
+                {{(ordemServicos = (vm.ordemServicos | filter: filterName))}}
+            </div>
+          
+
+<mdt-table 
+                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+            animate-sort-icon="true"
+           selectable-rows="true"
+            selected-row-callback="vm.selected = (rows)"
+             delete-row-callback="deleteRowCallback(rows)"
+              mdt-row="{
+            'data': ordemServicos,
+            'table-row-id-key': 'id',
+            'column-keys': [  
+                'id',           
+                'servicoSolicitado',
+                'status',
+                'dataInicial',
+                'cliente.nome',
+                'cliente.cpf',
+                'cliente.cnpj'
+            ]}">
+    <mdt-header-row> 
+     <mdt-column align-rule="right" column-sort="true">N Ordem Serviço</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Serviço Solicitado</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Status</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Data de Abertura</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Nome Cliente</mdt-column>
+      <mdt-column align-rule="right">CPF</mdt-column>
+      <mdt-column align-rule="right">CNPJ</mdt-column>
+    </mdt-header-row>
+       <mdt-custom-cell column-key="id">
+            <span>{{value}}</span>
+       </mdt-custom-cell>  
+       <mdt-custom-cell column-key="status">
+            <span>{{value}}</span>
+       </mdt-custom-cell>  
+  </mdt-table>
+
+          
+        </md-card>
+    </div>

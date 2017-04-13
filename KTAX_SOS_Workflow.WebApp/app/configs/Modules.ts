@@ -10,6 +10,9 @@ module Consermaq {
     modules.push('ngMessages');
     modules.push('ngMaterial');
     modules.push('md.data.table');
+    modules.push('mdDataTable');
+    modules.push('ngMdIcons');
+    modules.push('ngSanitize');
     modules.push('ui.bootstrap');
     modules.push('toastr');
     modules.push('angular-loading-bar');

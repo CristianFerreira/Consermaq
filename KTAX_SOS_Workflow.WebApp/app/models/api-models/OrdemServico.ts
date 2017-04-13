@@ -5,11 +5,11 @@ module Consermaq {
         public servicoSolicitado: string;
         public dataInicial: Date;
         public dataEncerramento: Date;
-        public Status: any;
+        public status: any;
         public clienteId: number;
-        public Cliente: Cliente;
+        public cliente: Cliente;
         
-        public servicos: Array<Servico>;
+        // public servicos: Array<Servico>;
 
         constructor() {              
         }

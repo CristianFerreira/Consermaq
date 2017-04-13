@@ -14,7 +14,7 @@ module Consermaq {
         public cpf: string;
         public cnpj: string;
 
-        public ordemServicos: Array<OrdemServico>;
+        // public ordemServicos: Array<OrdemServico>;
 
         constructor() {        
         }

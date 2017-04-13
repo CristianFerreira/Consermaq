@@ -7,7 +7,7 @@ var appConfig = {
     auth_sistema_contexto: "consermaq_user",
     testMode: false,
     defaultRoute: "/",
-    rootServiceRoute: "http://localhost:4000/",
+    rootServiceRoute: "http://localhost:4500/",
     //rootServiceRoute: "https://ktax2.kpmg.com.br/KTAX_SOS_Workflow/",
     serviceUrls: ()=> {
         return {

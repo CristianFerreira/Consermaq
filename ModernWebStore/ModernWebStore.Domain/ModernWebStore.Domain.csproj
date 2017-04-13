@@ -53,8 +53,6 @@
     <Compile Include="Entities\Servico.cs" />
     <Compile Include="Entities\ServicoItem.cs" />
     <Compile Include="Entities\Cliente.cs" />
-    <Compile Include="Entities\PessoaFisica.cs" />
-    <Compile Include="Entities\PessoaJuridica.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\EOrderStatus.cs" />

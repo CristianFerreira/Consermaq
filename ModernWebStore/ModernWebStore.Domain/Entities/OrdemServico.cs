@@ -17,8 +17,8 @@ namespace ModernWebStore.Domain.Entities
         public int Id { get; set; }
 
         public string servicoSolicitado { get; set; }
-        public DateTime DataInicial { get; set; }
-        public DateTime DataEncerramento { get; set; }
+        public DateTime? DataInicial { get; set; }
+        public DateTime? DataEncerramento { get; set; }
 
         public EOrderStatus Status { get; set; }
 

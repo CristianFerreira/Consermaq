@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
+
 namespace ModernWebStore.Api.Controllers
 {
     public class OrdemServicoController : BaseController
@@ -23,6 +24,10 @@ namespace ModernWebStore.Api.Controllers
         public Task<HttpResponseMessage> Get()
         {
             var ordemServicos = _service.Get();
+            foreach(var ordemServico in ordemServicos)
+            {
+                ordemServico.Cliente.OrdemServicos = null;
+            }
             return CreateResponse(HttpStatusCode.OK, ordemServicos);
         }
 
@@ -35,13 +40,33 @@ namespace ModernWebStore.Api.Controllers
             return CreateResponse(HttpStatusCode.OK, ordemServicos);
         }
 
+        [HttpGet]
+        //[Authorize]
+        [Route("api/ordemServico/getById/{id}")]
+        public Task<HttpResponseMessage> Get(int id)
+        {
+            var ordemServico = _service.Get(id);
+            return CreateResponse(HttpStatusCode.Created, ordemServico);
+        }
+
+
+        [HttpPost]
+        //[Authorize]
+        [Route("api/ordemServico/create")]
+        public Task<HttpResponseMessage> Post(OrdemServico ordemServico)
+        {
+            var ordemServicoCreate = _service.Create(ordemServico);
+            return CreateResponse(HttpStatusCode.OK, ordemServicoCreate);
+        }
+
+
         [HttpPost]
         //[Authorize]
         [Route("api/ordemServico/update")]
         public Task<HttpResponseMessage> Put(OrdemServico ordemServico)
         {
-            var ordemServicoCreate = _service.Update(ordemServico);
-            return CreateResponse(HttpStatusCode.OK, ordemServicoCreate);
+            var ordemServicoUpdate = _service.Update(ordemServico);
+            return CreateResponse(HttpStatusCode.OK, ordemServicoUpdate);
         }
 
         [HttpDelete]

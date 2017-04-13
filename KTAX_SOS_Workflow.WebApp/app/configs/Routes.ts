@@ -30,7 +30,17 @@ module Consermaq {
                 controller: "ProdutoController",
                 controllerAs: "vm"
             })
+            .when("/ordemServico", {
+                templateUrl: "app/views/ordemServico/ordemServico.html",
+                controller: "OrdemServicoController",
+                controllerAs: "vm"
+            })
             .when("/novaOrdemServico", {
+                templateUrl: "app/views/ordemServico/novaOrdemServico.html",
+                controller: "NovaOrdemServicoController",
+                controllerAs: "vm"
+            })
+            .when("/novaOrdemServico/:id", {
                 templateUrl: "app/views/ordemServico/novaOrdemServico.html",
                 controller: "NovaOrdemServicoController",
                 controllerAs: "vm"

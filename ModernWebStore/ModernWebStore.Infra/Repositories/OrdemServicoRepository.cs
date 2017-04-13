@@ -29,19 +29,19 @@ namespace ModernWebStore.Infra.Repositories
 
         public List<OrdemServico> Get()
         {
-            return _context.OrdemServico.ToList();
+            return _context.OrdemServico.Include(os => os.Cliente).ToList();
         }
 
         public OrdemServico Get(int id)
         {
-            return _context.OrdemServico.Find(id); ;
+            return _context.OrdemServico.Include(os => os.Cliente).First(x=>x.Id == id); ;
         }
 
         public List<OrdemServico> Get(int skip, int take)
         {
             return _context.OrdemServico
               .OrderBy(x => x.DataInicial)
-              .Skip(skip).Take(take).ToList();
+              .Skip(skip).Take(take).Include(os => os.Cliente).ToList();
         }
 
         public void Update(OrdemServico ordemServico)

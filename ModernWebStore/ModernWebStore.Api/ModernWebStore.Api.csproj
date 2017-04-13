@@ -837,6 +837,7 @@
     <Folder Include="Views\OrdemServico\" />
     <Folder Include="Views\PessoaFisica\" />
     <Folder Include="Views\PessoaJuridica\" />
+    <Folder Include="Views\Teste\" />
     <Folder Include="wwwroot\admin\public\dist\" />
     <Folder Include="wwwroot\store\bower_components\" />
   </ItemGroup>
@@ -855,7 +856,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51240</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4000/</IISUrl>
+          <IISUrl>http://localhost:4500/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

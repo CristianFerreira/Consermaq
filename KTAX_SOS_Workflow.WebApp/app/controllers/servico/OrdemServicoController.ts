@@ -3,12 +3,11 @@
 module Consermaq {
     export class OrdemServicoController {
 
-        static $inject = ['$location', 'ProdutoService', 'toastr', '$mdDialog', '$timeout'];
+        static $inject = ['$location', 'OrdemServicoService', 'toastr', '$mdDialog', '$timeout'];
 
      
         private $location: ILocationService;
-        private produtoService: ProdutoService;
-        public produtos: Array<Produto>;
+        private ordemServicoService: OrdemServicoService;
         public toastr: Toastr;
         public mdDialog: any;
         public timeout: ITimeoutService;
@@ -20,19 +19,21 @@ module Consermaq {
         public promise: any;
         public filterShow: boolean;
         public filterSearch: string;
+        public ordemServicos: Array<OrdemServico>;
+        public buscarPorCNPJouCPF: string;
+        public teste:any;
 
         constructor($location: ILocationService, 
-                    produtoService: ProdutoService, 
+                    ordemServicoService: OrdemServicoService, 
                     toastr: Toastr,
                     mdDialog: any,
                     timeout: ITimeoutService) {
 
             this.$location = $location;
-            this.produtoService = produtoService;
+            this.ordemServicoService = ordemServicoService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.timeout = timeout;
-            this.produtos = new Array<Produto>();
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
             this.options = {
@@ -51,14 +52,17 @@ module Consermaq {
                             page: 1
             };
             this.showCheck = {};
-
-            this.loadProduto();
+            this.ordemServicos = new Array<OrdemServico>();
+            this.buscarPorCNPJouCPF = "cliente.cpf";
+            
+           
+            this.loadOrdemServicos();
         }
 
-        public loadProduto() : void {
-           this.produtoService.listAll()
+        public loadOrdemServicos() : void {
+           this.ordemServicoService.listAll()
                 .then((data) => {                 
-                    this.produtos = data;                               
+                    this.ordemServicos = data;                             
                 })
                 .catch((response) => console.log("Não foi possivel carregar os Produtos, erro: " + response));
         }
@@ -78,70 +82,48 @@ module Consermaq {
         }, 2000);
     }
 
-
-     public modalCreateProduto (ev: any) : void {
-         this.mdDialog.show({
-            controller: "ModalProdutoController",
-            templateUrl: 'app/views/produto/modal-produto.html',
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            controllerAs: 'vm',
-            resolve: {
-                             produto: () => null
-                     }
-        }).then( (response) => {
-            if(response){
-                this.produtos.push(response.NewProduto);
-                this.selected = new Array<any>();        
-                this.loadStuff();
-            }
-                
-        });
+     public createOrdemServico() : void {
+          this.$location.path("novaOrdemServico");
      } 
 
-       public modalEditProduto (ev: any, produto: Produto) : void {
-        var index = this.produtos.indexOf(produto);  
-         this.mdDialog.show({
-            controller: "ModalProdutoController",
-            templateUrl: 'app/views/produto/modal-produto.html',
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            controllerAs: 'vm',
-            resolve: {
-                             produto: ()=> angular.copy(produto)
-                     }
-        }).then(response => {
-                if(response){
-                    this.produtos[index] = response.UpdateProduto;
-                    this.selected = new Array<any>();        
-                    this.loadStuff();
-                }
-            });
+     public editOrdemServico (ordemServico: OrdemServico) : void {
+        this.$location.path("novaOrdemServico/" + ordemServico.id);
      } 
 
-    public modalDeleteProduto (ev: any, produtos: Array<Produto>) : void {      
+    public ordenarCPFouCNPJ () : string {
+        if(this.buscarPorCNPJouCPF == "cliente.cpf")
+        {
+            this.buscarPorCNPJouCPF = "cliente.cnpj";
+            return "cliente.cnpj";
+        }
+        else
+        {
+            this.buscarPorCNPJouCPF = "cliente.cpf";
+            return "cliente.cpf";
+        }
+    } 
+
+    public modalDeleteProduto (ev: any, ordemServicos: Array<OrdemServico>) : void {      
          this.mdDialog.show({
-           controller: "ModalDeleteProdutoController",
-            templateUrl: 'app/views/produto/modal-delete-produto.html',
+           controller: "ModalDeleteOrdemServicoController",
+            templateUrl: 'app/views/produto/modal-delete-ordem-servico.html',
             targetEvent: ev,
             clickOutsideToClose: true,
             controllerAs: 'vm',
             resolve: {
-                             produtos: ()=> produtos
+                             ordemServicos: ()=> ordemServicos
                      }
         }).then( (response) => {
             if(response){             
-                        produtos.forEach(p => {
-                        var index = this.produtos.indexOf(p);
-                        this.produtos.splice(index,1);
+                        ordemServicos.forEach(o => {
+                        var index = this.ordemServicos.indexOf(o);
+                        this.ordemServicos.splice(index,1);
                     }); 
                     this.loadStuff();     
                     this.selected = new Array<any>();                
-            }
-            
+            }          
         });
      } 
-
   }
 
   

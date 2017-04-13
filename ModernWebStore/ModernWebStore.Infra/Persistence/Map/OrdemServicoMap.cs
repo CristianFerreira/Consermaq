@@ -13,7 +13,7 @@ namespace ModernWebStore.Infra.Persistence.Map
             HasKey(x => x.Id);
 
             Property(x => x.DataInicial).IsRequired();
-            Property(x => x.servicoSolicitado).IsRequired();
+            Property(x => x.servicoSolicitado).HasMaxLength(300).IsRequired();
             Property(x => x.DataEncerramento).IsOptional();
             
 

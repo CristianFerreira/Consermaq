@@ -25,6 +25,9 @@ var paths = {
             'app/assets/css/app.css',
             'app/assets/css/imprimir.css',
             'ngPrint-master/ngPrint.css',
+            'bower_components/md-data-table/dist/md-data-table-style.css',
+            'bower_components/angular-material-icons/angular-material-icons.css',
+            'node_modules/mdPickers/dist/mdPickers.min.css',
             
         ],
         destProject: 'app/build/css/',
@@ -52,9 +55,12 @@ var paths = {
     },
     scripts: {
         src: [
+            'bower_components/dist/jquery/jquery.js',
+            'bower_components/lodash/lodash.js',           
             'node_modules/angular/angular.js',
             'node_modules/angular-mocks/angular-mocks.js',
             'node_modules/angular-aria/angular-aria.js',
+            'bower_components/angular-sanitize/angular-sanitize.js',
             'node_modules/angular-messages/angular-messages.js',
             'node_modules/angular-animate/angular-animate.js',
             'node_modules/angular-route/angular-route.js',
@@ -71,7 +77,11 @@ var paths = {
             'node_modules/angular-ui-mask/dist/mask.js',
             'node_modules/ng-currency/dist/ng-currency.js',
             'node_modules/mdPickers/dist/mdPickers.min.js',
-            'ngPrint-master/ngPrint.js'
+            'ngPrint-master/ngPrint.js', 
+            'bower_components/angular-material-icons/angular-material-icons.min.js',
+            'bower_components/angular-material-icons/angular-material-icons.js',       
+            'bower_components/md-data-table/dist/md-data-table-templates.js',
+            'bower_components/md-data-table/dist/md-data-table.js',
         ],
         destProject: 'app/build/',
         dest: 'dist/app/build/',

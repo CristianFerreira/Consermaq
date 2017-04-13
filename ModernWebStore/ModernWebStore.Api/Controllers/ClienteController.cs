@@ -17,16 +17,6 @@ namespace ModernWebStore.Api.Controllers
             this._service = service;
         }
 
-        [HttpPost]
-        //[Authorize]
-        [Route("api/ordemServico/create")]
-        public Task<HttpResponseMessage> Post(OrdemServico ordemServico)
-        {
-            //var Cliente = _service.Create(cliente);
-            return CreateResponse(HttpStatusCode.Created, ordemServico);
-        }
-
-
         [HttpGet]
         //[Authorize]
         [Route("api/cliente/listAll")]
