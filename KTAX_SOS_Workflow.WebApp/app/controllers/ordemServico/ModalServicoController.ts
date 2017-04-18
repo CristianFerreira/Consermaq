@@ -26,6 +26,8 @@ module Consermaq {
         public options: any;
         public query: any;
         public qntdSaida: number;
+        public dataMinCalendarioInicioServico: Date;
+        public dataMaxCalendarioInicioServico: Date;
 
         constructor(ordemServicoService: OrdemServicoService, usuarioService: UsuarioService, produtoService: ProdutoService,
                     toastr: Toastr,                  
@@ -61,6 +63,10 @@ module Consermaq {
             };
             this.servicoItems = new Array<ServicoItem>();
             this.produtosAdicionados = new Array<Produto>();
+
+            this.dataMinCalendarioInicioServico = new Date();
+            this.dataMinCalendarioInicioServico.setDate(- 60);
+            this.dataMaxCalendarioInicioServico = new Date();
             this.load();          
         }
 

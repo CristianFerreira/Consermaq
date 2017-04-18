@@ -30,15 +30,23 @@
                                         </div>
                     </md-autocomplete>
                     <div flex="5"></div>
-                    <md-input-container class="md-block" flex>
-                        <label>Início do serviço</label>
-                        <input type="text">                                                                                 
-                    </md-input-container>
+                    <mdp-date-picker required name="dateFormat" mdp-placeholder="Início do Serviço"
+                        mdp-format="DD/MM/YYYY" ng-model="data" 
+                        mdp-min-date="vm.dataMinCalendarioInicioServico" mdp-max-date="vm.dataMaxCalendarioInicioServico" >
+                        <div ng-messages="dateForm.$error">
+                            <div ng-message="required.$error"></div>
+                            <div ng-message="format.$error"></div>
+                        </div>
+                    </mdp-date-picker>
                     <div flex="5"></div>
-                    <md-input-container class="md-block" flex>
-                        <label>Fim do serviço </label>
-                        <input type="text">                                                                                 
-                     </md-input-container>
+                    <mdp-date-picker required name="dateFormat" mdp-placeholder="Fim do Serviço"
+                        mdp-format="DD/MM/YYYY" ng-model="data1" mdp-disabled="!data"
+                        mdp-min-date="data" mdp-max-date="vm.dataMaxCalendarioInicioServico" >
+                        <div ng-messages="dateForm.$error">
+                            <div ng-message="required.$error"></div>
+                            <div ng-message="format.$error"></div>
+                        </div>
+                    </mdp-date-picker>
                 </div>
                  <div layout="row" flex="100">
                        <md-input-container class="md-block" flex-gt-sm>
