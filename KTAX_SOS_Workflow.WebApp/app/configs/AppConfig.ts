@@ -39,7 +39,14 @@ var appConfig = {
                 edit:  appConfig.rootServiceRoute + "api/ordemServico/update",
                 save: appConfig.rootServiceRoute + "api/ordemServico/create",
                 deleteAlot: appConfig.rootServiceRoute + "api/ordemServico/deleteAlot"  
-            }                                                           
+            },   
+            usuario: {
+                listAll: appConfig.rootServiceRoute + "api/user/listAll",
+                getById: appConfig.rootServiceRoute + "api/user/getById",
+                edit:  appConfig.rootServiceRoute + "api/user/update",
+                save: appConfig.rootServiceRoute + "api/user/create",
+                bloquearAlot: appConfig.rootServiceRoute + "api/user/bloquearAlot"  
+            }                                                        
         };
     }
 };

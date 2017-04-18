@@ -35,14 +35,9 @@ module Consermaq {
                 controller: "OrdemServicoController",
                 controllerAs: "vm"
             })
-            .when("/novaOrdemServico", {
-                templateUrl: "app/views/ordemServico/novaOrdemServico.html",
-                controller: "NovaOrdemServicoController",
-                controllerAs: "vm"
-            })
-            .when("/novaOrdemServico/:id", {
-                templateUrl: "app/views/ordemServico/novaOrdemServico.html",
-                controller: "NovaOrdemServicoController",
+            .when("/ordemServico/:id", {
+                templateUrl: "app/views/ordemServico/editOrdemServico.html",
+                controller: "EditOrdemServicoController",
                 controllerAs: "vm"
             })
             .when("/logout", {

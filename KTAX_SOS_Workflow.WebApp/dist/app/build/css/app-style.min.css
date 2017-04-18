@@ -8630,6 +8630,11 @@ html, body{
     font-weight: 600;
     text-transform: uppercase;
 }
+
+
+.mdtTableContainer .mdt-header-alternate {
+  background-color: #ffffff;
+}
   .impressaoOrdemServico {
    display: none;
 }

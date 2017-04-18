@@ -21,10 +21,10 @@ namespace ModernWebStore.Infra.Repositories
             _context.Users.Add(user);
         }
 
-        public User Authenticate(string email, string password)
+        public User Authenticate(string username, string password)
         {
             return _context.Users
-                .Where(UserSpecs.AuthenticateUser(email, password))
+                .Where(UserSpecs.AuthenticateUser(username, password))
                 .FirstOrDefault();
         }
 

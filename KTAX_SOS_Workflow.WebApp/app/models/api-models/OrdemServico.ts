@@ -9,7 +9,7 @@ module Consermaq {
         public clienteId: number;
         public cliente: Cliente;
         
-        // public servicos: Array<Servico>;
+        public servicos: Array<Servico>;
 
         constructor() {              
         }

@@ -13,7 +13,7 @@ namespace ModernWebStore.Infra.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704092347086_Profile"; }
+            get { return "201704161827222_Profile"; }
         }
         
         string IMigrationMetadata.Source

@@ -13,10 +13,10 @@
             <div class="md-dialog-content ">
                 <md-input-container class="md-block" flex="100">
                     <label>Código do Produto</label>
-                    <input required name="codigo" ng-model="vm.produto.codeProduct" ng-maxlength="50">
+                    <input required name="codigo" ng-model="vm.produto.codeProduct" ng-maxlength="30">
                     <div ng-messages="form.codigo.$error">
                        <div ng-message="required">Código do Produto é obrigatório.</div>
-                       <div ng-message="maxlength">Código do Produto deve ter no maximo 50 caracteres.</div>
+                       <div ng-message="maxlength">Código do Produto deve ter no maximo 30 caracteres.</div>
                     </div>                                        
                 </md-input-container>
                  <md-input-container class="md-block" flex="100">

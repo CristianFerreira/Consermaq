@@ -1,8 +1,6 @@
 ﻿using ModernWebStore.Domain.Enums;
-using ModernWebStore.Domain.Scopes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ModernWebStore.Domain.Entities
 {
@@ -26,5 +24,24 @@ namespace ModernWebStore.Domain.Entities
         public Cliente Cliente { get; set; }
 
         public ICollection<Servico> Servicos { get; set; }
+
+
+        public void MarkAsPaid()
+        {
+            // Dá baixa no estoque
+            this.Status = EOrderStatus.Paid;
+        }
+
+        public void MarkAsDelivered()
+        {
+            this.Status = EOrderStatus.Delivered;
+        }
+
+        public void Cancel()
+        {
+            // Estorna os produtos
+
+            this.Status = EOrderStatus.Canceled;
+        }
     }
 }

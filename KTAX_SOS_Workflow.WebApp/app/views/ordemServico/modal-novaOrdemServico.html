@@ -1,5 +1,4 @@
-<div layout="row" layout-align="center" ng-cloak flex="100">
-   <div layout-align="center" flex="60" ng-cloak>
+<md-dialog aria-label="Adicionar Produto" flex="60" ng-cloak>
         <md-toolbar class="md-whiteframe-z2" flex>
             <div layout="row" style="padding: 2px 16px;" layout-padding layout-margin layout-fill flex="100">
                 <div flex="50">
@@ -12,6 +11,8 @@
                 </div>
             </div>
         </md-toolbar>
+         <md-dialog-content>
+          <div class="md-dialog-content ">
             <md-content layout-padding layout-align="center center" flex>
             <form ng-submit="$event.preventDefault()" name="ordemServicoForm" layout-margin novalidate>               
                 <div layout-gt-xs="row">       
@@ -31,7 +32,7 @@
                             md-selected-item="vm.selectedItem"
                             md-search-text="vm.searchText"
                             md-items="item in vm.buscarPF(vm.searchText)"
-                            md-item-text="item.cpf"    
+                            md-item-text="item.nome && item.cpf ? item.nome + ' '+ '-' +' ' + item.cpf : item.nome + item.cpf"    
                             md-require-match
                             md-floating-label="Informe o Nome ou CPF...">
                         <md-item-template>
@@ -48,7 +49,7 @@
                             md-selected-item="vm.selectedItem"
                             md-search-text="vm.searchText"
                             md-items="item in vm.buscarPJ(vm.searchText)"
-                            md-item-text="item.cnpj"
+                            md-item-text="item.nome && item.cnpj ? item.nome + ' '+ '-' +' ' + item.cnpj : item.nome + item.cnpj"
                             md-require-match
                             md-floating-label="Informe o Nome ou CNPJ...">
                         <md-item-template>
@@ -76,19 +77,10 @@
         <div layout="row" layout-align="end center">
             <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="!vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>
             <md-button class="md-raised md-primary" ng-print print-element-id="printThisElement" ng-show="vm.ordemServico.id" ><i class="fa fa-print"></i> Imprimir</md-button>
-            <md-button class="md-raised md-primary" ng-show="vm.ordemServico.id" ng-click="vm.limpar(ordemServicoForm)" ><i class="glyphicon glyphicon-erase"></i> Limpar</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.close()" >Fechar</md-button>
         </div>
-   </div>
-</div>
-
-
-
-
-
+      </div>
     
-
-
-
 
 <!--IMPRESSAO ORDEMSERVICO-->
 <div id="printThisElement" class="impressaoOrdemServico">
@@ -120,4 +112,8 @@
           <img src="app/assets/images/corpoOrdemServico.png" alt="Consermaq" style="width: 100%;">
       </div>
 </div>
+
+
+   </md-dialog-content>
+</md-dialog>
     

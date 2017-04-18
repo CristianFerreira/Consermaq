@@ -18,8 +18,8 @@ namespace ModernWebStore.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/users")]
-        [Authorize(Roles = "admin")]
+        [Route("api/user/listAll")]
+        //[Authorize(Roles = "admin")]
         public Task<HttpResponseMessage> Get()
         {
             var users = _service.List();
@@ -33,7 +33,10 @@ namespace ModernWebStore.Api.Controllers
             var command = new RegisterUserCommand(
                 email: (string)body.email,
                 password: (string)body.password,
-                isAdmin: (bool)body.isAdmin
+                isAdmin: (bool)body.isAdmin,
+                login: (string)body.login,
+                nome: (string)body.nome
+
             );
 
             var user = _service.Register(command);

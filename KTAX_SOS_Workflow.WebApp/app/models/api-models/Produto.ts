@@ -2,7 +2,7 @@
 module Consermaq {
     export class Produto {    
         public id: number;
-        public codeProduct: number;
+        public codeProduct: string;
         public title: string;
         public description: string;
         public priceBuy: number;

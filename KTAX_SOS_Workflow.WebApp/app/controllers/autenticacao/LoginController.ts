@@ -35,7 +35,7 @@ module Consermaq {
         public login(): void{
             this.autenticacaoService.login(this.loginModel)
                 .then((data) => { 
-                    this.toastr.success("Seja bem vindo " + this.$rootScope.sistemaContexo.usuarioLogado.email, 
+                    this.toastr.success("Seja bem vindo " + this.$rootScope.sistemaContexo.usuarioLogado.nome, 
                                 "Você está autenticado");
                     this.$location.url("/");
                 })

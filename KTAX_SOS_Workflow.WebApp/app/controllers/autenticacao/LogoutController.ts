@@ -35,7 +35,7 @@ module Consermaq {
 
         public logout(): void{
             this.autenticacaoService.logout()
-            this.toastr.success("Obrigado por usar o KTAX SOS Workflow", 
+            this.toastr.success("Obrigado por usar o sistema Consermaq", 
                                 "Sessão encerrada");
             this.$location.url("/login");
         }

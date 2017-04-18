@@ -1,9 +1,10 @@
 /// <reference path="../../configs/_all.ts" />
 
 module Consermaq {
-    export class NovaOrdemServicoController {
+    export class EditOrdemServicoController {
 
-        static $inject = ['$location', '$routeParams', 'ClienteService', 'OrdemServicoService', 'toastr', '$mdpDatePicker', '$mdpTimePicker', '$timeout','$q'];
+        static $inject = ['$location', '$routeParams', 'ClienteService', 'OrdemServicoService', 
+                            'toastr', '$timeout','$q','$mdDialog'];
 
      
         private $location: ILocationService;
@@ -11,13 +12,15 @@ module Consermaq {
         private clienteService: ClienteService;
         private ordemServicoService: OrdemServicoService;
         public toastr: Toastr;     
-        public $mdpDatePicker: any;
-        public $mdpTimePicker: any;
         public timeout: ITimeoutService;
         public $q: ng.IQService;
+        public mdDialog: any;
+        public ordemServico: OrdemServico;     
         public clientes: Array<Cliente>;
         public cliente: Cliente;
-        public ordemServico: OrdemServico;
+        public tipoCliente: string;
+        public textoCliente: any;
+       
    
         public selectedItem : any;
         public searchText   : any;
@@ -28,20 +31,18 @@ module Consermaq {
                     clienteService: ClienteService, 
                     ordemServicoService: OrdemServicoService,
                     toastr: Toastr,                  
-                    $mdpDatePicker: any,
-                    $mdpTimePicker: any,
                     timeout: ITimeoutService,
-                    $q: ng.IQService) {
+                    $q: ng.IQService,
+                    mdDialog: any) {
 
             this.$location = $location;
             this.$routeParams = $routeParams;
             this.clienteService = clienteService;
             this.ordemServicoService = ordemServicoService;
             this.toastr = toastr;
-            this.$q = $q;
-            this.$mdpDatePicker = $mdpDatePicker;
-            this.$mdpTimePicker = $mdpTimePicker;
             this.timeout = timeout;
+            this.$q = $q;            
+            this.mdDialog = mdDialog;
             this.clientes = new Array<Cliente>();          
             this.ordemServico = new OrdemServico;
            
@@ -55,9 +56,19 @@ module Consermaq {
                  this.ordemServicoService.getById(this.$routeParams.id)
                  .then((data) => {
                      this.ordemServico = data;
+                     this.loadTipoPessoa();
                  })
                  .catch((response) => toastr.error("Não carregou a ordem de serviço, erro: " + response) );
              }          
+        }
+
+        public loadTipoPessoa() :void {
+            if(this.ordemServico.cliente.cpf)
+                this.tipoCliente = 'pf';
+            else
+                this.tipoCliente = 'pj';
+
+            this.selectedItem = this.ordemServico.cliente;
         }
 
         public loadClientes() : void {
@@ -117,7 +128,8 @@ module Consermaq {
             }  
         }
         else {
-             return (clientePJ.nome.indexOf(query) === 0);
+            if(clientePJ.cnpj)
+                 return (clientePJ.nome.indexOf(query) === 0);
         }  
               
       };
@@ -125,6 +137,20 @@ module Consermaq {
       public clearSelectItem() {
           this.selectedItem = new Array<any>();
       }
+
+      public abrirModalServico(ev :Event) :void {
+            this.mdDialog.show({
+            controller: "ModalServicoController",
+            templateUrl: 'app/views/ordemServico/modal-servico.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            controllerAs: 'vm',
+        }).then( (response) => {
+            if(response.newServico){
+                this.ordemServico.servicos.push(response.newServico);    
+            }          
+        });
+      } 
 
       public save() {
         if(this.selectedItem.id){
@@ -153,17 +179,9 @@ module Consermaq {
         else
             return false;   
     }
-
-    public limpar(form: ng.IFormController) {
-        this.ordemServico = new OrdemServico();
-        this.cliente = new Cliente();
-        this.clearSelectItem();
-        
-        this.$location.path("/novaOrdemServico");
-    }
     
   }
 
 
-    angular.module(appConfig.appName).controller('NovaOrdemServicoController', NovaOrdemServicoController);
+    angular.module(appConfig.appName).controller('EditOrdemServicoController', EditOrdemServicoController);
 }

@@ -7,12 +7,12 @@ namespace ModernWebStore.Infra.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.OrdemServico", "servicoSolicitado", c => c.String(nullable: false, maxLength: 300));
+            AlterColumn("dbo.Product", "CodeProduct", c => c.String(nullable: false, maxLength: 30));
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.OrdemServico", "servicoSolicitado", c => c.String(nullable: false, maxLength: 100));
+            AlterColumn("dbo.Product", "CodeProduct", c => c.String());
         }
     }
 }

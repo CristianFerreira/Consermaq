@@ -11,7 +11,7 @@
                     <md-icon class="material-icons">filter_list</md-icon>
                     <div class="md-ripple-container"></div>
                 </md-button>
-                <md-button class="md-icon-button" ng-click="vm.createOrdemServico()">
+                <md-button class="md-icon-button" ng-click="vm.modalCreateOrdemServico($event)">
                     <md-tooltip md-direction="bottom">Nova Ordem de Serviço</md-tooltip>
                     <md-icon class="material-icons">add circle</md-icon>
                 </md-button>
@@ -52,7 +52,7 @@
             </div>
           
 
-<mdt-table 
+<mdt-table style="background-color: #fff !important"
                 paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
             animate-sort-icon="true"
            selectable-rows="true"
@@ -68,7 +68,8 @@
                 'dataInicial',
                 'cliente.nome',
                 'cliente.cpf',
-                'cliente.cnpj'
+                'cliente.cnpj',
+                'editar'
             ]}">
     <mdt-header-row> 
      <mdt-column align-rule="right" column-sort="true">N Ordem Serviço</mdt-column>
@@ -76,15 +77,37 @@
       <mdt-column align-rule="right" column-sort="true">Status</mdt-column>
       <mdt-column align-rule="right" column-sort="true">Data de Abertura</mdt-column>
       <mdt-column align-rule="right" column-sort="true">Nome Cliente</mdt-column>
-      <mdt-column align-rule="right">CPF</mdt-column>
-      <mdt-column align-rule="right">CNPJ</mdt-column>
+      <mdt-column align-rule="right" 
+         column-filter="{
+                            'valuesProviderCallback': vm.cpfClienteFilterCallback,
+                            'valuesTransformerCallback': vm.cpfClienteTransformer,
+                            'placeholderText': 'Pesquise CPF...',
+                            'filterType': 'chips'
+                        }"
+      >CPF</mdt-column>
+      <mdt-column align-rule="right"
+         column-filter="{
+                            'valuesProviderCallback': serviceUnitsFilterCallback,
+                            'valuesTransformerCallback': serviceUnitNameTransformer,
+                            'filterType': 'checkbox'
+                        }"
+      >CNPJ</mdt-column>
+      <mdt-column align-rule="right">Editar</mdt-column>      
     </mdt-header-row>
        <mdt-custom-cell column-key="id">
             <span>{{value}}</span>
        </mdt-custom-cell>  
        <mdt-custom-cell column-key="status">
-            <span>{{value}}</span>
-       </mdt-custom-cell>  
+            <span>{{value == 1 ? 'Emitido' : 'Pendente'}}</span>
+       </mdt-custom-cell>
+        <mdt-custom-cell column-key="dataInicial">
+            <span> {{value | date:"dd/MM/yyyy"}} às {{value | date:"HH:mm"}}</span>
+        </mdt-custom-cell>
+        <mdt-custom-cell column-key="editar">
+           <a href="" class="md-icon-button" ng-click="clientScope.vm.editOrdemServico(rowId)">
+                    <md-icon>edit</md-icon>
+           </a>
+        </mdt-custom-cell>
   </mdt-table>
 
           

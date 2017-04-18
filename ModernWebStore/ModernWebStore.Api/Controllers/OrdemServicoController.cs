@@ -12,10 +12,12 @@ namespace ModernWebStore.Api.Controllers
     public class OrdemServicoController : BaseController
     {
         private readonly IOrdemServicoApplicationService _service;
+        private readonly IClienteApplicationService _cliente;
 
-        public OrdemServicoController(IOrdemServicoApplicationService service)
+        public OrdemServicoController(IOrdemServicoApplicationService service, IClienteApplicationService cliente)
         {
             this._service = service;
+            this._cliente = cliente;
         }
 
         [HttpGet]
@@ -56,6 +58,7 @@ namespace ModernWebStore.Api.Controllers
         public Task<HttpResponseMessage> Post(OrdemServico ordemServico)
         {
             var ordemServicoCreate = _service.Create(ordemServico);
+            ordemServicoCreate.Cliente = _cliente.Get(ordemServicoCreate.ClienteId);
             return CreateResponse(HttpStatusCode.OK, ordemServicoCreate);
         }
 
@@ -65,7 +68,7 @@ namespace ModernWebStore.Api.Controllers
         [Route("api/ordemServico/update")]
         public Task<HttpResponseMessage> Put(OrdemServico ordemServico)
         {
-            var ordemServicoUpdate = _service.Update(ordemServico);
+            var ordemServicoUpdate = _service.Update(ordemServico);   
             return CreateResponse(HttpStatusCode.OK, ordemServicoUpdate);
         }
 

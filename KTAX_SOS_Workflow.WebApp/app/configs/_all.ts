@@ -27,6 +27,8 @@
 /// <reference path="../models/api-models/ServicoItem.ts" />
 /// <reference path="../models/api-models/Servico.ts" />
 
+/// <reference path="../models/api-models/ABS/ProdutoABS.ts" />
+
 /// <reference path="../models/app-models/LoginModel.ts" />
 
 /// <reference path="../directiva/numberOnly.ts" />
@@ -38,6 +40,8 @@
 /// <reference path="../services/ProdutoService.ts" />
 /// <reference path="../services/AutenticacaoService.ts" />
 /// <reference path="../services/OrdemServicoService.ts" />
+/// <reference path="../services/UsuarioService.ts" />
+
 
 
 /// <reference path="../controllers/autenticacao/LoginController.ts" />
@@ -51,8 +55,11 @@
 /// <reference path="../controllers/cliente/pessoajuridica/ModalPessoaJuridicaController.ts" />
 /// <reference path="../controllers/cliente/pessoajuridica/ModalDeletePessoaJuridicaController.ts" />
 
-/// <reference path="../controllers/servico/NovaOrdemServicoController.ts" />
-/// <reference path="../controllers/servico/OrdemServicoController.ts" />
+/// <reference path="../controllers/ordemServico/ModalOrdemServicoController.ts" />
+/// <reference path="../controllers/ordemServico/OrdemServicoController.ts" />
+/// <reference path="../controllers/ordemServico/EditOrdemServicoController.ts" />
+/// <reference path="../controllers/ordemServico/ModalServicoController.ts" />
+
 
 /// <reference path="../controllers/produto/ProdutoController.ts" />
 /// <reference path="../controllers/produto/ModalProdutoController.ts" />

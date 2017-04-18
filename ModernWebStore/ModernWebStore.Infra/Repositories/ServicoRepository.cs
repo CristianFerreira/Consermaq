@@ -8,11 +8,11 @@ using System.Data.Entity;
 
 namespace ModernWebStore.Infra.Repositories
 {
-    public class OrderRepository : IServicoRepository
+    public class ServicoRepository : IServicoRepository
     {
         private StoreDataContext _context;
 
-        public OrderRepository(StoreDataContext context)
+        public ServicoRepository(StoreDataContext context)
         {
             this._context = context;
         }

@@ -3,7 +3,7 @@
 module Consermaq {
     export class OrdemServicoController {
 
-        static $inject = ['$location', 'OrdemServicoService', 'toastr', '$mdDialog', '$timeout'];
+        static $inject = ['$location', 'OrdemServicoService', 'toastr', '$mdDialog', '$timeout','$q'];
 
      
         private $location: ILocationService;
@@ -11,6 +11,7 @@ module Consermaq {
         public toastr: Toastr;
         public mdDialog: any;
         public timeout: ITimeoutService;
+        public $q: ng.IQService;
         public selected: Array<any>;
         public limitOptions: Array<any>;
         public options: any;
@@ -21,19 +22,23 @@ module Consermaq {
         public filterSearch: string;
         public ordemServicos: Array<OrdemServico>;
         public buscarPorCNPJouCPF: string;
-        public teste:any;
+        public textoCliente: any;
+        public cpfClienteFilterCallback: any;
+        public cpfClienteTransformer: any;
 
         constructor($location: ILocationService, 
                     ordemServicoService: OrdemServicoService, 
                     toastr: Toastr,
                     mdDialog: any,
-                    timeout: ITimeoutService) {
+                    timeout: ITimeoutService,
+                    $q: ng.IQService) {
 
             this.$location = $location;
             this.ordemServicoService = ordemServicoService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.timeout = timeout;
+            this.$q = $q;
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
             this.options = {
@@ -55,7 +60,8 @@ module Consermaq {
             this.ordemServicos = new Array<OrdemServico>();
             this.buscarPorCNPJouCPF = "cliente.cpf";
             
-           
+            this.cpfClienteFilterCallback = this.CpfClienteFilterCallback;
+            this.cpfClienteTransformer = this.CpfClienteTransformer; 
             this.loadOrdemServicos();
         }
 
@@ -67,10 +73,22 @@ module Consermaq {
                 .catch((response) => console.log("Não foi possivel carregar os Produtos, erro: " + response));
         }
 
-        public removeFilter () : void {
-        this.filterShow = false;
-        this.filterSearch = '';
-    };
+            public removeFilter () : void {
+            this.filterShow = false;
+            this.filterSearch = '';
+        };
+        
+        public CpfClienteFilterCallback(names ? :any){
+            var arr = this.ordemServicos.filter((item) => 
+            {
+                return item.cliente.cpf.toLowerCase().indexOf(names.toLowerCase()) !== -1;
+            }) 
+            return this.$q.resolve(arr);
+        }
+
+        public CpfClienteTransformer(ordemServico: any){
+            return ordemServico.cliente.cpf;
+        }
 
        public toggleLimitOptions () : any {
              this.limitOptions = this.limitOptions ? undefined : [5, 10, 15];
@@ -82,26 +100,25 @@ module Consermaq {
         }, 2000);
     }
 
-     public createOrdemServico() : void {
-          this.$location.path("novaOrdemServico");
+     public editOrdemServico(id :number) : void {
+        this.$location.path("ordemServico/" + id);
      } 
 
-     public editOrdemServico (ordemServico: OrdemServico) : void {
-        this.$location.path("novaOrdemServico/" + ordemServico.id);
+   public modalCreateOrdemServico (ev: any) : void {
+         this.mdDialog.show({
+            controller: "ModalOrdemServicoController",
+            templateUrl: 'app/views/ordemServico/modal-novaOrdemServico.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            controllerAs: 'vm',
+        }).then( (response) => {
+            if(response.newOrdemServico){
+                this.ordemServicos.push(response.newOrdemServico);
+                this.selected = new Array<any>();        
+            }
+                
+        });
      } 
-
-    public ordenarCPFouCNPJ () : string {
-        if(this.buscarPorCNPJouCPF == "cliente.cpf")
-        {
-            this.buscarPorCNPJouCPF = "cliente.cnpj";
-            return "cliente.cnpj";
-        }
-        else
-        {
-            this.buscarPorCNPJouCPF = "cliente.cpf";
-            return "cliente.cpf";
-        }
-    } 
 
     public modalDeleteProduto (ev: any, ordemServicos: Array<OrdemServico>) : void {      
          this.mdDialog.show({

@@ -1,0 +1,170 @@
+<md-dialog aria-label="Adicionar Servico" flex="80" ng-cloak>
+    <form name="servicoForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Adicionar Serviço</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons" style="color: #fff">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content ">
+                <div layout="row" flex="100">
+                    <md-autocomplete flex required
+                                            md-input-name="autocompleteField"
+                                            md-no-cache="vm.noCache"
+                                            md-selected-item="vm.selectedItem"
+                                            md-search-text="vm.searchText"
+                                            md-items="item in vm.buscarUsuario(vm.searchText)"                                   
+                                            md-item-text="item.nome"  
+                                            md-require-match
+                                            md-floating-label="Informe o nome do usuario executante...">
+                                        <md-item-template>
+                                            <span md-highlight-text="vm.searchText">{{item.nome}}</span>
+                                        </md-item-template>
+                                        <div ng-messages="servicoForm.autocompleteField.$error && servicoForm.autocompleteField.$touched">
+                                            <div ng-message="required"> <b>Campo obrigatório.</b></div>
+                                            <div ng-message="md-require-match">Por favor, selecione um valor existente.</div>
+                                        </div>
+                    </md-autocomplete>
+                    <div flex="5"></div>
+                    <md-input-container class="md-block" flex>
+                        <label>Início do serviço</label>
+                        <input type="text">                                                                                 
+                    </md-input-container>
+                    <div flex="5"></div>
+                    <md-input-container class="md-block" flex>
+                        <label>Fim do serviço </label>
+                        <input type="text">                                                                                 
+                     </md-input-container>
+                </div>
+                 <div layout="row" flex="100">
+                       <md-input-container class="md-block" flex-gt-sm>
+                            <label>Serviço Efetuado</label>
+                            <textarea name="servicoSolicitado" ng-model="teste" 
+                                    md-maxlength="300" 
+                                    rows="3" md-select-on-focus>
+                            </textarea>
+                            <div ng-messages="ordemServicoForm.servicoSolicitado.$error" ng-if="ordemServicoForm.servicoSolicitado.$touched">
+                                    <div ng-message="required"> <b>Campo Serviço solicitado é obrigatório.</b></div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5"></div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Ocorrência</label>
+                            <textarea name="ocorrencia" ng-model="t2" 
+                                    md-maxlength="300" 
+                                    rows="3" md-select-on-focus required>
+                            </textarea>
+                            <div ng-messages="ordemServicoForm.servicoSolicitado.$error" ng-if="ordemServicoForm.servicoSolicitado.$touched">
+                                    <div ng-message="required"> <b>Campo Serviço solicitado é obrigatório.</b></div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5"></div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Causa</label>
+                            <textarea name="causa" ng-model="t3" 
+                                    md-maxlength="300" 
+                                    rows="3" md-select-on-focus required>
+                            </textarea>
+                            <div ng-messages="ordemServicoForm.servicoSolicitado.$error" ng-if="ordemServicoForm.servicoSolicitado.$touched">
+                                    <div ng-message="required"> <b>Campo Serviço solicitado é obrigatório.</b></div>
+                            </div>
+                        </md-input-container>
+                 </div>
+                 <div layout="row">
+                    <md-switch class="md-primary" md-no-ink aria-label="Adicionar Material" ng-model="vm.adicionarMaterial">
+                        Adicionar Material: <strong>{{ vm.adicionarMaterial == true ? 'Sim' : 'Não' }}</strong>
+                    </md-switch>
+                 </div>
+
+                <div ng-show="vm.adicionarMaterial">
+                    <div layout="row" layout-padding="10" layout-margin="10">
+                          <md-divider></md-divider>
+                            <h4>Adicionar Material</h4>
+                           <md-divider></md-divider>
+                    </div> 
+                     <md-input-container md-no-float class="md-block" flex style="margin-top: 20px;">
+                        <md-icon class="material-icons">search</md-icon>
+                        <input ng-model="filtro" type="text" placeholder="Pesquisar">
+                    </md-input-container>
+                    <md-table-container>
+                            <table md-table>
+                                <thead ng-show="vm.produtos.length > 0" md-head md-order="vm.query.order" md-on-reorder="logOrder">
+                                    <tr md-row>                        
+                                        <th md-column md-numeric md-order-by="codeProduct" style="text-align: center;"><span>Código</span></th>
+                                        <th md-column md-numeric md-order-by="title" style="text-align: center;"><span>Nome</span></th>
+                                        <th md-column md-numeric md-order-by="quantityOnHand" style="text-align: left;"><span>Qntd de Estoque</span></th> 
+                                        <th md-column md-numeric style="text-align: right; width:140px"><span>Qntd de Saída</span></th>                   
+                                        <th md-column md-numeric style="text-align: right;"><span>Adicionar</span></th>                            
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="produto in vm.produtos | filter: filtro | orderBy: vm.produto.title | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                                        <td md-cell style="text-align: center;">{{produto.codeProduct}}</td>
+                                        <td md-cell style="text-align: center;">{{produto.title}}</td>
+                                        <td md-cell style="text-align: left;">{{produto.quantityOnHand}} un.</td>
+                                        <td md-cell>
+                                            <div style="text-align: right;">
+                                                <input type="text" class="form-control" ng-model="produto.qntdSaida" style="width: 70px;"/>
+                                            </div>    
+                                        </td>
+                                        <td md-cell style="text-align: right;">
+                                        <md-button class="md-raised md-primary" style="margin-right: -15px;" ng-click="vm.addMaterial(produto)">
+                                            <md-icon class="material-icons">add circle</md-icon>
+                                        </md-button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>                 
+                        <md-table-pagination ng-show="vm.produtos.length > 0" md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.produtos.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+
+                       <div ng-show="vm.servicoItems.length > 0"> 
+                            <div layout-margin="20">
+                                <md-divider></md-divider>
+                                <h4>Material Adicionado</h4>
+                                <md-divider></md-divider>
+                                
+                                <md-table-container>
+                                <table md-table>
+                                    <thead ng-show="vm.servicoItems.length > 0" md-head md-order="vm.query.order" md-on-reorder="logOrder">
+                                        <tr md-row>                        
+                                            <th md-column md-numeric md-order-by="codeProduct" style="text-align: center;"><span>Código</span></th>
+                                            <th md-column md-numeric md-order-by="title" style="text-align: center;"><span>Nome</span></th>
+                                            <th md-column md-numeric style="text-align: center;"><span>Qntd de Saída</span></th>                   
+                                            <th md-column md-numeric style="text-align: right;"><span>Remover</span></th>                            
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="item in vm.servicoItems | filter: filtro | orderBy: vm.servicoItems.product.title | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                                            <td md-cell style="text-align: center;">{{item.product.codeProduct}}</td>
+                                            <td md-cell style="text-align: center;">{{item.product.title}}</td>
+                                            <td md-cell style="text-align: center;">
+                                                <strong>{{item.quantity}} un.</strong>
+                                            </td>
+                                            <td md-cell style="text-align: right;">
+                                            <md-button class="md-raised md-danger" style="margin-right: -15px;" ng-click="removerMaterial(item)">
+                                                <md-icon class="material-icons">add circle</md-icon>
+                                            </md-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </md-table-container>                 
+                                <md-table-pagination ng-show="vm.produtos.length > 0" md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.produtos.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>         
+                            </div>
+                       </div>  
+                
+                </div>      
+
+                <div flex-sm="50" layout layout-align="end center" class="padding-top-20">
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" type="submit" ng-click="vm.savePessoaFisica()">Salvar</md-button>
+                </div> 
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

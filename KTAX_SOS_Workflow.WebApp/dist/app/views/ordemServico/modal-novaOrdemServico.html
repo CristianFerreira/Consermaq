@@ -1,0 +1,119 @@
+<md-dialog aria-label="Adicionar Produto" flex="60" ng-cloak>
+        <md-toolbar class="md-whiteframe-z2" flex>
+            <div layout="row" style="padding: 2px 16px;" layout-padding layout-margin layout-fill flex="100">
+                <div flex="50">
+                    <h1 style="font-size: 20px;">Nova Ordem de Serviço</h1>
+                </div>
+                 <div ng-if="vm.ordemServico.id" layout="row" layout-align="end" flex="50">               
+                        <h1 style="font-size: 20px;text-decoration: underline;"><strong>Nº Ordem Serviço</strong></h1> 
+                        <h1 style="font-size: 20px;">:</h1>
+                        <h1 style="font-size: 20px; padding: 1px 5px;"><strong>{{ vm.ordemServico.id}}</strong></h1>
+                </div>
+            </div>
+        </md-toolbar>
+         <md-dialog-content>
+          <div class="md-dialog-content ">
+            <md-content layout-padding layout-align="center center" flex>
+            <form ng-submit="$event.preventDefault()" name="ordemServicoForm" layout-margin novalidate>               
+                <div layout-gt-xs="row">       
+                    <md-input-container flex="30" ng-disabled="!vm.ordemServico.id">
+                        <label>Informe o tipo de cliente</label>
+                        <md-select name="tipoCliente" ng-model="tipoCliente" required ng-disabled="vm.ordemServico.id">
+                            <md-option value="pf" ng-click="vm.clearSelectItem()">Pessoa Física</md-option>
+                            <md-option value="pj" ng-click="vm.clearSelectItem()">Pessoa Jurídica</md-option>
+                        </md-select>
+                        <div ng-messages="ordemServicoForm.tipoCliente.$error">
+                            <div ng-message="required">Selecione o tipo de cliente</div>
+                        </div>
+                    </md-input-container>
+                    <md-autocomplete ng-if="tipoCliente && tipoCliente == 'pf'" flex required ng-disabled="vm.ordemServico.id"
+                            md-input-name="autocompleteField"
+                            md-no-cache="vm.noCache"
+                            md-selected-item="vm.selectedItem"
+                            md-search-text="vm.searchText"
+                            md-items="item in vm.buscarPF(vm.searchText)"
+                            md-item-text="item.nome && item.cpf ? item.nome + ' '+ '-' +' ' + item.cpf : item.nome + item.cpf"    
+                            md-require-match
+                            md-floating-label="Informe o Nome ou CPF...">
+                        <md-item-template>
+                            <span md-highlight-text="vm.searchText">{{item.nome}} - {{item.cpf}}</span>
+                        </md-item-template>
+                        <div ng-messages="ordemServicoForm.autocompleteField.$error" ng-if="ordemServicoForm.autocompleteField.$touched">
+                            <div ng-message="required"> <b>Campo obrigatório.</b></div>
+                            <div ng-message="md-require-match">Por favor, selecione um valor existente.</div>
+                        </div>
+                    </md-autocomplete>
+                    <md-autocomplete ng-if="tipoCliente && tipoCliente == 'pj'" flex required ng-disabled="vm.ordemServico.id"
+                            md-input-name="autocompleteField"
+                            md-no-cache="vm.noCache"
+                            md-selected-item="vm.selectedItem"
+                            md-search-text="vm.searchText"
+                            md-items="item in vm.buscarPJ(vm.searchText)"
+                            md-item-text="item.nome && item.cnpj ? item.nome + ' '+ '-' +' ' + item.cnpj : item.nome + item.cnpj"
+                            md-require-match
+                            md-floating-label="Informe o Nome ou CNPJ...">
+                        <md-item-template>
+                            <span md-highlight-text="vm.searchText">{{item.nome}} - {{item.cnpj}}</span>
+                        </md-item-template>
+                         <div ng-messages="ordemServicoForm.autocompleteField.$error" ng-if="ordemServicoForm.autocompleteField.$touched">
+                            <div ng-message="required"> <b>Campo obrigatório.</b></div>
+                            <div ng-message="md-require-match">Por favor, selecione um valor existente.</div>
+                        </div>                      
+                    </md-autocomplete>           
+                </div>
+                <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Serviço solicitado</label>
+                    <textarea name="servicoSolicitado" ng-model="vm.ordemServico.servicoSolicitado" 
+                              ng-disabled="vm.ordemServico.id" md-maxlength="300" 
+                              rows="3" md-select-on-focus required></textarea>
+                     <div ng-messages="ordemServicoForm.servicoSolicitado.$error" ng-if="ordemServicoForm.servicoSolicitado.$touched">
+                            <div ng-message="required"> <b>Campo Serviço solicitado é obrigatório.</b></div>
+                     </div>
+                </md-input-container>
+                </div>  
+            </form>
+        </md-content>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="!vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>
+            <md-button class="md-raised md-primary" ng-print print-element-id="printThisElement" ng-show="vm.ordemServico.id" ><i class="fa fa-print"></i> Imprimir</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.close()" >Fechar</md-button>
+        </div>
+      </div>
+    
+
+<!--IMPRESSAO ORDEMSERVICO-->
+<div id="printThisElement" class="impressaoOrdemServico">
+      <div layout="row" flex>
+         <img src="app/assets/images/cabecalho2.jpg" alt="Consermaq" style="width: 100%;float: left;">
+      </div>
+      <div>
+           <div flex=100>
+               </br><h4 style="margin-left: 15px;"><strong>ORDEM DE SERVIÇO:</strong>{{vm.ordemServico.id}} </h4>
+               <h4 style="margin-left: 150px;"><strong>DATA DE ABERTURA:</strong> {{vm.ordemServico.dataInicial | date:"dd/MM/yyyy"}} às {{vm.ordemServico.dataInicial | date:"HH:mm"}}</h4></br></br>
+           </div>
+           <div flex=100>
+              </br><h4 style="margin-left: 15px;"><strong><i>INFORMAÇÕES DO CLIENTE</i></strong></h4></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Nome: </strong> {{vm.cliente.nome}} - {{vm.cliente.cpf}} {{vm.cliente.cnpj}}</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Rua: </strong> {{vm.cliente.rua}} - N° {{vm.cliente.numero}}</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Bairro: </strong> {{vm.cliente.bairro}} - Porto Alegre</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Telefone:</strong> {{vm.cliente.telefone}} </h5></br></br></br>
+           </div>
+      </div>
+      <div layout="row" flex>
+          <img src="app/assets/images/corpoOrdemServico.png" alt="Consermaq" style="width: 100%;">
+      </div>
+</div>
+
+
+   </md-dialog-content>
+</md-dialog>
+    
