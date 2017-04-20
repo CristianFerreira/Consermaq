@@ -12,7 +12,6 @@ namespace ModernWebStore.Domain.Entities
 
         public Servico(IList<ServicoItem> _servicoItems, int userId, int ordemServicoId)
         {
-            this.Date = DateTime.Now;
             this._servicoItems = new List<ServicoItem>();
             _servicoItems.ToList().ForEach(x => AddItem(x));
             this.UserId = userId;
@@ -21,7 +20,12 @@ namespace ModernWebStore.Domain.Entities
         }
 
         public int Id { get; private set; }
-        public DateTime Date { get; private set; }
+        public DateTime InicioServico { get; set; }
+        public DateTime FimServico { get; set; }
+        public string ServicoEfetuado { get; set; }
+        public string Ocorrencia { get; set; }
+        public string Causa { get; set; }
+
         public ICollection<ServicoItem> ServicoItems
         {
             get { return _servicoItems; }

@@ -26,7 +26,7 @@ namespace ModernWebStore.Infra.Repositories
         {
             return _context.Servicos
                 .Where(OrderSpecs.GetOrdersFromUser(email))
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.Id)
                 .Skip(skip)
                 .Take(take).ToList();
         }
@@ -35,7 +35,7 @@ namespace ModernWebStore.Infra.Repositories
         {
             return _context.Servicos
                 .Where(OrderSpecs.GetCanceledOrders(email))
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.Id)
                 .ToList();
         }
 
@@ -43,7 +43,7 @@ namespace ModernWebStore.Infra.Repositories
         {
             return _context.Servicos
                 .Where(OrderSpecs.GetCreatedOrders(email))
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.Id)
                 .ToList();
         }
 
@@ -51,7 +51,7 @@ namespace ModernWebStore.Infra.Repositories
         {
             return _context.Servicos
                 .Where(OrderSpecs.GetDeliveredOrders(email))
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.Id)
                 .ToList();
         }
 
@@ -74,7 +74,7 @@ namespace ModernWebStore.Infra.Repositories
         {
             return _context.Servicos
                 .Where(OrderSpecs.GetPaidOrders(email))
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.Id)
                 .ToList();
         }
 

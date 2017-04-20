@@ -42,7 +42,7 @@ module Consermaq {
             this.mdDialog = mdDialog; 
             this.timeout = timeout;
             this.$q = $q;              
-            this.servico = new Servico;
+            this.servico = new Servico();
             this.usuarios = new Array<User>();
             this.produtos = new Array<ProdutoABS>();
             this.adicionarMaterial = false;
@@ -116,6 +116,7 @@ module Consermaq {
             if(produto.quantityOnHand - produto.qntdSaida >= 0){
                 this.atualizaMaterial(produto);
                 this.adicionaListaMaterial(produto);
+                this.limparQntdSaida(produto);
             }
 
         }
@@ -139,6 +140,13 @@ module Consermaq {
 
         public addMaterialNovaLista(produto: ProdutoABS) :void {
              this.produtosAdicionados.push(produto);
+        }
+
+        public limparQntdSaida(produto :ProdutoABS) :void {
+            var index = this.produtos.indexOf(produto);
+             if(index > -1) {
+                this.produtos[index].qntdSaida = null;
+            }
         }
 
     // public close(): void {

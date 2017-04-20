@@ -2,11 +2,15 @@
 module Consermaq {
     export class Servico {    
         public id: number;
-        public date: Date;
         public status: any;
+        public inicioServico: Date;
+        public fimServico: Date;
+        public servicoEfetuado: string;
+        public ocorrencia: string;
+        public causa: string;
         public ordemServicoId: number;
         public ordemServico: OrdemServico;
-        public UserId: number;
+        public userId: number;
         public user: User;
 
         public servicoItems: Array<ServicoItem>;
