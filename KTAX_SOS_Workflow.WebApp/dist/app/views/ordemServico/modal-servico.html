@@ -4,13 +4,11 @@
             <div class="md-toolbar-tools">
                 <h3 class="center">Adicionar Serviço</h3>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                <md-button class="md-icon-button" ng-click="vm.close()">
                     <md-icon class="material-icons" style="color: #fff">close</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
-
-Servico: {{vm.servico}}
         <md-dialog-content>
             <div class="md-dialog-content ">
                 <div layout="row" flex="100">
@@ -32,21 +30,21 @@ Servico: {{vm.servico}}
                                         </div>
                     </md-autocomplete>
                     <div flex="5"></div>
-                    <mdp-date-picker required name="inicioServico" mdp-placeholder="Início do Serviço"
+                    <mdp-date-picker required name="inicioServico" mdp-placeholder="Início do Serviço" flex
                         mdp-format="DD/MM/YYYY" ng-model="vm.servico.inicioServico" 
                         mdp-min-date="vm.dataMinCalendarioInicioServico" mdp-max-date="vm.dataMaxCalendarioInicioServico" >
                         <div ng-messages="servicoForm.inicioServico.$error">
-                            <div ng-message="required.$error"><b>Campo obrigatório.</b></div>
-                            <div ng-message="format.$error">Formato inválido</div>
+                            <div ng-message="required"><b>Campo obrigatório.</b></div>
+                            <div ng-message="format">Formato inválido</div>
                         </div>
                     </mdp-date-picker>
                     <div flex="5"></div>
-                    <mdp-date-picker required name="fimServico" mdp-placeholder="Fim do Serviço"
+                    <mdp-date-picker required name="fimServico" mdp-placeholder="Fim do Serviço" flex
                         mdp-format="DD/MM/YYYY" ng-model="vm.servico.fimServico" mdp-disabled="!vm.servico.inicioServico"
                         mdp-min-date="vm.servico.inicioServico" mdp-max-date="vm.dataMaxCalendarioInicioServico" >
                         <div ng-messages="servicoForm.fimServico.$error">
-                            <div ng-message="required.$error"><b>Campo obrigatório.</b></div>
-                            <div ng-message="format.$error">Formato inválido</div>
+                            <div ng-message="required"><b>Campo obrigatório.</b></div>
+                            <div ng-message="format">Formato inválido</div>
                         </div>
                     </mdp-date-picker>
                 </div>
@@ -85,10 +83,10 @@ Servico: {{vm.servico}}
                  </div>
 
                 <div ng-show="vm.adicionarMaterial">
-                     <div flex class="panel-addMaterial" layout-margin="20" layout-padding="20">         
-                            <h4>Adicionar Material</h4>
+                     <div flex class="panel-addMaterial" layout-margin="20" layout-padding="20" style="height: 50px">         
+                            <h4 style="padding:0;">Adicionar Material</h4>
                      </div> 
-                     <div layout-align="center" flex="90">
+                     <div layout-align="center center" flex="95" style="margin-left: 25px;">
                         <md-input-container md-no-float class="md-block" flex style="margin-top: 20px;">
                             <md-icon class="material-icons">search</md-icon>
                             <input ng-model="filtro" type="text" placeholder="Pesquisar">
@@ -101,7 +99,7 @@ Servico: {{vm.servico}}
                                             <th md-column md-numeric md-order-by="title" style="text-align: center;"><span>Nome</span></th>
                                             <th md-column md-numeric md-order-by="quantityOnHand" style="text-align: center;"><span>Qntd de Estoque</span></th> 
                                             <th md-column md-numeric style="text-align: right; width:140px"><span>Qntd de Saída</span></th>                   
-                                            <th md-column md-numeric style="text-align: right;"><span>Adicionar</span></th>                            
+                                            <th md-column md-numeric style="text-align: right;"><span><i class="material-icons">add_shopping_cart</i> Adicionar</span></th>                            
                                         </tr>
                                     </thead>
                                     <tbody md-body>
@@ -111,64 +109,63 @@ Servico: {{vm.servico}}
                                             <td md-cell style="text-align: center;">{{produto.quantityOnHand}} un.</td>
                                             <td md-cell>
                                                 <div style="text-align: right;">
-                                                    <input type="text" class="form-control" ng-model="produto.qntdSaida" style="width: 70px;"/>
+                                                    <input type="text" class="form-control" ng-model="produto.qntdSaida" style="width: 70px;" number-only=""/>
                                                 </div>    
                                             </td>
                                             <td md-cell style="text-align: right;">
-                                            <md-button ng-disabled="produto.qntdSaida" class="md-icon-button" ng-click="vm.addMaterial(produto)">
+                                            <md-button class="md-icon-button" ng-click="vm.addMaterial(produto)">
                                                 <md-tooltip md-direction="bottom">Adicionar</md-tooltip>
-                                                <strong><md-icon class="material-icons" style="color:#03036d">add</md-icon></strong>
+                                                <strong><i class="material-icons" style="color:#03036d">add_box</i></strong>
                                             </md-button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </md-table-container>                 
-                            <md-table-pagination ng-show="vm.produtos.length > 0" md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.produtos.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+                            <md-table-pagination ng-show="vm.produtos.length > 0"  md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.produtos.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
                        </div>
                           
                        <div ng-show="vm.servicoItems.length > 0" style="margin-top:20px;"> 
                             <div>
-                                <div flex class="panel-addMaterial" layout-margin="20" layout-padding="20">
-                                    <h4>Material Adicionado</h4>
+                                <div flex class="panel-addMaterial" layout-margin="20" layout-padding="20" style="height: 50px">
+                                    <h4 style="padding:0;">Material Adicionado</h4>
                                 </div>
-                                <div layout-align="center" flex="90"> 
+                                <div layout-align="center center" flex="95" style="margin-left: 25px;"> 
                                     <md-table-container>
                                     <table md-table>
-                                        <thead ng-show="vm.servicoItems.length > 0" md-head md-order="vm.query.order" md-on-reorder="logOrder">
+                                        <thead ng-show="vm.servicoItems.length > 0" md-head md-order="vm.queryMaterialAdicionado.order" md-on-reorder="logOrder">
                                             <tr md-row>                        
                                                 <th md-column md-numeric md-order-by="codeProduct" style="text-align: center;"><span>Código</span></th>
                                                 <th md-column md-numeric md-order-by="title" style="text-align: center;"><span>Nome</span></th>
                                                 <th md-column md-numeric style="text-align: center;"><span>Qntd de Saída</span></th>                   
-                                                <th md-column md-numeric style="text-align: right;"><span>Remover</span></th>                            
+                                                <th md-column md-numeric style="text-align: right;"><span><i class="material-icons">remove_shopping_cart</i> Remover</span></th>                            
                                             </tr>
                                         </thead>
                                         <tbody md-body>
-                                            <tr md-row ng-repeat="item in vm.servicoItems | orderBy: vm.servicoItems.product.title | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                                            <tr md-row ng-repeat="item in vm.servicoItems | orderBy: vm.servicoItems.product.title | limitTo: vm.queryMaterialAdicionado.limit : (vm.queryMaterialAdicionado.page -1) * vm.queryMaterialAdicionado.limit">
                                                 <td md-cell style="text-align: center;">{{item.product.codeProduct}}</td>
                                                 <td md-cell style="text-align: center;">{{item.product.title}}</td>
                                                 <td md-cell style="text-align: center;">
                                                     <strong>{{item.quantity}} un.</strong>
                                                 </td>
                                                 <td md-cell style="text-align: right;">
-                                                <md-button class="md-icon-button" ng-click="removerMaterial(item)">
+                                                <md-button class="md-icon-button" ng-click="vm.removerMaterialAdd(item)">
                                                     <md-tooltip md-direction="bottom">Remover</md-tooltip>
-                                                    <strong><md-icon class="material-icons" style="color: #ce2f2f;">remove</md-icon><strong>
+                                                    <strong><i class="material-icons" style="color: #ce2f2f;">indeterminate_check_box</i><strong>
                                                 </md-button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                         </table>
                                     </md-table-container>                 
-                                    <md-table-pagination ng-show="vm.servicoItems.length > 0" md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.servicoItems.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>         
+                                    <md-table-pagination ng-show="vm.servicoItems.length > 0" md-limit="vm.queryMaterialAdicionado.limit" md-page="vm.queryMaterialAdicionado.page" md-total="{{vm.servicoItems.length}}" md-page-select="vm.optionsMaterialAdicionado.pageSelect" md-boundary-links="vm.optionsMaterialAdicionado.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>         
                                 </div>
                             </div>
-                       </div>  
-                
-                </div>      
+                       </div>                  
+                </div>    
 
                 <div flex-sm="50" layout layout-align="end center" class="padding-top-20">
-                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" type="submit" ng-click="vm.savePessoaFisica()">Salvar</md-button>
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="servicoForm.$invalid" type="submit" ng-click="vm.saveWithMaterial()">Salvar</md-button>
                 </div> 
             </div>
         </md-dialog-content>

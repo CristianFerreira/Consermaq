@@ -39,7 +39,15 @@ var appConfig = {
                 edit:  appConfig.rootServiceRoute + "api/ordemServico/update",
                 save: appConfig.rootServiceRoute + "api/ordemServico/create",
                 deleteAlot: appConfig.rootServiceRoute + "api/ordemServico/deleteAlot"  
-            },   
+            },  
+            servico: {
+                listAll: appConfig.rootServiceRoute + "api/servico/listAll",
+                getById: appConfig.rootServiceRoute + "api/servico/getById",
+                delete: appConfig.rootServiceRoute + "api/servico/delete",
+                edit:  appConfig.rootServiceRoute + "api/servico/update",
+                save: appConfig.rootServiceRoute + "api/servico/create",
+                deleteAlot: appConfig.rootServiceRoute + "api/servico/deleteAlot"  
+            },  
             usuario: {
                 listAll: appConfig.rootServiceRoute + "api/user/listAll",
                 getById: appConfig.rootServiceRoute + "api/user/getById",

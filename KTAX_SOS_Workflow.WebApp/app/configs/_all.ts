@@ -40,6 +40,7 @@
 /// <reference path="../services/ProdutoService.ts" />
 /// <reference path="../services/AutenticacaoService.ts" />
 /// <reference path="../services/OrdemServicoService.ts" />
+/// <reference path="../services/ServicoService.ts" />
 /// <reference path="../services/UsuarioService.ts" />
 
 

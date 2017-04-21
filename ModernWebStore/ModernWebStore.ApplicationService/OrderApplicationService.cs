@@ -31,9 +31,8 @@ namespace ModernWebStore.ApplicationService
             Commit();
         }
 
-        public Servico Create(Servico servico, string email)
+        public Servico Create(Servico servico)
         {
-            var user = _userRepository.GetByEmail(email);
             var serviceItems = new List<ServicoItem>();
             foreach (var item in servico.ServicoItems)
             {
@@ -43,7 +42,7 @@ namespace ModernWebStore.ApplicationService
                 serviceItems.Add(serviceItem);
             }
 
-            var newServico = new Servico(serviceItems, user.Id, servico.OrdemServicoId);
+            var newServico = new Servico(serviceItems, servico.UserId, servico.OrdemServicoId);
             //service.Place();
             _servicoRepository.Create(newServico);
 

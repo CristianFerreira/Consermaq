@@ -4,16 +4,14 @@ namespace ModernWebStore.Domain.Entities
 {
     public class ServicoItem
     {
-        public ServicoItem() { }
+        public int Id { get; set; }
+        public int Quantity { get; set; }
 
-        public int Id { get; private set; }
-        public int Quantity { get; private set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
-        public int ProductId { get; private set; }
-        public Product Product { get; private set; }
-
-        public int ServicoId { get; private set; }
-        public Servico Servico { get; private set; }
+        public int ServicoId { get; set; }
+        public Servico Servico { get; set; }
 
         public bool Register()
         {

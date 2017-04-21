@@ -16,3 +16,4 @@ C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.SharedKe
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.dll
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.pdb
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.csprojResolveAssemblyReference.cache
+C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.SharedKernel\obj\Debug\ModernWebStore.SharedKernel.csprojResolveAssemblyReference.cache

@@ -12,7 +12,7 @@ namespace ModernWebStore.Domain.Services
         List<Servico> GetDelivered(string email);
         List<Servico> GetCanceled(string email);
         Servico GetDetails(int id, string email);
-        Servico Create(Servico servico, string email);
+        Servico Create(Servico servico);
         void Pay(int id, string email);
         void Delivery(int id, string email);
         void Cancel(int id, string email);

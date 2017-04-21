@@ -26,7 +26,7 @@ namespace ModernWebStore.Api.Controllers
         [Route("api/servico/create")]
         public Task<HttpResponseMessage> Post(Servico servico)
         {         
-            var order = _service.Create(servico, User.Identity.Name);
+            var order = _service.Create(servico);
             return CreateResponse(HttpStatusCode.Created, order);
         }
     }

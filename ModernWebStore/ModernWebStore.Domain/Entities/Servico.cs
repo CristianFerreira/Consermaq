@@ -8,28 +8,28 @@ namespace ModernWebStore.Domain.Entities
 {
     public class Servico
     {
-        private IList<ServicoItem> _servicoItems;
+        private IList<ServicoItem> servicoItems;
 
-        public Servico(IList<ServicoItem> _servicoItems, int userId, int ordemServicoId)
+        public Servico(IList<ServicoItem> servicoItems, int userId, int ordemServicoId)
         {
-            this._servicoItems = new List<ServicoItem>();
-            _servicoItems.ToList().ForEach(x => AddItem(x));
+            this.servicoItems = new List<ServicoItem>();
+            servicoItems.ToList().ForEach(x => AddItem(x));
             this.UserId = userId;
             this.Status = EOrderStatus.Created;
             this.OrdemServicoId = ordemServicoId;   
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public DateTime InicioServico { get; set; }
         public DateTime FimServico { get; set; }
         public string ServicoEfetuado { get; set; }
         public string Ocorrencia { get; set; }
         public string Causa { get; set; }
 
-        public ICollection<ServicoItem> ServicoItems
+        public IList<ServicoItem> ServicoItems
         {
-            get { return _servicoItems; }
-            private set { _servicoItems = new List<ServicoItem>(value); }
+            get { return servicoItems; }
+            private set { servicoItems = new List<ServicoItem>(value); }
         }
 
         public EOrderStatus Status { get; set; }
@@ -55,7 +55,7 @@ namespace ModernWebStore.Domain.Entities
         public void AddItem(ServicoItem item)
         {
             if (item.Register())
-                _servicoItems.Add(item);
+                servicoItems.Add(item);
         }
 
         public void Place()

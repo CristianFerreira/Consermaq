@@ -12,7 +12,7 @@
                             </div>
                         </div>
             </md-toolbar>       
-            <md-content layout-padding layout-align="center center" flex>
+            <md-content layout-padding layout-align="center center" flex style="background-color: #fff;">
                         <form ng-submit="$event.preventDefault()" name="ordemServicoForm" layout-margin novalidate>               
                             <div layout-gt-xs="row">       
                                 <md-input-container flex="30">
@@ -71,8 +71,11 @@
                                 </div>
                             </md-input-container>
                             </div> 
-                            <div layout-gt-sm="row">
-                                <md-button class="md-raised md-success" ng-click="vm.abrirModalServico($event)">Adicionar Serviço</md-button>
+                            <div layout-gt-sm="row" layout-align="start center">
+                                <h4>Adicionar Serviço</h4>
+                                <md-button class="md-fab md-mini md-primary" ng-click="vm.abrirModalServico($event)">
+                                   <md-icon class="material-icons">add</md-icon>
+                                </md-button>
                             </div> 
                         </form>
             </md-content>

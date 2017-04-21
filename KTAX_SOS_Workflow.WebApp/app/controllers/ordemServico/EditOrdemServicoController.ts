@@ -145,6 +145,9 @@ module Consermaq {
             targetEvent: ev,
             clickOutsideToClose: true,
             controllerAs: 'vm',
+             resolve: {
+                             ordemServico: ()=> this.ordemServico
+                     }
         }).then( (response) => {
             if(response.newServico){
                 this.ordemServico.servicos.push(response.newServico);    

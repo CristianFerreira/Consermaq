@@ -61,7 +61,7 @@ C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\bi
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.csprojResolveAssemblyReference.cache
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.dll
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.pdb
-C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.Migrations.Profile.resources
-C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.csproj.GenerateResource.Cache
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.Migrations.Profile.resources
 C:\dev\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.csproj.GenerateResource.Cache
+C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.Migrations.Profile.resources
+C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Infra\obj\Debug\ModernWebStore.Infra.csproj.GenerateResource.Cache
