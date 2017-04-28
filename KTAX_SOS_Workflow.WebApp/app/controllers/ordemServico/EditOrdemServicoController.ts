@@ -21,9 +21,12 @@ module Consermaq {
         public tipoCliente: string;
         public textoCliente: any;
        
-   
+         public limitOptionsMaterialAdicionado: Array<any>;
+        public optionsMaterialAdicionado: any;
+        public queryMaterialAdicionado: any;
         public selectedItem : any;
         public searchText   : any;
+        public selectedUserIndex: any;
         
 
         constructor($location: ILocationService, 
@@ -45,10 +48,36 @@ module Consermaq {
             this.mdDialog = mdDialog;
             this.clientes = new Array<Cliente>();          
             this.ordemServico = new OrdemServico;
+
+             this.optionsMaterialAdicionado = {
+                             rowSelection: true,
+                             multiSelect: true,
+                             autoSelect: false,
+                             decapitate: false,
+                             largeEditDialog: false,
+                             boundaryLinks: true,
+                             limitSelect: true,
+                             pageSelect: true
+            };
+            this.queryMaterialAdicionado = {
+                            order: 'name',
+                            limit: 3,
+                            page: 1
+            };
            
+            this.selectedUserIndex = undefined;
 
             this.load();          
         }
+
+        public selectUserIndex (index :any) {
+            if (this.selectedUserIndex !== index) {
+                    this.selectedUserIndex = index;
+            }
+            else {
+                this.selectedUserIndex = undefined;
+            }
+        };
 
         public load (){
             this.loadClientes();
@@ -57,9 +86,19 @@ module Consermaq {
                  .then((data) => {
                      this.ordemServico = data;
                      this.loadTipoPessoa();
+                     this.loadDateFormat();
                  })
                  .catch((response) => toastr.error("Não carregou a ordem de serviço, erro: " + response) );
              }          
+        }
+
+        public loadDateFormat() :void {
+            if(this.ordemServico.servicos.length > 0) {
+                this.ordemServico.servicos.filter((s)=> {
+                    s.inicioServico = new Date(s.inicioServico);
+                    s.fimServico = new Date(s.fimServico);
+                })
+            }
         }
 
         public loadTipoPessoa() :void {

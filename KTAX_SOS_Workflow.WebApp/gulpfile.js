@@ -28,6 +28,7 @@ var paths = {
             'bower_components/md-data-table/dist/md-data-table-style.css',
             'bower_components/angular-material-icons/angular-material-icons.css',
             'node_modules/mdPickers/dist/mdPickers.min.css',
+            'node_modules/angular-material-expansion-panel/dist/md-expansion-panel.min.css',
             
         ],
         destProject: 'app/build/css/',
@@ -85,6 +86,7 @@ var paths = {
             'bower_components/angular-material-icons/angular-material-icons.js',       
             'bower_components/md-data-table/dist/md-data-table-templates.js',
             'bower_components/md-data-table/dist/md-data-table.js',
+            'node_modules/angular-material-expansion-panel/dist/md-expansion-panel.min.js',
         ],
         destProject: 'app/build/',
         dest: 'dist/app/build/',

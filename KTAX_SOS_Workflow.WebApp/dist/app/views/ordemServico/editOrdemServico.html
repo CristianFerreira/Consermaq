@@ -1,7 +1,7 @@
 <div layout="row" flex="100">
     <div flex="100" layout-align="center center">   
-            <md-toolbar class="md-whiteframe-z2" flex>
-                        <div layout="row" style="padding: 2px 16px;" layout-padding layout-margin layout-fill flex="100">
+            <md-toolbar flex>
+                        <div layout="row" style="padding: 2px 16px;"  layout-fill flex="100">
                             <div flex="50">
                                 <h1 style="font-size: 20px;">Ordem de Serviço</h1>
                             </div>
@@ -73,16 +73,110 @@
                             </div> 
                             <div layout-gt-sm="row" layout-align="start center">
                                 <h4>Adicionar Serviço</h4>
-                                <md-button class="md-fab md-mini md-primary" ng-click="vm.abrirModalServico($event)">
+                                <md-button class="md-fab md-mini" style="background-color: #e25a28;" ng-click="vm.abrirModalServico($event)">
                                    <md-icon class="material-icons">add</md-icon>
                                 </md-button>
                             </div> 
                         </form>
-            </md-content>
-            <div layout="row" layout-align="end center">
-                        <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>
-                        <!--<md-button class="md-raised md-primary" ng-print print-element-id="printThisElement" ng-show="vm.ordemServico.id" ><i class="fa fa-print"></i> Imprimir</md-button>-->
-                        
-            </div>
-    </div>
+            
+           
+                        <div layout="row" layout-wrap>
+                            <div ng-show="vm.ordemServico.servicos" ng-repeat="servico in vm.ordemServico.servicos" flex="100" style="text-align: -webkit-center;">                 
+                                <div flex="100" ng-class="$index == vm.selectedUserIndex ? 'panel-servico-border' : '' ">
+                                        <md-toolbar class="panel-servico">
+                                            <div class="md-toolbar-tools">
+                                                <span><h3 class="center">Serviço: {{servico.id}}</h3></span>                                   
+                                                <span flex></span>
+                                                <md-button class="md-icon-button" ng-click="">                                                    
+                                                    <span class="material-icons" style="font-size: 24px;">mode_edit</span>
+                                                    <md-tooltip md-direction="bottom">Editar</md-tooltip>
+                                                </md-button>
+                                                <md-button class="md-icon-button" ng-click="">  
+                                                    <span class="material-icons" style="font-size: 26px;">delete_forever</span> 
+                                                    <md-tooltip md-direction="bottom">Excluir</md-tooltip> 
+                                                </md-button>
+                                                <span style="margin-left: 50px;"></span>
+                                                <md-button class="md-icon-button" aria-label="Seta" ng-click="vm.selectUserIndex($index)">
+                                                <i ng-hide="$index == vm.selectedUserIndex" class="material-icons" style="font-size: 32px">keyboard_arrow_down</i>
+                                                <i ng-show="$index == vm.selectedUserIndex" class="material-icons" style="font-size: 32px">keyboard_arrow_up</i>
+                                                <md-tooltip md-direction="bottom">{{$index == vm.selectedUserIndex ? 'Retornar' : 'Expandir'}}</md-tooltip>             
+                                                </md-button>
+                                            </div>
+                                        </md-toolbar>
+                                        <md-content layout-padding layout-align="center center" flex style="background-color: #fff;">
+                                                <div layout="row" flex ng-show="$index == vm.selectedUserIndex">
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                            <label>Usuário Executante</label>
+                                                            <input name="usuarioExecutante" ng-model="servico.user.nome" ng-disabled="true" />                        
+                                                    </md-input-container>
+                                                    <div flex="5"></div>                           
+                                                    <mdp-date-picker name="inicioServico" mdp-placeholder="Início do Serviço" flex
+                                                        mdp-format="DD/MM/YYYY" ng-model="servico.inicioServico" mdp-disabled="true">                       
+                                                    </mdp-date-picker>
+                                                    <div flex="5"></div>
+                                                    <mdp-date-picker name="fimServico" mdp-placeholder="Fim do Serviço" flex
+                                                        mdp-format="DD/MM/YYYY" ng-model="servico.fimServico" mdp-disabled="true">                      
+                                                    </mdp-date-picker>
+                                                </div>
+                                                <div layout="row" flex ng-show="$index == vm.selectedUserIndex">
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                            <label>Serviço efetuado</label>
+                                                            <textarea name="servicoEfetuado" ng-model="servico.servicoEfetuado" 
+                                                                    md-maxlength="200" 
+                                                                    rows="3" md-select-on-focus ng-disabled="true">
+                                                            </textarea>                        
+                                                        </md-input-container>
+                                                        <div flex="5"></div>
+                                                        <md-input-container class="md-block" flex-gt-sm>
+                                                            <label>Ocorrência</label>
+                                                            <textarea name="ocorrencia" ng-model="servico.ocorrencia" 
+                                                                    md-maxlength="200" 
+                                                                    rows="3" md-select-on-focus ng-disabled="true">
+                                                            </textarea>                           
+                                                        </md-input-container>
+                                                        <div flex="5"></div>
+                                                        <md-input-container class="md-block" flex-gt-sm>
+                                                            <label>Causa</label>
+                                                            <textarea name="causa" ng-model="servico.causa" 
+                                                                    md-maxlength="200" 
+                                                                    rows="3" md-select-on-focus ng-disabled="true">
+                                                            </textarea>                          
+                                                        </md-input-container>
+                                                </div> 
+                                                <div ng-show="$index == vm.selectedUserIndex">              
+                                                    <div ng-show="servico.servicoItems.length > 0" flex layout-margin="20" layout-padding="20">         
+                                                        <strong><h4 style="text-align:left; text-decoration: underline;">Material Adicionado</h4></strong>
+                                                    </div>
+                                                    <md-table-container ng-show="servico.servicoItems.length > 0">
+                                                        <table md-table>
+                                                            <thead ng-show="servico.servicoItems.length > 0" md-head md-order="vm.queryMaterialAdicionado.order" md-on-reorder="logOrder">
+                                                                <tr md-row>                        
+                                                                                <th md-column md-numeric md-order-by="codeProduct" style="text-align: center;"><span>Código Material</span></th>
+                                                                                <th md-column md-numeric md-order-by="title" style="text-align: center;"><span>Nome</span></th>
+                                                                                <th md-column md-numeric style="text-align: center;"><span>Qntd de Saída</span></th>                                              
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody md-body>
+                                                                <tr md-row ng-repeat="item in servico.servicoItems | orderBy: item.product.codeProduct | limitTo: vm.queryMaterialAdicionado.limit : (vm.queryMaterialAdicionado.page -1) * vm.queryMaterialAdicionado.limit">
+                                                                                <td md-cell style="text-align: center;">{{item.product.codeProduct}}</td>
+                                                                                <td md-cell style="text-align: center;">{{item.product.title}}</td>
+                                                                                <td md-cell style="text-align: center;">
+                                                                                    <strong>{{item.quantity}} un.</strong>
+                                                                                </td>                                             
+                                                                    </tr>
+                                                            </tbody>
+                                                        </table>
+                                                </md-table-container>              
+                                                <md-table-pagination ng-show="servico.servicoItems.length" md-limit="vm.queryMaterialAdicionado.limit" md-page="vm.queryMaterialAdicionado.page" md-total="{{servico.servicoItems.length}}" md-page-select="vm.optionsMaterialAdicionado.pageSelect" md-boundary-links="vm.optionsMaterialAdicionado.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>  
+                                            </div>
+                                        </md-content>
+                                </div> 
+                        </div>
+                        <div layout="row" layout-align="end center">
+                                    <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>
+                                    <!--<md-button class="md-raised md-primary" ng-print print-element-id="printThisElement" ng-show="vm.ordemServico.id" ><i class="fa fa-print"></i> Imprimir</md-button>-->
+                                    
+                        </div>
+                </md-content>
+        </div>
 </div>

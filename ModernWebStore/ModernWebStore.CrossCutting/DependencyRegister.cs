@@ -27,13 +27,15 @@ namespace ModernWebStore.CrossCutting
             container.RegisterType<IServicoRepository, ServicoRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IClienteRepository, ClienteRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IOrdemServicoRepository, OrdemServicoRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IServicoItemRepository, ServicoItemRepository>(new HierarchicalLifetimeManager());
 
             container.RegisterType<IUserApplicationService, UserApplicationService>(new HierarchicalLifetimeManager());
             container.RegisterType<ICategoryApplicationService, CategoryApplicationService>(new HierarchicalLifetimeManager());
             container.RegisterType<IProductApplicationService, ProductApplicationService>(new HierarchicalLifetimeManager());
-            container.RegisterType<IServicoApplicationService, OrderApplicationService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IServicoApplicationService, ServicoApplicationService>(new HierarchicalLifetimeManager());
             container.RegisterType<IClienteApplicationService, ClienteApplicationService>(new HierarchicalLifetimeManager());
             container.RegisterType<IOrdemServicoApplicationService, OrdemServicoApplicationService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IServicoItemApplicationService, ServicoItemApplicationService>(new HierarchicalLifetimeManager());
 
 
             container.RegisterType<IHandler<DomainNotification>, DomainNotificationHandler>(new HierarchicalLifetimeManager());

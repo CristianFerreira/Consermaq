@@ -26,21 +26,20 @@ namespace ModernWebStore.Domain.Entities
         public ICollection<Servico> Servicos { get; set; }
 
 
-        public void MarkAsPaid()
+     
+        public void Pendente()
         {
-            // Dá baixa no estoque
-            this.Status = EOrderStatus.Paid;
+            this.Status = EOrderStatus.Pendente;
         }
 
-        public void MarkAsDelivered()
+        public void Finish()
         {
-            this.Status = EOrderStatus.Delivered;
+
+            this.Status = EOrderStatus.Finish;
         }
 
         public void Cancel()
-        {
-            // Estorna os produtos
-
+        {          
             this.Status = EOrderStatus.Canceled;
         }
     }

@@ -10,10 +10,19 @@ namespace ModernWebStore.Domain.Entities
     {
         private IList<ServicoItem> servicoItems;
 
+        public Servico() { }
+ 
+
         public Servico(IList<ServicoItem> servicoItems, int userId, int ordemServicoId)
         {
             this.servicoItems = new List<ServicoItem>();
-            servicoItems.ToList().ForEach(x => AddItem(x));
+            if (servicoItems != null)
+            {
+                if (servicoItems.Count > 0)
+                {
+                    servicoItems.ToList().ForEach(x => AddItem(x));
+                }
+            }
             this.UserId = userId;
             this.Status = EOrderStatus.Created;
             this.OrdemServicoId = ordemServicoId;   
@@ -29,7 +38,7 @@ namespace ModernWebStore.Domain.Entities
         public IList<ServicoItem> ServicoItems
         {
             get { return servicoItems; }
-            private set { servicoItems = new List<ServicoItem>(value); }
+            set { servicoItems = new List<ServicoItem>(value); }
         }
 
         public EOrderStatus Status { get; set; }
@@ -64,22 +73,6 @@ namespace ModernWebStore.Domain.Entities
                 return;
         }
 
-        public void MarkAsPaid()
-        {
-            // Dá baixa no estoque
-            this.Status = EOrderStatus.Paid;
-        }
-
-        public void MarkAsDelivered()
-        {
-            this.Status = EOrderStatus.Delivered;
-        }
-
-        public void Cancel()
-        {
-            // Estorna os produtos
-
-            this.Status = EOrderStatus.Canceled;
-        }
+     
     }
 }

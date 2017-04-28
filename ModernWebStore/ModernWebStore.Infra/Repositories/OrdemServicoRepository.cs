@@ -5,6 +5,7 @@ using ModernWebStore.Domain.Repositories;
 using ModernWebStore.Infra.Persistence.DataContexts;
 using System.Linq;
 using System.Data.Entity;
+using ModernWebStore.Domain.Specs;
 
 namespace ModernWebStore.Infra.Repositories
 {
@@ -34,7 +35,7 @@ namespace ModernWebStore.Infra.Repositories
 
         public OrdemServico Get(int id)
         {
-            return _context.OrdemServico.Include(os => os.Cliente).First(x=>x.Id == id); ;
+            return _context.OrdemServico.Include(os => os.Cliente).Include(s=>s.Servicos).First(x=>x.Id == id);
         }
 
         public List<OrdemServico> Get(int skip, int take)
@@ -48,6 +49,34 @@ namespace ModernWebStore.Infra.Repositories
         {
             _context.Entry<OrdemServico>(ordemServico)
              .State = EntityState.Modified;
+        }
+
+        public OrdemServico ChangeStatus(int id)
+        {
+            return _context.OrdemServico
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+        }
+
+        public OrdemServico Canceled(int id)
+        {
+            return _context.OrdemServico
+                .Where(OrdemServicoSpecs.Canceled(id)) 
+                .FirstOrDefault();
+        }
+
+        public OrdemServico Pendente(int id)
+        {
+            return _context.OrdemServico
+                .Where(OrdemServicoSpecs.Pendente(id))
+                .FirstOrDefault();
+        }
+
+        public OrdemServico Finish(int id)
+        {
+            return _context.OrdemServico
+                .Where(OrdemServicoSpecs.Finish(id))
+                .FirstOrDefault();
         }
     }
 

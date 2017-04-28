@@ -1,16 +1,32 @@
 ﻿using ModernWebStore.Domain.Entities;
 using ModernWebStore.Domain.Repositories;
-using ModernWebStore.Domain.Specs;
 using ModernWebStore.Infra.Persistence.DataContexts;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 
 namespace ModernWebStore.Infra.Repositories
 {
     public class ServicoRepository : IServicoRepository
     {
         private StoreDataContext _context;
+
+
+        public Servico Get(int id)
+        {
+            return _context.Servicos.Include(s => s.ServicoItems).First(x => x.Id == id); ;
+        }
+
+
+        public List<Servico> Get()
+        {
+            return _context.Servicos.Include(s=>s.ServicoItems).ToList();
+        }
+
+        public List<Servico> GetOrdemServico(int id)
+        {
+            return _context.Servicos.Where(s => s.OrdemServicoId == id).Include(s => s.User).ToList();
+        }
 
         public ServicoRepository(StoreDataContext context)
         {
@@ -22,65 +38,16 @@ namespace ModernWebStore.Infra.Repositories
             _context.Servicos.Add(servico);
         }
 
-        public List<Servico> Get(string email, int skip, int take)
-        {
-            return _context.Servicos
-                .Where(OrderSpecs.GetOrdersFromUser(email))
-                .OrderByDescending(x => x.Id)
-                .Skip(skip)
-                .Take(take).ToList();
-        }
-
-        public List<Servico> GetCanceled(string email)
-        {
-            return _context.Servicos
-                .Where(OrderSpecs.GetCanceledOrders(email))
-                .OrderByDescending(x => x.Id)
-                .ToList();
-        }
-
-        public List<Servico> GetCreated(string email)
-        {
-            return _context.Servicos
-                .Where(OrderSpecs.GetCreatedOrders(email))
-                .OrderByDescending(x => x.Id)
-                .ToList();
-        }
-
-        public List<Servico> GetDelivered(string email)
-        {
-            return _context.Servicos
-                .Where(OrderSpecs.GetDeliveredOrders(email))
-                .OrderByDescending(x => x.Id)
-                .ToList();
-        }
-
-        public Servico GetDetails(int id, string email)
-        {
-            return _context.Servicos
-                .Include(x => x.ServicoItems)
-                .Where(OrderSpecs.GetOrderDetails(id, email))
-                .FirstOrDefault();
-        }
-
-        public Servico GetHeader(int id, string email)
-        {
-            return _context.Servicos
-                .Where(OrderSpecs.GetOrderDetails(id, email))
-                .FirstOrDefault();
-        }
-
-        public List<Servico> GetPaid(string email)
-        {
-            return _context.Servicos
-                .Where(OrderSpecs.GetPaidOrders(email))
-                .OrderByDescending(x => x.Id)
-                .ToList();
-        }
-
         public void Update(Servico order)
         {
-            _context.Entry<Servico>(order).State = System.Data.Entity.EntityState.Modified;
+            _context.Entry<Servico>(order).State = EntityState.Modified;
         }
+
+        public void Delete(Servico servico)
+        {
+            _context.Servicos.Remove(servico);
+        }
+
+   
     }
 }

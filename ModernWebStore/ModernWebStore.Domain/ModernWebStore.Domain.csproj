@@ -60,6 +60,7 @@
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\IClienteRepository.cs" />
     <Compile Include="Repositories\IOrdemServicoRepository.cs" />
+    <Compile Include="Repositories\IServicoItemRepository.cs" />
     <Compile Include="Repositories\IServicoRepository.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -73,9 +74,10 @@
     <Compile Include="Services\IOrdemServicoApplicationService.cs" />
     <Compile Include="Services\IServicoApplicationService.cs" />
     <Compile Include="Services\IProductApplicationService.cs" />
+    <Compile Include="Services\IServicoItemApplicationService.cs" />
     <Compile Include="Services\IUserApplicationService.cs" />
     <Compile Include="Specs\CategorySpecs.cs" />
-    <Compile Include="Specs\OrderSpecs.cs" />
+    <Compile Include="Specs\OrdemServicoSpecs.cs" />
     <Compile Include="Specs\ProductSpecs.cs" />
     <Compile Include="Specs\UserSpecs.cs" />
   </ItemGroup>

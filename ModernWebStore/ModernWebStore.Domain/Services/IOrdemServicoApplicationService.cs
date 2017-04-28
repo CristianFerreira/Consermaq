@@ -12,5 +12,8 @@ namespace ModernWebStore.Domain.Services
         OrdemServico Update(OrdemServico ordemServico);
         OrdemServico Delete(int id);
         List<OrdemServico> DeleteAlot(List<OrdemServico> ordemServicos);
+        void Cancel(int id);
+        void Pendente(int id);
+        void Finish(int id);
     }
 }

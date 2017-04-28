@@ -278,15 +278,29 @@ module Consermaq {
                 
                 this.servicoService.save(this.servico)
                 .then((data) => {
-                    console.log("feito")
+                   this.toastr.success("Serviço criado com sucesso!");
                 })
                 .catch((response) => { console.log("Erro")});
-
+            }
+            else {
+                this.toastr.success("Erro ao criar serviço!");
             }
         }
 
         public saveWithOutMaterial() :void {
+            if(this.selectedItem.id){
+                this.servico.userId = this.selectedItem.id;
+                this.servico.ordemServicoId = this.ordemServico.id;
 
+                this.servicoService.save(this.servico)
+                .then((data) => {
+                    this.toastr.success("Serviço criado com sucesso!");
+                })
+                .catch((response) => { console.log("Erro")});
+            }
+            else {
+                this.toastr.success("Erro ao criar serviço!");
+            }
         } 
 
         public close(): void {

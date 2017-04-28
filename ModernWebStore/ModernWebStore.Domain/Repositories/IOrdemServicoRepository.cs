@@ -12,5 +12,9 @@ namespace ModernWebStore.Domain.Repositories
         void Create(OrdemServico ordemServico);
         void Update(OrdemServico ordemServico);
         void Delete(OrdemServico ordemServico);
+        OrdemServico ChangeStatus(int id);
+        OrdemServico Pendente(int id);
+        OrdemServico Finish(int id);
+        OrdemServico Canceled(int id);
     }
 }

@@ -3,7 +3,7 @@ using ModernWebStore.Domain.Repositories;
 using ModernWebStore.Domain.Specs;
 using ModernWebStore.Infra.Persistence.DataContexts;
 using System.Collections.Generic;
-
+using System.Data.Entity;
 using System.Linq;
 
 namespace ModernWebStore.Infra.Repositories
@@ -54,7 +54,7 @@ namespace ModernWebStore.Infra.Repositories
 
         public void Update(Product product)
         {
-        //    _context.Entry<Product>(product).State = EntityState.Modified;
+           _context.Entry<Product>(product).State = EntityState.Modified;
         }
     }
 }

@@ -44,9 +44,10 @@
     <Compile Include="CategoryApplicationService.cs" />
     <Compile Include="ClienteApplicationService.cs" />
     <Compile Include="OrdemServicoApplicationService.cs" />
-    <Compile Include="OrderApplicationService.cs" />
+    <Compile Include="ServicoApplicationService.cs" />
     <Compile Include="ProductApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicoItemApplicationService.cs" />
     <Compile Include="UserApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>

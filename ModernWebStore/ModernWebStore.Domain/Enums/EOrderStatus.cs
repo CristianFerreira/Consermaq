@@ -3,8 +3,8 @@
     public enum EOrderStatus
     {
         Created = 1,
-        Paid = 2,
-        Delivered = 3,
+        Pendente = 2,
+        Finish = 3,
         Canceled = 4
     }
 }

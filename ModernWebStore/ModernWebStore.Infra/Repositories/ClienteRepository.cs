@@ -29,7 +29,7 @@ namespace ModernWebStore.Infra.Repositories
 
         public Cliente Get(int id)
         {
-            return _context.Cliente.Find(id); ;
+            return _context.Cliente.Find(id);
         }
 
         public List<Cliente> Get(int skip, int take)
