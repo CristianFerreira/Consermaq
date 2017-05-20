@@ -47,6 +47,11 @@ namespace ModernWebStore.ApplicationService
             return _repository.Get(skip, take);
         }
 
+        public List<ServicoItem> GetServico(int id)
+        {
+            return _repository.GetServico(id);
+        }
+
         public ServicoItem Get(int id)
         {
             return _repository.Get(id);

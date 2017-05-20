@@ -21,13 +21,13 @@ namespace ModernWebStore.Api.Controllers
             this._service = service;
         }
 
-        [HttpPost]
-        [Authorize]
-        [Route("api/servico/create")]
-        public Task<HttpResponseMessage> Post(Servico servico)
-        {         
-            var order = _service.Create(servico);
-            return CreateResponse(HttpStatusCode.Created, order);
-        }
+        //[HttpPost]
+        //[Authorize]
+        //[Route("api/servico/create")]
+        //public Task<HttpResponseMessage> Post(Servico servico)
+        //{         
+        //    var order = _service.Create(servico);
+        //    return CreateResponse(HttpStatusCode.Created, order);
+        //}
     }
 }

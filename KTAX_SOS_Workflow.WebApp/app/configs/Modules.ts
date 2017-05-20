@@ -20,6 +20,8 @@ module Consermaq {
     modules.push('ng-currency');
     modules.push('ngPrint');
     modules.push('mdPickers');
+    modules.push('ui.utils.masks');
+    modules.push('idf.br-filters');
 
     angular.module(appConfig.appName, modules);
 }

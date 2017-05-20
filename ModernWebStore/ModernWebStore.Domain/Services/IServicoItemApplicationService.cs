@@ -15,5 +15,6 @@ namespace ModernWebStore.Domain.Services
         ServicoItem Create(ServicoItem servicoItem);
         ServicoItem Update(ServicoItem servicoItem);
         ServicoItem Delete(int id);
+        List<ServicoItem> GetServico(int id);
     }
 }

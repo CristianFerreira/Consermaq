@@ -35,6 +35,11 @@ namespace ModernWebStore.Infra.Repositories
                 .FirstOrDefault();
         }
 
+        public User Get(int id)
+        {
+            return _context.Users.Find(id);
+        }
+
         public List<User> List()
         {
             return _context.Users.OrderBy(x => x.Email).ToList();

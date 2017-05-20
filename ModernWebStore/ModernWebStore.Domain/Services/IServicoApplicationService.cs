@@ -1,14 +1,16 @@
-﻿using ModernWebStore.Domain.Commands.OrderCommands;
-using ModernWebStore.Domain.Entities;
+﻿using ModernWebStore.Domain.Entities;
 using System.Collections.Generic;
 
 namespace ModernWebStore.Domain.Services
 {
     public interface IServicoApplicationService
     {
-        Servico Create(Servico servico);
-        Servico Update(Servico servico);
+        void Create(Servico servico);
+        void Update(Servico servico);
+        void Delete(Servico servico);
         List<Servico> Get();
         Servico Get(int id);
+        List<Servico> buscarServicosComItens(int id);
+        List<Servico> GetOrdemServico(int id);
     }
 }

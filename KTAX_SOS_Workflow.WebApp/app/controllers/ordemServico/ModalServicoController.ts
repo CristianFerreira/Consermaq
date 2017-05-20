@@ -4,7 +4,7 @@ module Consermaq {
     export class ModalServicoController {
 
         static $inject = ['OrdemServicoService', 'UsuarioService', 'ProdutoService','ServicoService', 
-                            'toastr', '$mdDialog', '$timeout', '$q','ordemServico'];
+                            'toastr', '$mdDialog', '$timeout', '$q','ordemServico','ultimoItems','servico'];
 
      
         private ordemServicoService: OrdemServicoService;
@@ -16,6 +16,7 @@ module Consermaq {
         public timeout: ITimeoutService;
         public $q: ng.IQService;
         public ordemServico: OrdemServico;
+        public ultimoItems: Array<Produto>;
         public servico: Servico; 
         public selectedItem : any;
         public searchText   : any; 
@@ -34,6 +35,8 @@ module Consermaq {
         public dataMinCalendarioInicioServico: Date;
         public dataMaxCalendarioInicioServico: Date;
 
+        public servicoItemsRemovidos: Array<ServicoItem>;
+
         constructor(ordemServicoService: OrdemServicoService, usuarioService: UsuarioService, 
                     produtoService: ProdutoService,
                     servicoService: ServicoService,
@@ -41,7 +44,9 @@ module Consermaq {
                     mdDialog: any,
                     timeout: ITimeoutService,
                     $q: ng.IQService,
-                    ordemServico: OrdemServico) {
+                    ordemServico: OrdemServico,
+                    ultimoItems: Array<Produto>,
+                    servico: Servico) {
 
             this.ordemServicoService = ordemServicoService;
             this.usuarioService = usuarioService;
@@ -51,8 +56,9 @@ module Consermaq {
             this.mdDialog = mdDialog; 
             this.timeout = timeout;
             this.$q = $q;         
-            this.ordemServico = ordemServico;     
-            this.servico = new Servico();
+            this.ordemServico = ordemServico;   
+            this.ultimoItems = ultimoItems;  
+            this.servico = servico;
             this.usuarios = new Array<User>();
             this.produtos = new Array<ProdutoABS>();
             this.adicionarMaterial = false;
@@ -90,6 +96,7 @@ module Consermaq {
 
             this.servicoItems = new Array<ServicoItem>();
             this.produtosAdicionados = new Array<Produto>();
+            this.servicoItemsRemovidos = new Array<ServicoItem>();
 
             this.dataMinCalendarioInicioServico = new Date();
             this.dataMinCalendarioInicioServico.setDate(- 60);
@@ -100,14 +107,52 @@ module Consermaq {
         public load (){
             this.loadUser();
             this.loadProduto();
+            if(this.servico != null)
+                this.popularServico();
+        }
+
+        public popularServico(): void {
+            this.selectedItem = this.servico.user;
+            if(this.servico.servicoItems.length > 0){
+                this.servicoItems = this.servico.servicoItems;
+                this.adicionarMaterial = true;
+
+                if(this.servicoItems.length > 0 && this.ultimoItems.length > 0)
+                    this.populaServicoItems(this.ultimoItems);
+            }
+             
         }
 
         public loadProduto() :void {
            this.produtoService.listAll()
                 .then((data) => {                 
-                    this.produtos = data;                               
+                    this.produtos = data; 
+                    if(this.ultimoItems.length > 0){
+                        this.populaProdutos(this.ultimoItems);                  
+                    }
+                                                      
                 })
                 .catch((response) => console.log("Não foi possivel carregar os Produtos, erro: " + response));
+        }
+
+        public populaServicoItems(ultimoItems: Array<Produto>) :void {
+            this.servicoItems.filter((s)=> {
+                ultimoItems.filter((u) => {
+                    if(s.product.id == u.id){
+                        s.product = u;
+                    }
+                })
+            })
+        }
+
+        public populaProdutos(ultimoItems: Array<Produto>) :void {
+            this.produtos.filter((p) => {
+                this.ultimoItems.filter((u) => {
+                    if(p.id == u.id){
+                        p.quantityOnHand = u.quantityOnHand;
+                    }
+                })
+            } )
         }
 
         public loadUser() :void {
@@ -146,6 +191,7 @@ module Consermaq {
                     this.atualizaMaterialAdicionado(produto);
                     this.adicionaListaMaterial(produto);
                     this.limparQntdSaida(produto);
+                    this.toastr.success("Material: "+produto.title,"Adicionado com sucesso");
                 } else {
                     this.toastr.error("Qntd de Saída maior que Qntd de Estoque.","Quantidade inválida!")
                 }
@@ -169,6 +215,8 @@ module Consermaq {
                 this.servicoItems.filter((s) => {
                     if(s.productId == servicoItem.productId){
                         s.quantity = Number(s.quantity) + Number(servicoItem.quantity);
+                        // teste
+                        s.product = servicoItem.product;
                         existe = true;
                     }
                 })
@@ -234,6 +282,17 @@ module Consermaq {
         public removerMaterialAdd(servicoItem :ServicoItem) :void {
             this.atualizarMaterialRemovido(servicoItem);
             this.removeListaMaterial(servicoItem);
+            
+            if(servicoItem.id > 0)
+                this.addItemRemovido(servicoItem);
+
+            this.toastr.success("Material removido com sucesso");
+        }
+
+        public addItemRemovido(servicoItem :ServicoItem) :void {
+            servicoItem.product = null;
+            servicoItem.servico = null;
+            this.servicoItemsRemovidos.push(servicoItem);
         }
 
         public atualizarMaterialRemovido(servicoItem :ServicoItem){
@@ -263,48 +322,53 @@ module Consermaq {
         }
 
 
-        public save() :void {
+        public add() :void {
             if(this.adicionarMaterial)
-                this.saveWithMaterial();
+                this.addWithMaterial();
             else
-                this.saveWithOutMaterial();
+                this.addWithOutMaterial();
         }
 
-        public saveWithMaterial(): void {
+        public addWithMaterial(): void {
             if(this.selectedItem.id){
                 this.servico.userId = this.selectedItem.id;
-                this.servico.ordemServicoId = this.ordemServico.id;
+                this.servico.user = this.getUser(this.servico.userId);
+                if(this.ordemServico != null)
+                    this.servico.ordemServicoId = this.ordemServico.id;
+
                 this.servico.servicoItems = this.servicoItems;
-                
-                this.servicoService.save(this.servico)
-                .then((data) => {
-                   this.toastr.success("Serviço criado com sucesso!");
-                })
-                .catch((response) => { console.log("Erro")});
+
+                this.toastr.success("Serviço adicionado com sucesso!");  
+                this.mdDialog.hide({newServico: this.servico, itemsRemovidos: this.servicoItemsRemovidos});              
             }
             else {
-                this.toastr.success("Erro ao criar serviço!");
+                this.toastr.success("Erro ao Adicionar serviço!");
             }
         }
 
-        public saveWithOutMaterial() :void {
+        public addWithOutMaterial() :void {
             if(this.selectedItem.id){
                 this.servico.userId = this.selectedItem.id;
-                this.servico.ordemServicoId = this.ordemServico.id;
+                this.servico.user = this.getUser(this.servico.userId);
+                if(this.ordemServico != null)
+                    this.servico.ordemServicoId = this.ordemServico.id;
 
-                this.servicoService.save(this.servico)
-                .then((data) => {
-                    this.toastr.success("Serviço criado com sucesso!");
-                })
-                .catch((response) => { console.log("Erro")});
+                this.toastr.success("Serviço adicionado com sucesso!");
+                this.mdDialog.hide({newServico: this.servico, itemsRemovidos: this.servicoItemsRemovidos});
             }
             else {
-                this.toastr.success("Erro ao criar serviço!");
+                this.toastr.success("Erro ao Adicionar serviço!");
             }
         } 
 
         public close(): void {
             this.mdDialog.cancel();
+        }
+
+        public getUser(id :number) :User {
+            var usuario = new User();
+            this.usuarios.filter((u) => { if(u.id == id){usuario = u} });
+            return usuario;
         }
     
   }

@@ -5,10 +5,12 @@
                 <span>Produto</span>
                 <span flex></span>
 
-                <md-button ng-show="vm.produtos.length > 0" class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude ng-click="vm.filterShow = true"
-                    aria-label="Filtrar">
-                    <md-icon class="material-icons">filter_list</md-icon>
-                    <div class="md-ripple-container"></div>
+                <md-button ng-show="vm.produtos.length > 0" class="md-fab md-mini" 
+                            style="background-color: #f59145;"
+                            ng-click="vm.filterShow = true"
+                            aria-label="Filtrar">
+                    <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>   
+                    <md-icon style="color: #fff" class="material-icons">search</md-icon>
                 </md-button>
                 <md-button class="md-icon-button" ng-click="vm.modalCreateProduto($event)">
                     <md-icon class="material-icons">add circle</md-icon>
@@ -20,11 +22,12 @@
             <form flex name="filter.form" class="ng-pristine ng-valid flex">
                 <div class="md-toolbar-tools" flex>
                     <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
-                        <md-icon class="material-icons">search</md-icon>
+                        <md-icon style="color: #f59145" class="material-icons">search</md-icon>
                         <input ng-model="vm.filterSearch" type="text" placeholder="Pesquisar">
                     </md-input-container>
 
                     <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.removeFilter()" aria-label="close">
+                        <md-tooltip md-direction="bottom">Fechar</md-tooltip>
                         <md-icon class="material-icons">close</md-icon>
                         <div class="md-ripple-container"></div>
                     </button>

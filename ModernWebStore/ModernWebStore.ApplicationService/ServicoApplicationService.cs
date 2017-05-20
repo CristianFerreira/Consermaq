@@ -2,7 +2,6 @@
 using ModernWebStore.Domain.Repositories;
 using ModernWebStore.Domain.Services;
 using ModernWebStore.Infra.Persistence;
-using System;
 using System.Collections.Generic;
 
 namespace ModernWebStore.ApplicationService
@@ -10,62 +9,48 @@ namespace ModernWebStore.ApplicationService
     public class ServicoApplicationService : ApplicationService, IServicoApplicationService
     {
         private IServicoRepository _servicoRepository;
-        private IOrdemServicoApplicationService _ordemServicoApplicationService;
-        private IProductRepository _productRepository;
+        private IProductApplicationService _productApplicationService;
+        private IServicoItemApplicationService _servicoItemApplicationService;
 
-        public ServicoApplicationService(IServicoRepository servicoRepository, IOrdemServicoApplicationService ordemServicoApplicationService, IProductRepository productRepository, IUnitOfWork unitOfWork) : base(unitOfWork)
+        public ServicoApplicationService(IServicoRepository servicoRepository,                                        
+                                        IProductApplicationService productApplicationService,
+                                        IServicoItemApplicationService servicoItemApplicationService,
+                                        IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             this._servicoRepository = servicoRepository;
-            this._ordemServicoApplicationService = ordemServicoApplicationService;
-            this._productRepository = productRepository;
+            this._productApplicationService = productApplicationService;
+            this._servicoItemApplicationService = servicoItemApplicationService;
         }
 
-        public Servico Create(Servico servico)
+        public void Create(Servico servico)
         {
-            if (servico.ServicoItems != null)
-            {
-                if (servico.ServicoItems.Count > 0)
-                {
-                    foreach (var item in servico.ServicoItems)
-                    {
-                        _productRepository.Update(item.Product);
-                        item.Product = null;
-                    }
-                }
-            }
-            //Altera status da ordem de servico
-            _ordemServicoApplicationService.Pendente(servico.OrdemServicoId);
             _servicoRepository.Create(servico);
-
-
-            if (Commit())
-                return servico;
-
-            return null;
         }
 
-
-        public Servico Update(Servico servico)
+        public List<Servico> buscarServicosComItens(int id)
         {
-            if (servico.ServicoItems.Count > 0)
+            var servicos = _servicoRepository.GetOrdemServico(id);
+
+            if (servicos.Count > 0)
             {
-                foreach (var item in servico.ServicoItems)
+
+                foreach (var item in servicos)
                 {
-                    _productRepository.Update(item.Product);
-                    item.Product = null;
+                    var servicoItem = _servicoItemApplicationService.GetServico(item.Id);
+
+                    item.ServicoItems = servicoItem;
                 }
             }
 
-            //Altera status da ordem de servico
-            _ordemServicoApplicationService.Pendente(servico.OrdemServicoId);
-            _servicoRepository.Create(servico);
-
-
-            if (Commit())
-                return servico;
-
-            return null;
+            return servicos;
         }
+
+
+        public void Update(Servico servico)
+        {
+            _servicoRepository.Update(servico);
+        }
+
 
         public Servico Get(int id)
         {
@@ -78,6 +63,16 @@ namespace ModernWebStore.ApplicationService
             return _servicoRepository.Get();
         }
 
+
+        public void Delete(Servico servico)
+        {
+            _servicoRepository.Delete(servico);
+        }
+
+        public List<Servico> GetOrdemServico(int id)
+        {
+            return _servicoRepository.GetOrdemServico(id);
+        }
 
 
     }

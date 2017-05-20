@@ -1,6 +1,6 @@
 <div layout="row" flex="100">
     <div flex="100" layout-align="center center">   
-            <md-toolbar flex>
+            <md-toolbar flex style="border-radius: 4px;">
                         <div layout="row" style="padding: 2px 16px;"  layout-fill flex="100">
                             <div flex="50">
                                 <h1 style="font-size: 20px;">Ordem de Serviço</h1>
@@ -61,15 +61,15 @@
                                 </md-autocomplete>           
                             </div>
                             <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Serviço solicitado</label>
-                                <textarea name="servicoSolicitado" ng-model="vm.ordemServico.servicoSolicitado" 
-                                         md-maxlength="300" rows="3" md-select-on-focus required>
-                                </textarea>
-                                <div ng-messages="ordemServicoForm.servicoSolicitado.$error" ng-if="ordemServicoForm.servicoSolicitado.$touched">
-                                        <div ng-message="required"> <b>Campo Serviço solicitado é obrigatório.</b></div>
-                                </div>
-                            </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Serviço solicitado</label>
+                                    <textarea name="servicoSolicitado" ng-model="vm.ordemServico.servicoSolicitado" 
+                                            md-maxlength="300" rows="3" md-select-on-focus required>
+                                    </textarea>
+                                    <div ng-messages="ordemServicoForm.servicoSolicitado.$error" ng-if="ordemServicoForm.servicoSolicitado.$touched">
+                                            <div ng-message="required"> <b>Campo Serviço solicitado é obrigatório.</b></div>
+                                    </div>
+                                </md-input-container>
                             </div> 
                             <div layout-gt-sm="row" layout-align="start center">
                                 <h4>Adicionar Serviço</h4>
@@ -77,28 +77,26 @@
                                    <md-icon class="material-icons">add</md-icon>
                                 </md-button>
                             </div> 
-                        </form>
-            
-           
+                        </form>  
                         <div layout="row" layout-wrap>
                             <div ng-show="vm.ordemServico.servicos" ng-repeat="servico in vm.ordemServico.servicos" flex="100" style="text-align: -webkit-center;">                 
                                 <div flex="100" ng-class="$index == vm.selectedUserIndex ? 'panel-servico-border' : '' ">
-                                        <md-toolbar class="panel-servico">
+                                        <md-toolbar ng-class="($index % 2) == 0 ? 'panel-servico1' : 'panel-servico'">
                                             <div class="md-toolbar-tools">
                                                 <span><h3 class="center">Serviço: {{servico.id}}</h3></span>                                   
                                                 <span flex></span>
-                                                <md-button class="md-icon-button" ng-click="">                                                    
+                                                <md-button class="md-icon-button" ng-click="vm.editModalServico($event, servico)">                                                    
                                                     <span class="material-icons" style="font-size: 24px;">mode_edit</span>
                                                     <md-tooltip md-direction="bottom">Editar</md-tooltip>
                                                 </md-button>
                                                 <md-button class="md-icon-button" ng-click="">  
-                                                    <span class="material-icons" style="font-size: 26px;">delete_forever</span> 
+                                                    <span class="material-icons" style="font-size: 26px;" ng-click="vm.removeServico($index)">delete_forever</span> 
                                                     <md-tooltip md-direction="bottom">Excluir</md-tooltip> 
                                                 </md-button>
                                                 <span style="margin-left: 50px;"></span>
                                                 <md-button class="md-icon-button" aria-label="Seta" ng-click="vm.selectUserIndex($index)">
-                                                <i ng-hide="$index == vm.selectedUserIndex" class="material-icons" style="font-size: 32px">keyboard_arrow_down</i>
-                                                <i ng-show="$index == vm.selectedUserIndex" class="material-icons" style="font-size: 32px">keyboard_arrow_up</i>
+                                                <i ng-hide="$index == vm.selectedUserIndex" class="material-icons" style="font-size: 26px">keyboard_arrow_down</i>
+                                                <i ng-show="$index == vm.selectedUserIndex" class="material-icons" style="font-size: 26px">keyboard_arrow_up</i>
                                                 <md-tooltip md-direction="bottom">{{$index == vm.selectedUserIndex ? 'Retornar' : 'Expandir'}}</md-tooltip>             
                                                 </md-button>
                                             </div>
@@ -143,21 +141,27 @@
                                                             </textarea>                          
                                                         </md-input-container>
                                                 </div> 
+                                                 <div layout="row" flex="100" ng-show="$index == vm.selectedUserIndex">
+                                                            <md-input-container class="md-block" flex="30">
+                                                                <label>Valor</label>
+                                                                <input name="valor" ng-model="servico.valor" ui-money-mask="2" ng-disabled="true">                                       
+                                                            </md-input-container>
+                                                </div>
                                                 <div ng-show="$index == vm.selectedUserIndex">              
-                                                    <div ng-show="servico.servicoItems.length > 0" flex layout-margin="20" layout-padding="20">         
+                                                    <div ng-show="servico.servicoItems.length > 0" flex>         
                                                         <strong><h4 style="text-align:left; text-decoration: underline;">Material Adicionado</h4></strong>
                                                     </div>
                                                     <md-table-container ng-show="servico.servicoItems.length > 0">
                                                         <table md-table>
                                                             <thead ng-show="servico.servicoItems.length > 0" md-head md-order="vm.queryMaterialAdicionado.order" md-on-reorder="logOrder">
                                                                 <tr md-row>                        
-                                                                                <th md-column md-numeric md-order-by="codeProduct" style="text-align: center;"><span>Código Material</span></th>
-                                                                                <th md-column md-numeric md-order-by="title" style="text-align: center;"><span>Nome</span></th>
+                                                                                <th md-column md-numeric md-order-by="item.product.codeProduct" style="text-align: center;"><span>Código Material</span></th>
+                                                                                <th md-column md-numeric md-order-by="item.product.title" style="text-align: center;"><span>Nome</span></th>
                                                                                 <th md-column md-numeric style="text-align: center;"><span>Qntd de Saída</span></th>                                              
                                                                 </tr>
                                                             </thead>
                                                             <tbody md-body>
-                                                                <tr md-row ng-repeat="item in servico.servicoItems | orderBy: item.product.codeProduct | limitTo: vm.queryMaterialAdicionado.limit : (vm.queryMaterialAdicionado.page -1) * vm.queryMaterialAdicionado.limit">
+                                                                <tr md-row ng-repeat="item in servico.servicoItems | orderBy: item.product.codeProduct">
                                                                                 <td md-cell style="text-align: center;">{{item.product.codeProduct}}</td>
                                                                                 <td md-cell style="text-align: center;">{{item.product.title}}</td>
                                                                                 <td md-cell style="text-align: center;">
@@ -167,16 +171,16 @@
                                                             </tbody>
                                                         </table>
                                                 </md-table-container>              
-                                                <md-table-pagination ng-show="servico.servicoItems.length" md-limit="vm.queryMaterialAdicionado.limit" md-page="vm.queryMaterialAdicionado.page" md-total="{{servico.servicoItems.length}}" md-page-select="vm.optionsMaterialAdicionado.pageSelect" md-boundary-links="vm.optionsMaterialAdicionado.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>  
                                             </div>
                                         </md-content>
                                 </div> 
                         </div>
-                        <div layout="row" layout-align="end center">
-                                    <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>
-                                    <!--<md-button class="md-raised md-primary" ng-print print-element-id="printThisElement" ng-show="vm.ordemServico.id" ><i class="fa fa-print"></i> Imprimir</md-button>-->
-                                    
-                        </div>
                 </md-content>
+                 <div ng-show="vm.ordemServico.valorTotal > 0" layout="row" flex="100">
+                             <h4>Valor Total: <strong>R$ {{vm.ordemServico.valorTotal}}</strong></h4>
+                 </div>
+                <div layout="row" layout-align="end center" flex="100">
+                       <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>
+               </div>
         </div>
 </div>

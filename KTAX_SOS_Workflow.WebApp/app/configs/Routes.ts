@@ -35,6 +35,11 @@ module Consermaq {
                 controller: "OrdemServicoController",
                 controllerAs: "vm"
             })
+            .when("/ordemServicoCancelada", {
+                templateUrl: "app/views/ordemServico/ordemServicoCancelada.html",
+                controller: "OrdemServicoCanceladaController",
+                controllerAs: "vm"
+            })
             .when("/ordemServico/:id", {
                 templateUrl: "app/views/ordemServico/editOrdemServico.html",
                 controller: "EditOrdemServicoController",

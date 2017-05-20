@@ -34,11 +34,16 @@ var appConfig = {
             },  
             ordemServico: {
                 listAll: appConfig.rootServiceRoute + "api/ordemServico/listAll",
+                listAllCanceled: appConfig.rootServiceRoute + "api/ordemServico/listAllCanceled",
                 getById: appConfig.rootServiceRoute + "api/ordemServico/getById",
                 delete: appConfig.rootServiceRoute + "api/ordemServico/delete",
                 edit:  appConfig.rootServiceRoute + "api/ordemServico/update",
                 save: appConfig.rootServiceRoute + "api/ordemServico/create",
-                deleteAlot: appConfig.rootServiceRoute + "api/ordemServico/deleteAlot"  
+                deleteAlot: appConfig.rootServiceRoute + "api/ordemServico/deleteAlot",
+                finalizar: appConfig.rootServiceRoute + "api/ordemServico/finalizar",
+                cancelar: appConfig.rootServiceRoute + "api/ordemServico/cancelar",
+                ativarOrdemServico: appConfig.rootServiceRoute + "api/ordemServico/ativarOrdemServico",
+                retornarPendente: appConfig.rootServiceRoute + "api/ordemServico/retornarPendente"
             },  
             servico: {
                 listAll: appConfig.rootServiceRoute + "api/servico/listAll",

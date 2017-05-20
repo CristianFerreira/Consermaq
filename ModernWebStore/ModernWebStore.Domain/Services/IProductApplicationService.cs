@@ -12,6 +12,7 @@ namespace ModernWebStore.Domain.Services
         Product Get(int id);
         Product Create(Product product);
         Product UpdateBasicInformation(Product product);
+        void Update(Product product);
         Product Delete(int id);
         List<Product> DeleteAlot(List<Product> produtos);
     }

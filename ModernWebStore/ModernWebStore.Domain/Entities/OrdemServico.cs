@@ -20,13 +20,23 @@ namespace ModernWebStore.Domain.Entities
 
         public EOrderStatus Status { get; set; }
 
+        public decimal ValorTotal { get; set; }
+
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 
         public ICollection<Servico> Servicos { get; set; }
+       
+        public ICollection<Product> MateriaisAtualizados { get; set; }
+        public ICollection<ServicoItem> ServicoItemsRemovidos { get; set; }
+        public ICollection<Servico> ServicosRemovidos { get; set; }
 
 
-     
+        public void Aberto()
+        {
+            this.Status = EOrderStatus.Created;
+        }
+
         public void Pendente()
         {
             this.Status = EOrderStatus.Pendente;

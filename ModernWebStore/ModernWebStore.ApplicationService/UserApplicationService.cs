@@ -37,5 +37,10 @@ namespace ModernWebStore.ApplicationService
         {
             return _repository.List();
         }
+
+        public User Get(int id)
+        {
+            return _repository.Get(id);
+        }
     }
 }

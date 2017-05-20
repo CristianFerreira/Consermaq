@@ -13,7 +13,7 @@ namespace ModernWebStore.Domain.Entities
         public Servico() { }
  
 
-        public Servico(IList<ServicoItem> servicoItems, int userId, int ordemServicoId)
+        public Servico(IList<ServicoItem> servicoItems, int ordemServicoId)
         {
             this.servicoItems = new List<ServicoItem>();
             if (servicoItems != null)
@@ -23,7 +23,6 @@ namespace ModernWebStore.Domain.Entities
                     servicoItems.ToList().ForEach(x => AddItem(x));
                 }
             }
-            this.UserId = userId;
             this.Status = EOrderStatus.Created;
             this.OrdemServicoId = ordemServicoId;   
         }
@@ -34,6 +33,7 @@ namespace ModernWebStore.Domain.Entities
         public string ServicoEfetuado { get; set; }
         public string Ocorrencia { get; set; }
         public string Causa { get; set; }
+        public decimal Valor { get; set; }
 
         public IList<ServicoItem> ServicoItems
         {
@@ -46,8 +46,8 @@ namespace ModernWebStore.Domain.Entities
         public int OrdemServicoId { get; set; }
         public OrdemServico OrdemServico { get; set; }
 
-        public int UserId { get; private set; }
-        public User User { get; private set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
         //public decimal Total
         //{
         //    get

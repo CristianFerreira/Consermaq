@@ -36,18 +36,19 @@
                 </md-input-container>
                  <md-input-container class="md-block" flex="100">
                     <label>Quantidade</label>
-                    <input required name="quantidade" ng-model="vm.produto.quantityOnHand" ng-maxlength="6" number-only="">
+                    <input required name="quantidade" ng-model="vm.produto.quantityOnHand" ui-number-mask="0" min="1" max="50000">
                     <div ng-messages="form.quantidade.$error">
                        <div ng-message="required">Quantidade é obrigatório.</div>
-                       <div ng-message="maxlength">Quantidade deve ter no maximo 8 caracteres.</div>
+                       <div ng-message="min">Quantidade deve ser superior a 0.</div>
+                       <div ng-message="max">Quantidade deve ter no maximo 50000 un.</div>
                     </div>                                        
                 </md-input-container>
                  <md-input-container class="md-block" flex="100">
                     <label>Preço de Compra</label>
-                    <input required name="preco" ng-model="vm.produto.priceBuy" ng-maxlength="10" currency: 'R$' number-only=".">
+                    <input required name="preco" ng-model="vm.produto.priceBuy" ui-money-mask="2" min="0.01">
                     <div ng-messages="form.preco.$error">
                        <div ng-message="required">Preço de Compra é obrigatório.</div>
-                       <div ng-message="maxlength">Preço de Compra deve ter no maximo 10 caracteres.</div>
+                       <div ng-message="min">Preço de Compra deve ser no minímo R$ 0.01</div>
                     </div>                                        
                 </md-input-container>
                  

@@ -20,7 +20,7 @@ namespace ModernWebStore.Infra.Repositories
 
         public List<Servico> Get()
         {
-            return _context.Servicos.Include(s=>s.ServicoItems).ToList();
+            return _context.Servicos.Include(s=>s.ServicoItems).Include(s=> s.User).ToList();
         }
 
         public List<Servico> GetOrdemServico(int id)

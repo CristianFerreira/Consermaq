@@ -30,7 +30,12 @@ namespace ModernWebStore.Infra.Repositories
 
         public List<OrdemServico> Get()
         {
-            return _context.OrdemServico.Include(os => os.Cliente).ToList();
+            return _context.OrdemServico.Include(os => os.Cliente).Where(os => os.Status != Domain.Enums.EOrderStatus.Canceled).ToList();
+        }
+
+        public List<OrdemServico> listAllCanceled()
+        {
+            return _context.OrdemServico.Include(os => os.Cliente).Where(os => os.Status == Domain.Enums.EOrderStatus.Canceled).ToList();
         }
 
         public OrdemServico Get(int id)

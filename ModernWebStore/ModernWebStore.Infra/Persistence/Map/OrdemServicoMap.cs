@@ -15,7 +15,8 @@ namespace ModernWebStore.Infra.Persistence.Map
             Property(x => x.DataInicial).IsRequired();
             Property(x => x.servicoSolicitado).HasMaxLength(300).IsRequired();
             Property(x => x.DataEncerramento).IsOptional();
-            
+            Property(x => x.ValorTotal).IsOptional();
+
 
             Property(x => x.Status).IsRequired();
 
@@ -23,6 +24,10 @@ namespace ModernWebStore.Infra.Persistence.Map
        
             HasMany(x => x.Servicos)
                 .WithRequired(x => x.OrdemServico);
+
+            Ignore(x => x.MateriaisAtualizados);
+            Ignore(x => x.ServicoItemsRemovidos);
+            Ignore(x => x.ServicosRemovidos);
         }
     }
 }

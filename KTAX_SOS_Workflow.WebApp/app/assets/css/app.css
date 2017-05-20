@@ -75,6 +75,13 @@ html, body{
   height: 40px;
 }
 
+.panel-servico1 {
+  border-radius: 4px;
+  background-color: #757171 !important;
+  min-height: 10px !important;
+  height: 40px;
+}
+
 .panel-servico-border {
       border-style: solid;
       border-radius: 8px;
@@ -87,3 +94,31 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolb
     background-color: rgb(1, 37, 123);
 }
 
+
+.semaphore-green{
+     background:url("../../assets/images/semaphore/semaphore-green-icon.ico");
+    width:24px;
+    height:24px;
+}
+
+.semaphore-orange{
+    background:url("../../assets/images/semaphore/semaphore-orange-icon.ico");
+    width:24px;
+    height:24px;
+}
+
+.semaphore-red{
+     background:url("../../assets/images/semaphore/semaphore-red-icon.ico");
+    width:24px;
+    height:24px;
+}
+
+md-input-container.md-icon-float {
+  width: 100% !important;
+}
+
+.btn-filter{
+  min-width: 40px;
+  background-color: #9f9f9f !important;
+  max-height: 30px;
+}

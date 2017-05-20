@@ -1,29 +1,26 @@
-    <div layout="column" flex>
-        <md-card flex>
-           <md-toolbar class="md-table-toolbar md-default ng-hide" ng-hide="vm.selected.length || vm.filterShow" aria-hidden="true">
+<div layout="column" flex>
+    <md-card flex>
+        <md-toolbar class="md-table-toolbar md-default ng-hide" ng-hide="vm.selected.length || vm.filterShow" aria-hidden="true">
             <div class="md-toolbar-tools">
                 <span>Ordem de Serviço</span>
-                <span flex></span>
-
-                <md-button ng-show="vm.ordemServicos.length > 0" class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude ng-click="vm.filterShow = true"
-                    aria-label="Filtrar">
-                    <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
-                    <md-icon class="material-icons">filter_list</md-icon>
-                    <div class="md-ripple-container"></div>
-                </md-button>
+                <span flex></span>               
                 <md-button class="md-icon-button" ng-click="vm.modalCreateOrdemServico($event)">
                     <md-tooltip md-direction="bottom">Nova Ordem de Serviço</md-tooltip>
                     <md-icon class="material-icons">add circle</md-icon>
                 </md-button>
+                <md-button ng-show="vm.ordemServicos.length > 0" class="md-fab md-mini"
+                           style="background-color: #f59145;" ng-click="vm.filterShow = true" aria-label="Filtrar">
+                    <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
+                    <md-icon style="color: #fff" class="material-icons">search</md-icon>
+                </md-button>
             </div>
         </md-toolbar>
-
         <md-toolbar class="md-table-toolbar md-default" ng-show="vm.filterShow && !vm.selected.length" aria-hidden="false">
             <form flex name="filter.form" class="ng-pristine ng-valid flex">
                 <div class="md-toolbar-tools" flex>
-                   <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
-                        <md-icon class="material-icons">search</md-icon>
-                        <input ng-model="filterName" type="text" placeholder="Pesquisar">
+                    <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
+                        <md-icon style="color: #f59145" class="material-icons">search</md-icon>
+                        <input ng-model="vm.filterSearch" type="text" placeholder="Pesquisar">
                     </md-input-container>
 
                     <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.removeFilter()" aria-label="close">
@@ -34,82 +31,139 @@
                 </div>
             </form>
         </md-toolbar>
-
-
-            <md-toolbar class="md-table-toolbar alternate" ng-show="vm.selected.length">
-                <div class="md-toolbar-tools">
-                    <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selecionado</span>
-                    <span flex></span>
-                    <md-button class="md-icon-button" ng-click="vm.modalDeleteOrdemServico($event, vm.selected)">
-                        <md-tooltip md-direction="bottom">Excluir</md-tooltip>
-                        <md-icon style="color: #fff;">delete</md-icon>
-                    </md-button>
+        <md-divider></md-divider>
+        <div layout="row" flex="100" style="padding: 30px 24px 15px;">
+            <span flex="90" style="text-decoration: underline;">Filtros da tabela</span>
+            <md-button flex="10" ng-show="vm.possuiFiltro()" ng-click="vm.clearFiltro()"
+                                class="md-icon-button" style="min-width: 40px;">
+                                <md-icon style="margin-bottom: 20px;float: right;" 
+                                class="material-icons">clear_all
+                                <md-tooltip md-direction="bottom">Limpar Filtro</md-tooltip>
+                                </md-icon>                      
+            </md-button>
+        </div>
+        <form flex name="filtroTable" class="ng-pristine ng-valid flex">
+            <div layout="row" style="font-size: 14px; padding: 0 24px;" flex="100">
+                <md-input-container flex="15">
+                    <label>Filtrar Status</label>
+                    <md-select ng-model="vm.statusFiltro" multiple ng-change="vm.filterTable()">
+                        <md-optgroup label="Status">
+                            <md-option ng-value="status.id" ng-repeat="status in vm.status">{{status.nome}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+                <div flex="5"></div>
+                <md-input-container flex="15">
+                    <label>Filtrar Tipo Cliente</label>
+                    <md-select ng-model="vm.tipoClienteFiltro" ng-change="vm.filterTable()">
+                        <md-optgroup label="Tipo de Cliente">
+                            <md-option><em>Nenhum</em></md-option>
+                            <md-option ng-value="tipo.id" ng-repeat="tipo in vm.tiposClientes">{{tipo.nome}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+                <div flex="5"></div>
+                <div layout="row" flex="60">
+                    <md-input-container flex="15">
+                        <label>Filtrar Data</label>
+                        <md-select ng-model="vm.filtrarData" ng-change="vm.filtrarData == 'Nenhuma' ? vm.filterTable() : ''">
+                            <md-optgroup label="Filtrar por Data">
+                                <md-option><em>Nenhuma</em></md-option>
+                                <md-option ng-value="tipo.nome" ng-repeat="tipo in vm.tipoData">{{tipo.nome}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                    <div layout="row" ng-show="vm.filtrarData.length > 0 && vm.filtrarData != 'Nenhuma'" flex="17">
+                        <mdp-date-picker name="dataInicioFiltro" mdp-placeholder="Data Inicial" flex mdp-format="DD/MM/YYYY" ng-model="vm.dataInicialFiltro"
+                            mdp-min-date="vm.dataMinCalendarioInicio" mdp-max-date="vm.dataMaxCalendarioInicio">
+                            <div ng-messages="filtroTable.dataInicioFiltro.$error">
+                                <div ng-message="format">Formato inválido</div>
+                            </div>
+                        </mdp-date-picker>
+                        <span layout="row" style="padding: 31px 2px 2px 12px;" flex="3">Até</span>
+                        <mdp-date-picker flex="17" name="dataFinalFiltro" mdp-placeholder="Data Final" flex mdp-format="DD/MM/YYYY" ng-model="vm.dataFinalFiltro"
+                            mdp-disabled="!vm.dataInicialFiltro" mdp-min-date="vm.dataInicialFiltro" mdp-max-date="vm.dataMaxCalendarioInicio">
+                            <div ng-messages="filtroTable.dataFinalFiltro.$error">
+                                <div ng-message="format">Formato inválido</div>
+                            </div>
+                        </mdp-date-picker>
+                        <md-button flex="8" ng-show="vm.dataInicialFiltro" ng-click="vm.filterTable()" style="margin-top: 12px;"
+                                class="md-raised btn-filter">
+                                <md-tooltip md-direction="bottom">Filtrar Data</md-tooltip>
+                                <md-icon class="material-icons" style="color: #fff">filter_list</md-icon>
+                        </md-button>
+                    </div>
                 </div>
-            </md-toolbar>
-
-           <div ng-hide="true">
-                {{(ordemServicos = (vm.ordemServicos | filter: filterName))}}
             </div>
-          
-
-<mdt-table style="background-color: #fff !important"
-                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
-            animate-sort-icon="true"
-           selectable-rows="true"
-            selected-row-callback="vm.selected = (rows)"
-             delete-row-callback="deleteRowCallback(rows)"
-              mdt-row="{
-            'data': ordemServicos,
-            'table-row-id-key': 'id',
-            'column-keys': [  
-                'id',           
-                'servicoSolicitado',
-                'status',
-                'dataInicial',
-                'cliente.nome',
-                'cliente.cpf',
-                'cliente.cnpj',
-                'editar'
-            ]}">
-    <mdt-header-row> 
-     <mdt-column align-rule="right" column-sort="true">N Ordem Serviço</mdt-column>
-      <mdt-column align-rule="right" column-sort="true">Serviço Solicitado</mdt-column>
-      <mdt-column align-rule="right" column-sort="true">Status</mdt-column>
-      <mdt-column align-rule="right" column-sort="true">Data de Abertura</mdt-column>
-      <mdt-column align-rule="right" column-sort="true">Nome Cliente</mdt-column>
-      <mdt-column align-rule="right" 
-         column-filter="{
-                            'valuesProviderCallback': vm.cpfClienteFilterCallback,
-                            'valuesTransformerCallback': vm.cpfClienteTransformer,
-                            'placeholderText': 'Pesquise CPF...',
-                            'filterType': 'chips'
-                        }"
-      >CPF</mdt-column>
-      <mdt-column align-rule="right"
-         column-filter="{
-                            'valuesProviderCallback': serviceUnitsFilterCallback,
-                            'valuesTransformerCallback': serviceUnitNameTransformer,
-                            'filterType': 'checkbox'
-                        }"
-      >CNPJ</mdt-column>
-      <mdt-column align-rule="right">Editar</mdt-column>      
-    </mdt-header-row>
-       <mdt-custom-cell column-key="id">
-            <span>{{value}}</span>
-       </mdt-custom-cell>  
-       <mdt-custom-cell column-key="status">
-            <span>{{value == 1 ? 'Emitido' : 'Pendente'}}</span>
-       </mdt-custom-cell>
-        <mdt-custom-cell column-key="dataInicial">
-            <span> {{value | date:"dd/MM/yyyy"}} às {{value | date:"HH:mm"}}</span>
-        </mdt-custom-cell>
-        <mdt-custom-cell column-key="editar">
-           <a href="" class="md-icon-button" ng-click="clientScope.vm.editOrdemServico(rowId)">
-                    <md-icon>edit</md-icon>
-           </a>
-        </mdt-custom-cell>
-  </mdt-table>
-
-          
-        </md-card>
-    </div>
+        </form>
+        <md-table-container>
+            <table md-table ng-model="vm.selected" md-progress="vm.promise">
+                <thead ng-show="vm.ordemServicos.length > 0" ng-if="!vm.options.decapitate" md-head md-order="vm.query.order" md-on-reorder="logOrder">
+                    <tr md-row>
+                        <th md-column md-numeric md-order-by="id" style="text-align: center; width: 180px"><span>N°</span></th>
+                        <th md-column md-numeric md-order-by="servicoSolicitado"><span>Solicitação</span></th>
+                        <th md-column md-order-by="status">
+                            <span>Solicitação</span>
+                        </th>
+                        <th md-column md-numeric md-order-by="dataInicial" style="text-align: left;"><span>Abertura</span></th>
+                        <th md-column md-numeric md-order-by="dataEncerramento" style="text-align: left;"><span>Encerramento</span></th>
+                        <th md-column md-numeric md-order-by="cliente.nome"><span>Cliente</span></th>
+                        <th md-column md-numeric md-order-by="cliente.cpf" style="text-align: left;"><span>CPF</span></th>
+                        <th md-column md-numeric md-order-by="cliente.cnpj" style="text-align: left;"><span>CNPJ</span></th>
+                        <th md-column md-numeric style="text-align: center;"><span>Opções</span></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-on-select="logItem" ng-repeat="ordemServico in vm.ordemServicos | filter: vm.filterSearch | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+                        <td md-cell style="text-align: center;">{{ordemServico.id}}</td>
+                        <td md-cell>{{ordemServico.servicoSolicitado}}</td>
+                        <td md-cell>
+                            <span style="padding: 8px;">
+                                    <img ng-show="ordemServico.status == 1" src="app/assets/images/semaphore/semaphore-green-icon.ico" style="height: 26px; width: 26px;">
+                                    <img ng-show="ordemServico.status == 2" src="app/assets/images/semaphore/semaphore-orange-icon.ico" style="height: 26px; width: 26px;">
+                                    <img ng-show="ordemServico.status == 3" src="app/assets/images/semaphore/semaphore-red-icon.ico" style="height: 26px; width: 26px;">
+                                    <md-tooltip md-direction="bottom">{{ordemServico.status == 1 ? 'Aberto' : (ordemServico.status == 2 ? 'Pendente' : 'Finalizado')}}</md-tooltip>
+                                </span>
+                        </td>
+                        <td md-cell style="text-align: center;">
+                            {{ordemServico.dataInicial | date:"dd/MM/yyyy"}} {{ordemServico.dataInicial != null ? 'ás' : ''}} {{ordemServico.dataInicial
+                            | date:"HH:mm"}}
+                        </td>
+                        <td md-cell style="text-align: center;">{{ordemServico.dataEncerramento | date:"dd/MM/yyyy"}} {{ordemServico.dataEncerramento != null ? 'ás'
+                            : ''}} {{ordemServico.dataEncerramento | date:"HH:mm"}}</td>
+                        <td md-cell>{{ordemServico.cliente.nome}}</td>
+                        <td md-cell style="text-align: center;">{{ordemServico.cliente.cpf | brCpf}}</td>
+                        <td md-cell style="text-align: center;">{{ordemServico.cliente.cnpj | brCnpj }}</td>
+                        <td md-cell style="text-align: left;">
+                            <div layout="row" flex>
+                                <md-button class="md-icon-button" ng-click="vm.abrirModalVisualizar($event, ordemServico)">
+                                    <md-icon>zoom_in</md-icon>
+                                    <md-tooltip md-direction="bottom">Visualizar</md-tooltip>
+                                </md-button>
+                                <md-button ng-disabled="ordemServico.status==3" class="md-icon-button" ng-click="vm.editOrdemServico(ordemServico.id)">
+                                    <md-icon ng-style="(ordemServico.status==3) ? '' : {'color':'#000'};">edit</md-icon>
+                                    <md-tooltip md-direction="bottom">Editar</md-tooltip>
+                                </md-button>
+                                <md-button ng-disabled="ordemServico.status==1 || ordemServico.status==3" class="md-icon-button" ng-click="vm.finalizar(ordemServico)">
+                                    <md-icon ng-style="(ordemServico.status==1 || ordemServico.status==3) ? '' : {'color':'#01257b'}">check_circle</md-icon>
+                                    <md-tooltip md-direction="bottom">Finalizar ordem de serviço</md-tooltip>
+                                </md-button>
+                                <md-button ng-show="ordemServico.status==3" class="md-icon-button" ng-click="vm.retornarPendente(ordemServico)">
+                                    <md-icon style="color:#f59145;">undo</md-icon>
+                                    <md-tooltip md-direction="bottom">Retornar para pendente</md-tooltip>
+                                </md-button>
+                                <md-button ng-show="ordemServico.status==1 || ordemServico.status==2" class="md-icon-button" ng-click="vm.abrirModalCancelar($event, ordemServico)">
+                                    <md-icon style="color:#da0000;">cancel</md-icon>
+                                    <md-tooltip md-direction="bottom">Cancelar</md-tooltip>
+                                </md-button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <md-table-pagination ng-show="vm.ordemServicos.length > 0" md-limit="vm.query.limit" md-limit-options="vm.limitOptions" md-page="vm.query.page"
+            md-total="{{vm.ordemServicos.length}}" md-page-select="vm.options.pageSelect" md-boundary-links="vm.options.boundaryLinks"
+            md-on-paginate="logPagination"></md-table-pagination>
+    </md-card>
+</div>

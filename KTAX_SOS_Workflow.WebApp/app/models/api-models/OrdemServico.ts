@@ -6,12 +6,16 @@ module Consermaq {
         public dataInicial: Date;
         public dataEncerramento: Date;
         public status: any;
+        public valorTotal: number;
         public clienteId: number;
         public cliente: Cliente;
         
         public servicos: Array<Servico>;
+        public materiaisAtualizados: Array<Produto>;
+        public servicoItemsRemovidos: Array<ServicoItem>;
+        public servicosRemovidos: Array<Servico>;
 
-        constructor() {              
+        constructor() {       
         }
     }
 }

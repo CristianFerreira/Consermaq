@@ -24,6 +24,14 @@ namespace ModernWebStore.Domain.Scopes
             );
         }
 
+        public static bool VerificationQuantityOnHandScopeIsValid(this Product product, int amount)
+        {
+            return AssertionConcern.IsSatisfiedBy
+            (
+                AssertionConcern.AssertIsGreaterOrEqualThan(amount, 0, "Quantidade menor que zero ao atualizar materiais")
+            );
+        }
+
         public static bool UpdatePriceScopeIsValid(this Product product, decimal price)
         {
             return AssertionConcern.IsSatisfiedBy

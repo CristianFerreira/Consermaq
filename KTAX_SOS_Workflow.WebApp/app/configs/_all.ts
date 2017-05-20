@@ -58,8 +58,13 @@
 
 /// <reference path="../controllers/ordemServico/ModalOrdemServicoController.ts" />
 /// <reference path="../controllers/ordemServico/OrdemServicoController.ts" />
+/// <reference path="../controllers/ordemServico/OrdemServicoCanceladaController.ts" />
 /// <reference path="../controllers/ordemServico/EditOrdemServicoController.ts" />
 /// <reference path="../controllers/ordemServico/ModalServicoController.ts" />
+/// <reference path="../controllers/ordemServico/modal/CancelarController.ts" />
+/// <reference path="../controllers/ordemServico/modal/VisualizarController.ts" />
+/// <reference path="../controllers/ordemServico/modal/AtivarOrdemServicoController.ts" />
+
 
 
 /// <reference path="../controllers/produto/ProdutoController.ts" />

@@ -1,6 +1,6 @@
 <md-dialog aria-label="Adicionar Servico" flex="80" ng-cloak>
     <form name="servicoForm">
-        <md-toolbar>
+        <md-toolbar style="background-color:#E25A28 !important;">
             <div class="md-toolbar-tools">
                 <h3 class="center">Adicionar Serviço</h3>
                 <span flex></span>
@@ -12,6 +12,7 @@
         <md-dialog-content>
             <div class="md-dialog-content ">
                 <div layout="row" flex="100">
+                   <!--teste: {{vm.servicoItemsRemovidos}}-->
                     <md-autocomplete flex required
                                             md-input-name="autocompleteField"
                                             md-no-cache="vm.noCache"
@@ -76,9 +77,20 @@
                             </textarea>                          
                         </md-input-container>
                  </div>
+                 <div layout="row" flex="100">
+                             <md-input-container class="md-block" flex="30">
+                                <label>Valor</label>
+                                <input name="valor" ng-model="vm.servico.valor" ui-money-mask="2" min="0.01" required>
+                                <div ng-messages="servicoForm.valor.$error">
+                                <div ng-message="required">O campo valor é obrigatório.</div>
+                                <div ng-message="min">O campo valor deve ser no minímo de R$ 0.01.</div>
+                                </div>                                        
+                            </md-input-container>
+                 </div>
                  <div layout="row">
-                    <md-switch class="md-primary" md-no-ink aria-label="Adicionar Material" ng-model="vm.adicionarMaterial">
-                        Adicionar Material: <strong>{{ vm.adicionarMaterial == true ? 'Sim' : 'Não' }}</strong>
+                    <md-switch ng-disabled="vm.servicoItems.length > 0" ng-class="vm.servicoItems.length > 0 ? '' : 'md-primary'" md-no-ink aria-label="Adicionar Material" ng-model="vm.adicionarMaterial">
+                        Adicionar Material: <strong>{{ vm.adicionarMaterial == true ? 'Sim' : 'Não' }}</strong>                      
+                        <md-tooltip ng-if="vm.servicoItems.length > 0" md-direction="right">Desabilitado enquanto houver material adicionado.</md-tooltip>
                     </md-switch>
                  </div>
 
@@ -109,12 +121,11 @@
                                             <td md-cell style="text-align: center;">{{produto.quantityOnHand}} un.</td>
                                             <td md-cell>
                                                 <div style="text-align: right;">
-                                                    <input type="text" class="form-control" ng-model="produto.qntdSaida" style="width: 70px;" number-only=""/>
+                                                    <input type="text" class="form-control" ng-model="produto.qntdSaida" style="width: 70px;" ui-number-mask="0" min="1"/>
                                                 </div>    
                                             </td>
                                             <td md-cell style="text-align: right;">
                                             <md-button class="md-icon-button" ng-click="vm.addMaterial(produto)">
-                                                <md-tooltip md-direction="bottom">Adicionar</md-tooltip>
                                                 <strong><i class="material-icons" style="color:#03036d">add_box</i></strong>
                                             </md-button>
                                             </td>
@@ -150,7 +161,6 @@
                                                 </td>
                                                 <td md-cell style="text-align: right;">
                                                 <md-button class="md-icon-button" ng-click="vm.removerMaterialAdd(item)">
-                                                    <md-tooltip md-direction="bottom">Remover</md-tooltip>
                                                     <strong><i class="material-icons" style="color: #ce2f2f;">indeterminate_check_box</i><strong>
                                                 </md-button>
                                                 </td>
@@ -162,10 +172,9 @@
                                 </div>
                             </div>
                        </div>                  
-                </div>    
-
+                </div>  
                 <div flex-sm="50" layout layout-align="end center" class="padding-top-20">
-                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="servicoForm.$invalid" type="submit" ng-click="vm.save()">Salvar</md-button>
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="servicoForm.$invalid" type="submit" ng-click="vm.add()">Adicionar</md-button>
                 </div> 
             </div>
         </md-dialog-content>

@@ -87,6 +87,11 @@ var paths = {
             'bower_components/md-data-table/dist/md-data-table-templates.js',
             'bower_components/md-data-table/dist/md-data-table.js',
             'node_modules/angular-material-expansion-panel/dist/md-expansion-panel.min.js',
+            'node_modules/br-validations/releases/br-validations.min.js',
+            'node_modules/string-mask/src/string-mask.js',
+            'node_modules/angular-input-masks/releases/angular-input-masks-standalone.min.js',
+            'node_modules/angular-br-filters/release/angular-br-filters.min.js',
+          
         ],
         destProject: 'app/build/',
         dest: 'dist/app/build/',
@@ -95,6 +100,7 @@ var paths = {
     folders: {
         src: [
             'app/assets/images/**',
+            'app/assets/images/semaphore/**',
             'app/views/**'
         ],
         dest: 'dist/'

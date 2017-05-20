@@ -57,7 +57,7 @@ namespace ModernWebStore.ApplicationService
 
         public List<Product> Get()
         {
-            return _repository.GetProductsInStock();
+            return _repository.Get();
         }
 
         public Product Get(int id)
@@ -73,6 +73,12 @@ namespace ModernWebStore.ApplicationService
         public List<Product> GetOutOfStock()
         {
             return _repository.GetProductsOutOfStock();
+        }
+
+        public void Update(Product product)
+        {
+            _repository.Update(product);
+            Commit();               
         }
 
         public Product UpdateBasicInformation(Product product)

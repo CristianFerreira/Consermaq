@@ -7,6 +7,7 @@ namespace ModernWebStore.Domain.Repositories
     public interface IOrdemServicoRepository
     {
         List<OrdemServico> Get();
+        List<OrdemServico> listAllCanceled();
         List<OrdemServico> Get(int skip, int take);
         OrdemServico Get(int id);
         void Create(OrdemServico ordemServico);

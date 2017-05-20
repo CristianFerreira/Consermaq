@@ -6,7 +6,7 @@ namespace ModernWebStore.Domain.Entities
 {
     public class User
     {
-        protected User() { }
+        public User() { }
 
         public User(string email, string password, bool isAdmin, string login, string nome)
         {

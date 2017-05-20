@@ -8,6 +8,7 @@ module Consermaq {
         public servicoEfetuado: string;
         public ocorrencia: string;
         public causa: string;
+        public valor: number;
         public ordemServicoId: number;
         public ordemServico: OrdemServico;
         public userId: number;
