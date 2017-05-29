@@ -387,11 +387,18 @@ module Consermaq {
                          this.toastr.success("Ordem de serviço salva com sucesso!");
                          this.loadTipoPessoa();
                          this.loadDateFormat();
+                         this.clearlistas();
                     }
                     else
                         this.toastr.error("Erro ao buscar dados do cliente!")
              }).catch((response) => { this.toastr.error("Erro ao salvar ordem de serviço!");})
         }
+     }
+
+     public clearlistas() :void {
+         this.materiaisAtualizados = new Array<Produto>();
+         this.servicoItemsRemovidos = new Array<ServicoItem>();
+         this.servicosRemovidos = new Array<Servico>();
      }
 
      public loadCliente() :Boolean {

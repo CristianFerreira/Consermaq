@@ -20,7 +20,7 @@ namespace ModernWebStore.Domain.Entities
 
         public EOrderStatus Status { get; set; }
 
-        public decimal ValorTotal { get; set; }
+        public decimal? ValorTotal { get; set; }
 
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }

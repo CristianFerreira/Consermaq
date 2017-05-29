@@ -177,7 +177,7 @@
                         </div>
                 </md-content>
                  <div ng-show="vm.ordemServico.valorTotal > 0" layout="row" flex="100">
-                             <h4>Valor Total: <strong>R$ {{vm.ordemServico.valorTotal | finance:true:2}}</strong></h4>
+                             <h4>Valor Total: <strong>{{vm.ordemServico.valorTotal | finance:true:2}}</strong></h4>
                  </div>
                 <div layout="row" layout-align="end center" flex="100">
                        <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>

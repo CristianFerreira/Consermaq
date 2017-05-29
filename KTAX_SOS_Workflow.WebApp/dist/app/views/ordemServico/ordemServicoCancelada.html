@@ -28,7 +28,7 @@
             </form>
         </md-toolbar>
         <md-divider></md-divider>
-        <div layout="row" flex="100" style="padding: 30px 24px 15px;">
+        <div ng-show="vm.ordemServicos.length > 0" layout="row" flex="100" style="padding: 30px 24px 15px;">
             <span flex="90" style="text-decoration: underline;">Filtros da tabela</span>
             <md-button flex="10" ng-show="vm.possuiFiltro()" ng-click="vm.clearFiltro()"
                                 class="md-icon-button" style="min-width: 40px;">                              
@@ -38,7 +38,7 @@
                                 </md-icon>                      
             </md-button>
         </div>
-        <form flex name="filtroTable" class="ng-pristine ng-valid flex">
+        <form ng-show="vm.ordemServicos.length > 0" flex name="filtroTable" class="ng-pristine ng-valid flex">
             <div layout="row" style="font-size: 14px; padding: 0 24px;" flex="100">
                 <md-input-container flex="20">
                     <label>Filtrar Tipo Cliente</label>

@@ -116,6 +116,11 @@
         </div>
         </br>
         </br>
-        <h4 style="margin-left: 15px;"><strong>Valor total:</strong> {{vm.ordemServico.valorTotal | finance:true:2}} </h4>
+        <h4 ng-show="vm.ordemServico.valorTotal" style="margin-left: 15px;"><strong>Valor total:</strong> {{vm.ordemServico.valorTotal | finance:true:2}} </h4>
+        </br>
+        </br>
+        <div ng-show="vm.ordemServico.status != 1" layout="row" flex>
+            <img src="app/assets/images/AssinaturaOrdemServico.png" alt="Consermaq" style="width: 100%;">
+        </div>
     </div>
 </div>

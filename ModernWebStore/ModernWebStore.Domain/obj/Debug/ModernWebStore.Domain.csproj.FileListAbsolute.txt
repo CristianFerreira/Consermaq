@@ -12,13 +12,6 @@ C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore
 C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
 C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
 C:\Renan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.dll
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.pdb
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.dll
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.pdb
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
-C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.dll
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.pdb
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
@@ -27,3 +20,11 @@ C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\b
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
 C:\desenvolvimento\ProjetoRenan\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.dll
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.Domain.pdb
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.dll
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\bin\Debug\ModernWebStore.SharedKernel.pdb
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.csprojResolveAssemblyReference.cache
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.dll
+C:\dev\Consermaq\ModernWebStore\ModernWebStore.Domain\obj\Debug\ModernWebStore.Domain.pdb
