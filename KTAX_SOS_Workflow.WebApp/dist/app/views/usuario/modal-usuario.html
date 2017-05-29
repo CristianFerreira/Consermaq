@@ -1,0 +1,98 @@
+<md-dialog aria-label="Cadastro de usuário" flex="40" ng-cloak>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Cadastro de usuário</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons" style="color: #fff">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row" layout-xs="column">
+                    <div flex="vm.usuario.id ? 100 : 45">
+                        <md-input-container class="md-block" flex="100">
+                            <label>Nome</label>
+                            <input required name="nome" ng-model="vm.usuario.nome" ng-maxlength="50">
+                            <div ng-messages="form.nome.$error">
+                            <div ng-message="required">Nome é obrigatório.</div>
+                            <div ng-message="maxlength">Nome deve ter no maximo 50 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <md-input-container class="md-block" flex="100">
+                            <label>E-mail</label>
+                            <input required name="email" ng-model="vm.usuario.email" 
+                                   ng-pattern="vm.validateEmail"  ng-maxlength="50">
+                            <div ng-messages="form.email.$error">
+                            <div ng-message="required">E-mail é obrigatório.</div>
+                            <div ng-message="pattern">E-mail com formato inválido.</div>
+                            <div ng-message="maxlength">E-mail deve ter no maximo 50 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <md-input-container ng-show="vm.usuario.id" class="md-block" flex="100">
+                            <label>Login</label>
+                            <input required name="login" ng-model="vm.usuario.login" ng-maxlength="20">
+                            <div ng-messages="form.login.$error">
+                                <div ng-message="required">Login é obrigatório.</div>
+                                <div ng-message="maxlength">Login deve ter no maximo 20 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <div ng-show="vm.usuario.id && vm.usuario.id != vm.$rootScope.sistemaContexo.usuarioLogado.id" 
+                             layout="row" layout-align="space-around start" flex>                          
+                            <md-switch md-no-ink aria-label="isAdmin" ng-model="vm.usuario.isAdmin" class="md-primary">
+                                Admin: <strong>{{ vm.usuario.isAdmin == true ? 'Sim' : 'Não' }}</strong>                      
+                            </md-switch>
+                            <md-switch
+                                       md-no-ink aria-label="bloqueado" ng-model="vm.usuario.bloqueado" class="md-primary">
+                                Bloqueado: <strong>{{ vm.usuario.bloqueado == true ? 'Sim' : 'Não' }}</strong>                      
+                            </md-switch>
+                        </div>       
+                        <md-switch ng-show="!vm.usuario.id || vm.usuario.id == vm.$rootScope.sistemaContexo.usuarioLogado.id"
+                                    md-no-ink aria-label="isAdmin" class="md-primary" ng-model="vm.usuario.isAdmin" flex="100">
+                                Admin: <strong>{{ vm.usuario.isAdmin == true ? 'Sim' : 'Não' }}</strong>                      
+                        </md-switch>
+                    </div>
+                    <div ng-if="!vm.usuario.id" flex="4" style="width: 25px;"></div>
+                    <md-divider ng-if="!vm.usuario.id" flex="2" layout="column" layout-align=" none"></md-divider>
+                    <div ng-if="!vm.usuario.id" flex="4" style="width: 25px;"></div>
+                    <div ng-if="!vm.usuario.id" flex="45" >
+                        <md-input-container class="md-block" flex="100">
+                            <label>Login</label>
+                            <input required name="login" ng-model="vm.usuario.login" ng-maxlength="20">
+                            <div ng-messages="form.login.$error">
+                                <div ng-message="required">Login é obrigatório.</div>
+                                <div ng-message="maxlength">Login deve ter no maximo 20 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <md-input-container class="md-block" flex="100">
+                            <label>Senha</label>
+                            <input required name="senha" ng-minlength="4" ng-maxlength="12"
+                                   ng-model="vm.usuario.password" type="password">
+                            <div ng-messages="form.senha.$error">
+                                <div ng-message="required">Senha é obrigatório.</div>
+                                <div ng-message="minlength">Senha deve ter no mínimo 4 caracteres.</div>
+                                <div ng-message="maxlength">Senha deve ter no máximo 12 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <md-input-container ng-disabled="vm.usuario.password.$valid" 
+                                            class="md-block" flex="100">
+                            <label>Confirmar Senha</label>
+                            <input required name="senhaRepetida" match="vm.usuario.password"
+                                   ng-model="senhaRepetida" type="password">
+                            <div ng-messages="form.senhaRepetida.$error">
+                            <div ng-message="required">Confirmar a senha é obrigatório.</div>
+                            <div ng-message="match">Senhas não correspondem</div>
+                            </div>                                        
+                        </md-input-container>                      
+                    </div>
+                </div> 
+                <div flex-sm="50" layout layout-align="end center" class="padding-top-20" style="margin-top: 20px;">
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" type="submit" ng-click="vm.save()">Salvar</md-button>
+                </div> 
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

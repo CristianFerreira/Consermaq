@@ -1,0 +1,33 @@
+<div ng-cloak>
+  <md-content style="background-color: #fff">
+    <md-tabs md-dynamic-height md-border-bottom md-selected="vm.selectedIndex">
+      <md-tab id="ORDEM SERVIÇO">
+        <md-tab-label>ORDEM SERVIÇO</md-tab-label>
+        <md-tab-body>
+          <div class="md-padding">
+            <div ng-include="'app/views/relatorio/template/ordem-servico-template.html'" ng-controller="RelatorioOrdemServicoController as vm"></div>
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="LISTA">
+        <md-tab-label>LISTA ORDEM DE SERVIÇO</md-tab-label>
+        <md-tab-body>
+          <div class="md-padding">
+            <div ng-include="'app/views/relatorio/template/lista-ordem-servico-template.html'" ng-controller="ListaOrdemServicoController as vm"></div>
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="FATURAMENTO">
+        <md-tab-label>FATURAMENTO</md-tab-label>
+        <md-tab-body>
+          <div class="md-padding">
+            <div ng-include="'app/views/relatorio/template/faturamento-template.html'" ng-controller="FaturamentoController as vm"></div>
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <!--Por enquanto tem que ficar assim para funcionar o tabs-->
+      <md-tab id="end" style="display:none !important;" ng-disabled="true">
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

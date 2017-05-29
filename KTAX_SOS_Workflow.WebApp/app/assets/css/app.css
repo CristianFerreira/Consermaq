@@ -122,3 +122,30 @@ md-input-container.md-icon-float {
   background-color: #9f9f9f !important;
   max-height: 30px;
 }
+
+
+/*navbar*/
+.md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    background: #e25a28;
+    color: #e25a28;
+}
+md-tabs.md-default-theme .md-tab.md-active, md-tabs .md-tab.md-active, md-tabs.md-default-theme .md-tab.md-active md-icon, md-tabs .md-tab.md-active md-icon, md-tabs.md-default-theme .md-tab.md-focused, md-tabs .md-tab.md-focused, md-tabs.md-default-theme .md-tab.md-focused md-icon, md-tabs .md-tab.md-focused md-icon {
+    color: rgb(1, 37, 123);
+    font-weight: 600;
+}
+
+
+/*grid ui*/
+
+.ui-grid-menu-button {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #f3f3f3;
+    border: 1px solid #d4d4d4;
+    cursor: pointer;
+    height: 31px;
+    width: 30px;
+    font-weight: normal;
+}

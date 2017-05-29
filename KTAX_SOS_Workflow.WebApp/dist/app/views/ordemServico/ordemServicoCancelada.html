@@ -4,11 +4,10 @@
             <div class="md-toolbar-tools">
                 <span>Ordem de Serviços Cancelados</span>
                 <span flex></span>
-                <md-button ng-show="vm.ordemServicos.length > 0" class="md-fab md-mini"
-                             style="background-color: #f59145;"
+                <md-button ng-show="vm.ordemServicos.length > 0" class="md-icon-button"
                               ng-click="vm.filterShow = true" aria-label="Filtrar">
                     <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
-                    <md-icon style="color: #fff" class="material-icons">search</md-icon>
+                    <md-icon style="color: #000" class="material-icons">search</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
@@ -16,7 +15,7 @@
             <form flex name="filter.form" class="ng-pristine ng-valid flex">
                 <div class="md-toolbar-tools" flex>
                     <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
-                        <md-icon style="color: #f59145" class="material-icons">search</md-icon>
+                        <md-icon style="color: #000" class="material-icons">search</md-icon>
                         <input ng-model="vm.filterSearch" type="text" placeholder="Pesquisar na tabela">
                     </md-input-container>
 
@@ -114,7 +113,8 @@
                                     <md-icon>zoom_in</md-icon>
                                     <md-tooltip md-direction="bottom">Visualizar</md-tooltip>
                                 </md-button>
-                                <md-button class="md-icon-button" ng-click="vm.abrirModalAtivarOrdemServico($event, ordemServico)">
+                                <md-button ng-show="vm.isAdmin" class="md-icon-button" 
+                                           ng-click="vm.abrirModalAtivarOrdemServico($event, ordemServico)">
                                     <md-icon style="color:#f59145;">undo</md-icon>
                                     <md-tooltip md-direction="bottom">Ativar Ordem de Serviço</md-tooltip>
                                 </md-button>

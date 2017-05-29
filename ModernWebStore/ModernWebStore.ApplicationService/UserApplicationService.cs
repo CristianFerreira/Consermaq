@@ -16,14 +16,27 @@ namespace ModernWebStore.ApplicationService
             this._repository = repository;
         }
 
-        public User Register(RegisterUserCommand command)
+        public User Register(User usuario)
         {
-            var user = new User(command.Email, command.Password, command.IsAdmin, command.login, command.nome);
-            user.Register();
-            _repository.Register(user);
+             usuario.Password = usuario.criptografaPassword(usuario.Password);
+             usuario.Register();
+            _repository.Register(usuario);
 
             if (Commit())
-                return user;
+                return usuario;
+
+            return null;
+        }
+
+        public User Update(User usuario)
+        {
+            if(usuario.Password.Length <= 12)
+                usuario.Password = usuario.criptografaPassword(usuario.Password);
+
+            _repository.Update(usuario);
+
+            if (Commit())
+                return usuario;
 
             return null;
         }

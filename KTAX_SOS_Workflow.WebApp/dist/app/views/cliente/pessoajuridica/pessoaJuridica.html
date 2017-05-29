@@ -4,14 +4,14 @@
             <div class="md-toolbar-tools">
                 <span>Pessoa Juridica</span>
                 <span flex></span>
-
-                <md-button ng-show="vm.pessoasFisicas.length > 0" class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude ng-click="vm.filterShow = true"
-                    aria-label="Filtrar">
-                    <md-icon class="material-icons">filter_list</md-icon>
-                    <div class="md-ripple-container"></div>
+                <md-button ng-show="vm.isAdmin" class="md-icon-button" ng-click="vm.modalCreatePessoaJuridica($event)">
+                    <md-tooltip md-direction="bottom">Cadastrar</md-tooltip>
+                    <md-icon style="color: #000" class="material-icons">add circle</md-icon>
                 </md-button>
-                <md-button class="md-icon-button" ng-click="vm.modalCreatePessoaJuridica($event)">
-                    <md-icon class="material-icons">add circle</md-icon>
+                <md-button ng-show="vm.pessoasJuridicas.length > 0" class="md-icon-button" type="button" ng-click="vm.filterShow = true"
+                    aria-label="Filtrar">
+                    <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>   
+                    <md-icon style="color: #000" class="material-icons">search</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
@@ -31,9 +31,7 @@
                 </div>
             </form>
         </md-toolbar>
-
-
-            <md-toolbar class="md-table-toolbar alternate" ng-show="vm.options.rowSelection && vm.selected.length">
+        <md-toolbar class="md-table-toolbar alternate" ng-show="vm.options.rowSelection && vm.selected.length">
                 <div class="md-toolbar-tools">
                     <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selecionado</span>
                     <span flex></span>
@@ -41,11 +39,9 @@
                         <md-icon style="color: #fff;">delete</md-icon>
                     </md-button>
                 </div>
-            </md-toolbar>
-
-          
-            <md-table-container>
-                <table md-table md-row-select="vm.options.rowSelection" multiple="{{vm.options.multiSelect}}" ng-model="vm.selected" md-progress="vm.promise">
+        </md-toolbar>
+        <md-table-container>
+                <table md-table md-row-select="vm.isAdmin ? vm.options.rowSelection : false" multiple="{{vm.isAdmin ? vm.options.multiSelect : false}}" ng-model="vm.selected" md-progress="vm.promise">
                     <thead ng-show="vm.pessoasJuridicas.length > 0" ng-if="!vm.options.decapitate" md-head md-order="vm.query.order" md-on-reorder="logOrder">
                         <tr md-row>
                             <th md-column md-numeric md-order-by="id"><span>Código</span></th>
@@ -56,7 +52,7 @@
                             <th md-column md-numeric md-order-by="bairro"><span>Bairro</span></th>
                             <th md-column md-numeric md-order-by="cep"><span>CEP</span></th>
                             <th md-column md-numeric md-order-by="telefone"><span>Telefone</span></th>                        
-                            <th md-column md-numeric><span>Editar</span></th>                            
+                            <th md-column md-numeric><span>Opções</span></th>                            
                         </tr>
                     </thead>
                     <tbody md-body>
@@ -70,9 +66,14 @@
                             <td md-cell>{{pj.cep | brCep}}</td>
                             <td md-cell>{{pj.telefone | brPhoneNumber}}</td>
                             <td md-cell>
-                            <md-button class="md-icon-button" ng-click="vm.modalEditPessoaJuridica($event, pj)">
-                                   <md-icon>edit</md-icon>
-                             </md-button>
+                                <md-button class="md-icon-button" ng-click="vm.modalDetalhesPessoaJuridica($event, pj)">
+                                    <md-icon>zoom_in</md-icon>
+                                    <md-tooltip md-direction="bottom">Visualizar</md-tooltip>
+                                </md-button>
+                                <md-button ng-show="vm.isAdmin" class="md-icon-button" ng-click="vm.modalEditPessoaJuridica($event, pj)">
+                                    <md-icon>edit</md-icon>
+                                    <md-tooltip md-direction="bottom">Editar</md-tooltip>
+                                </md-button>                               
                             </td>
                         </tr>
                     </tbody>

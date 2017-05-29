@@ -22,6 +22,15 @@ module Consermaq {
     modules.push('mdPickers');
     modules.push('ui.utils.masks');
     modules.push('idf.br-filters');
+    modules.push('validation.match');
+
+    modules.push('ui.grid');
+    modules.push('ui.grid.treeView');
+    modules.push('ui.grid.selection');
+    modules.push('ui.grid.autoResize');
+    modules.push('ui.grid.exporter');
+    
+   
 
     angular.module(appConfig.appName, modules);
 }

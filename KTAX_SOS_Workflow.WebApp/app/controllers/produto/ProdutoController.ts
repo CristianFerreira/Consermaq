@@ -3,7 +3,7 @@
 module Consermaq {
     export class ProdutoController {
 
-        static $inject = ['$location', 'ProdutoService', 'toastr', '$mdDialog', '$timeout'];
+        static $inject = ['$location', 'ProdutoService', 'toastr', '$mdDialog', '$timeout', "$rootScope"];
 
      
         private $location: ILocationService;
@@ -12,6 +12,7 @@ module Consermaq {
         public toastr: Toastr;
         public mdDialog: any;
         public timeout: ITimeoutService;
+        private $rootScope: IRootScope;
         public selected: Array<any>;
         public limitOptions: Array<any>;
         public options: any;
@@ -20,18 +21,21 @@ module Consermaq {
         public promise: any;
         public filterShow: boolean;
         public filterSearch: string;
+        public isAdmin: Boolean;
 
         constructor($location: ILocationService, 
                     produtoService: ProdutoService, 
                     toastr: Toastr,
                     mdDialog: any,
-                    timeout: ITimeoutService) {
+                    timeout: ITimeoutService,
+                    $rootScope: IRootScope) {
 
             this.$location = $location;
             this.produtoService = produtoService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.timeout = timeout;
+            this.$rootScope = $rootScope;
             this.produtos = new Array<Produto>();
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
@@ -51,6 +55,7 @@ module Consermaq {
                             page: 1
             };
             this.showCheck = {};
+            this.isAdmin = this.$rootScope.sistemaContexo.usuarioLogado.isAdmin;
 
             this.loadProduto();
         }

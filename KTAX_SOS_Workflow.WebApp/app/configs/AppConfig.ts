@@ -43,7 +43,8 @@ var appConfig = {
                 finalizar: appConfig.rootServiceRoute + "api/ordemServico/finalizar",
                 cancelar: appConfig.rootServiceRoute + "api/ordemServico/cancelar",
                 ativarOrdemServico: appConfig.rootServiceRoute + "api/ordemServico/ativarOrdemServico",
-                retornarPendente: appConfig.rootServiceRoute + "api/ordemServico/retornarPendente"
+                retornarPendente: appConfig.rootServiceRoute + "api/ordemServico/retornarPendente",
+                buscarPorData: appConfig.rootServiceRoute + "api/ordemServico/buscarPorData",
             },  
             servico: {
                 listAll: appConfig.rootServiceRoute + "api/servico/listAll",

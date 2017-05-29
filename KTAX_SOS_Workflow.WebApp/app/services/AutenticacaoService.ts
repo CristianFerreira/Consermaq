@@ -1,4 +1,3 @@
-
 /// <reference path="../configs/_all.ts" />
 
 module Consermaq {

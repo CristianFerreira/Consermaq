@@ -18,6 +18,7 @@
 /// <reference path="../contracts/IRouteParamsService.ts" />
 /// <reference path="../contracts/ITimeoutService.ts" />
 
+/// <reference path="../directiva/passwordValidation.ts" />
 
 /// <reference path="../models/api-models/User.ts" />
 /// <reference path="../models/api-models/SistemaContexto.ts" />
@@ -65,13 +66,22 @@
 /// <reference path="../controllers/ordemServico/modal/VisualizarController.ts" />
 /// <reference path="../controllers/ordemServico/modal/AtivarOrdemServicoController.ts" />
 
-
+/// <reference path="../controllers/usuario/UsuarioController.ts" />
+/// <reference path="../controllers/usuario/ModalUsuarioController.ts" />
 
 /// <reference path="../controllers/produto/ProdutoController.ts" />
 /// <reference path="../controllers/produto/ModalProdutoController.ts" />
 /// <reference path="../controllers/produto/ModalDeleteProdutoController.ts" />
 
 /// <reference path="../controllers/shareds/SharedController.ts" />
+/// <reference path="../controllers/shareds/ModalConfiguracaoUsuarioController.ts" />
+
+/// <reference path="../controllers/relatorio/RelatorioController.ts" />
+/// <reference path="../controllers/relatorio/ListaOrdemServicoController.ts" />
+/// <reference path="../controllers/relatorio/FaturamentoController.ts" />
+/// <reference path="../controllers/relatorio/RelatorioOrdemServicoController.ts" />
+
+
 
 
 

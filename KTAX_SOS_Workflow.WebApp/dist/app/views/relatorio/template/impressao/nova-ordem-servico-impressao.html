@@ -1,0 +1,29 @@
+<div id="printThisElement" class="impressaoOrdemServico">
+      <div layout="row" flex>
+         <img src="app/assets/images/cabecalho2.jpg" alt="Consermaq" style="width: 100%;float: left;">
+      </div>
+      <div>
+           <div flex=100>
+               </br><h4 style="margin-left: 15px;"><strong>ORDEM DE SERVIÇO:</strong>{{vm.ordemServico.id}} </h4>
+               <h4 style="margin-left: 150px;"><strong>DATA DE ABERTURA:</strong> {{vm.ordemServico.dataInicial | date:"dd/MM/yyyy"}} às {{vm.ordemServico.dataInicial | date:"HH:mm"}}</h4></br></br>
+           </div>
+           <div flex=100>
+              </br><h4 style="margin-left: 15px;"><strong><i>INFORMAÇÕES DO CLIENTE</i></strong></h4></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Nome: </strong> {{vm.cliente.nome}} - {{vm.cliente.cpf}} {{vm.cliente.cnpj}}</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Rua: </strong> {{vm.cliente.rua}} - N° {{vm.cliente.numero}}</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Bairro: </strong> {{vm.cliente.bairro}} - Porto Alegre</h5></br>
+           </div>
+           <div flex=100  style="margin-left: 15px;">
+               <h5><strong>Telefone:</strong> {{vm.cliente.telefone}} </h5></br></br></br>
+           </div>
+      </div>
+      <div layout="row" flex>
+          <img src="app/assets/images/corpoOrdemServico.png" alt="Consermaq" style="width: 100%;">
+      </div>
+</div>

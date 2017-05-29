@@ -1,4 +1,5 @@
 ﻿using ModernWebStore.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace ModernWebStore.Domain.Services
@@ -18,5 +19,6 @@ namespace ModernWebStore.Domain.Services
         OrdemServico RetornarPendente(int id);
         OrdemServico Finish(int id);
         OrdemServico AtivarOrdemServico(OrdemServico ordemServico);
+        List<OrdemServico> BuscarPorData(DateTime dataInicial, DateTime? dataEncerramento);
     }
 }

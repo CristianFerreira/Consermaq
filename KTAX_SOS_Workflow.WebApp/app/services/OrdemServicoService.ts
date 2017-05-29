@@ -50,6 +50,10 @@ module Consermaq {
          public retornarPendente(ordemServico: OrdemServico): any{     
               return super.postFromUrl(appConfig.serviceUrls().ordemServico.retornarPendente, ordemServico);
          }
+
+         public buscarPorData(dataInicial :Date, dataFinal :Date) :any{
+              return super.postFromUrl(appConfig.serviceUrls().ordemServico.buscarPorData, {dataInicial: dataInicial, dataEncerramento: dataFinal})
+         }
     }
 
     angular.module(appConfig.appName).service("OrdemServicoService", OrdemServicoService);

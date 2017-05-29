@@ -1,35 +1,4 @@
-﻿<!--<nav class="navbar navbar-default navbar-inverse" role="navigation">
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" style="border-top:darkblue 1px double">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="#/"><span class="glyphicon"></span>Cadastro de relatórios</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav" style="padding-top: 8px">
-            <a href="#/">
-                <img src="app/assets/images/logoConsermaq.svg" alt="Consermaq" style="max-width:100px; width: 35px;float: left">
-                <span style="font-size:x-large;color:white;">
-                   Consermaq
-                </span>
-            </a>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li ng-if="sistemaContexo.usuarioLogado" style="padding-top: 14px;">
-                <span style="color:white;">
-                     <i style="margin-right: 10px">{{ sistemaContexo.usuarioLogado.strNomeUsuario }}</i>
-                     <a style="color: white;" ng-click="vm.logout()">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                        Sair
-                    </a>
-                </span>
-            </li>
-        </ul>
-        <ul></ul>
-    </div>
-</nav>-->
-
-
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+﻿<nav class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="nav navbar-nav" style="padding: 12px 25px;">
             <a href="#/">
                 <img src="app/assets/images/logoConsermaq.svg" alt="Consermaq" style="max-width:100px; width: 35px;float: left">
@@ -41,9 +10,13 @@
         <div class="cabecalho" style="height: 60px;">
         <div class="topBarTopMenu" style="color: White;">         
             <div style="padding-top: 14px;" class="ng-scope">
-                <span ng-if="sistemaContexo.usuarioLogado" style="color:white; font-size: 14px;">
-                     <i style="margin-right: 10px" class="ng-binding">{{ sistemaContexto.usuarioLogado.email }}</i>
-                     <a style="color: white;" ng-click="vm.logout()" href="">
+                <span ng-if="sistemaContexo.usuarioLogado" style="color:white; font-size: 14px; padding-right: 20px;">
+                     <a href="" style="color: white; padding-right: 25px;" ng-click="vm.modalConfigurarUsuario($event, sistemaContexo.usuarioLogado)">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <md-tooltip md-direction="bottom">configurações</md-tooltip> 
+                        {{sistemaContexo.usuarioLogado.nome}}
+                     </a>
+                     <a href="" style="color: white;" ng-click="vm.logout()" href="">
                         <span class="glyphicon glyphicon-log-out"></span>
                         Sair
                     </a>
@@ -81,7 +54,7 @@
                         </li>
                         <li role="menuitem" >
                             <a href="#/ordemServicoCancelada">     
-                                <span class="glyphicon"></span>Lista ordem de serviços canceladas
+                                <span class="glyphicon"></span>Lista de cancelados
                             </a> 
                         </li>                       
                     </ul>
@@ -99,6 +72,25 @@
                     <button  type="prosegur-button " class="btn btn-primary" style="border:#01257b 1px double;background-color:#01257b;" >
                         <a href="#/carga-documentos" style="color:white;"> Fornecedor </a> 
                     </button></a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <div class="btn-group"  uib-dropdown keyboard-nav="true" >
+                    <button ng-show="sistemaContexo.usuarioLogado.isAdmin" type="button" style="border:#01257b 1px double;background-color:#01257b;" id="cadastro-button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                        Gerenciamento <span class="caret"></span></a>
+                    </button>
+                    <ul class="dropdown-menu"  uib-dropdown-menu role="menu" aria-labelledby="cadastro-button">
+                        <li role="menuitem" >
+                            <a href="#/usuarios">
+                                <span class="glyphicon"></span>Usuários
+                            </a>
+                        </li>
+                        <li role="menuitem" >
+                            <a href="#/relatorios">
+                                <span class="glyphicon"></span>Relatórios
+                            </a>
+                        </li>                        
+                    </ul>
                 </div>
             </li>
         </ul>    

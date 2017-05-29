@@ -19,6 +19,7 @@ namespace ModernWebStore.Domain.Entities
         public string Observacao { get; set; }
         public string CPF { get; set; }
         public string CNPJ { get; set; }
+        public bool Bloqueado { get; set; }
         
         public ICollection<OrdemServico> OrdemServicos { get; set; }
 

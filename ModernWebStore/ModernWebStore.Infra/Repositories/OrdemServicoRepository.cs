@@ -38,9 +38,19 @@ namespace ModernWebStore.Infra.Repositories
             return _context.OrdemServico.Include(os => os.Cliente).Where(os => os.Status == Domain.Enums.EOrderStatus.Canceled).ToList();
         }
 
+        public List<OrdemServico> BuscarPorData(DateTime dataInicial, DateTime? dataEncerramento)
+        {
+            if(dataEncerramento != null)
+                 return _context.OrdemServico.Include(os => os.Cliente).Where(x => x.DataEncerramento >= dataInicial 
+                 && x.DataEncerramento <= dataEncerramento && x.Status == Domain.Enums.EOrderStatus.Finish).ToList();
+            else
+                return _context.OrdemServico.Include(os => os.Cliente).Where(x => x.DataEncerramento >= dataInicial
+                                           && x.Status == Domain.Enums.EOrderStatus.Finish ).ToList();
+        }
+
         public OrdemServico Get(int id)
         {
-            return _context.OrdemServico.Include(os => os.Cliente).Include(s=>s.Servicos).First(x=>x.Id == id);
+            return _context.OrdemServico.Find(id);
         }
 
         public List<OrdemServico> Get(int skip, int take)

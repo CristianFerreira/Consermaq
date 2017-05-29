@@ -12,8 +12,7 @@ var paths = {
     css: {
         src: [
             'app/assets/css/bootstrap-kpmg.css',
-            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',
-            'node_modules/angular-ui-grid/ui-grid.css',
+            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',           
             'node_modules/angular-xeditable/dist/css/xeditable.css',
             'node_modules/angular-toastr/dist/angular-toastr.css',
             'node_modules/font-awesome/css/font-awesome.min.css',
@@ -29,7 +28,7 @@ var paths = {
             'bower_components/angular-material-icons/angular-material-icons.css',
             'node_modules/mdPickers/dist/mdPickers.min.css',
             'node_modules/angular-material-expansion-panel/dist/md-expansion-panel.min.css',
-            
+            'node_modules/angular-ui-grid/ui-grid.css',      
         ],
         destProject: 'app/build/css/',
         dest: 'dist/app/build/css/',
@@ -59,7 +58,6 @@ var paths = {
             'bower_components/dist/jquery/jquery.js',
             'bower_components/lodash/lodash.js',           
             'node_modules/angular/angular.js',
-            'node_modules/angular-mocks/angular-mocks.js',
             'node_modules/angular-aria/angular-aria.js',
             'bower_components/angular-sanitize/angular-sanitize.js',
             'node_modules/angular-messages/angular-messages.js',
@@ -67,6 +65,8 @@ var paths = {
             'node_modules/angular-route/angular-route.js',
             'node_modules/angular-touch/angular-touch.js',
             'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+            'node_modules/pdfmake/build/pdfmake.min.js',
+            'node_modules/pdfmake/build/vfs_fonts.js',
             'node_modules/angular-ui-grid/ui-grid.js',
             'node_modules/chart.js/dist/Chart.js',
             'node_modules/angular-chart.js/angular-chart.js',
@@ -91,6 +91,7 @@ var paths = {
             'node_modules/string-mask/src/string-mask.js',
             'node_modules/angular-input-masks/releases/angular-input-masks-standalone.min.js',
             'node_modules/angular-br-filters/release/angular-br-filters.min.js',
+            'node_modules/angular-validation-match/dist/angular-validation-match.min.js',
           
         ],
         destProject: 'app/build/',

@@ -1,0 +1,99 @@
+<md-dialog aria-label="Cadastro de usuário" flex="40" ng-cloak>
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="center">Configuração de usuário</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons" style="color: #fff">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row" layout-xs="column">
+                    <div flex="45">
+                        <md-input-container class="md-block" flex="100">
+                            <label>Nome</label>
+                            <input required name="nome" ng-model="vm.usuario.nome" ng-maxlength="50">
+                            <div ng-messages="form.nome.$error">
+                            <div ng-message="required">Nome é obrigatório.</div>
+                            <div ng-message="maxlength">Nome deve ter no maximo 50 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <md-input-container class="md-block" flex="100">
+                            <label>E-mail</label>
+                            <input required name="email" ng-model="vm.usuario.email" 
+                                   ng-pattern="vm.validateEmail"  ng-maxlength="50">
+                            <div ng-messages="form.email.$error">
+                            <div ng-message="required">E-mail é obrigatório.</div>
+                            <div ng-message="pattern">E-mail com formato inválido.</div>
+                            <div ng-message="maxlength">E-mail deve ter no maximo 50 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                        <md-input-container ng-show="vm.usuario.id" class="md-block" flex="100">
+                            <label>Login</label>
+                            <input required name="login" ng-model="vm.usuario.login" ng-maxlength="20">
+                            <div ng-messages="form.login.$error">
+                                <div ng-message="required">Login é obrigatório.</div>
+                                <div ng-message="maxlength">Login deve ter no maximo 20 caracteres.</div>
+                            </div>                                        
+                        </md-input-container>
+                    </div>
+                    <div flex="4" style="width: 25px;"></div>
+                    <md-divider flex="2" layout="column" layout-align=" none"></md-divider>
+                    <div flex="4" style="width: 25px;"></div>
+                    <div flex="45">
+                       <md-switch  md-no-ink aria-label="alterarSenha" class="md-primary" 
+                                   ng-model="vm.alterarSenha" ng-click="vm.limparCamposAlterarSenha()" flex="100">
+                                Alterar Senha: <strong>{{ vm.alterarSenha == true ? 'Sim' : 'Não' }}</strong>                      
+                       </md-switch>
+                       <div flex="100" ng-show="vm.alterarSenha">
+                        <md-input-container class="md-block" flex="100">
+                                <label>Senha Atual</label>
+                                <input ng-required="vm.alterarSenha" id="senhaAtual" name="senhaAtual" 
+                                        ng-minlength="4" ng-maxlength="12"
+                                        ng-model="vm.senhaAtual" type="password" passwordvalidation>
+                                <div ng-messages="form.senhaAtual.$error">
+                                    <div ng-message="required">Senha Atual é obrigatório.</div>
+                                    <div ng-message="passwordvalidation">Senha inválida.</div>
+                                </div>                                        
+                            </md-input-container>     
+                            <md-input-container class="md-block" flex="100">
+                                <label>Nova Senha</label>
+                                <input ng-disabled="form.senhaAtual.$invalid || form.senhaAtual.$pristine" 
+                                       ng-required="form.senhaAtual.$valid && vm.alterarSenha" name="novaSenha"
+                                       ng-minlength="form.senhaAtual.$valid ? 4 : false" 
+                                       ng-maxlength="form.senhaAtual.$valid ? 12 : false"
+                                       ng-model="vm.novaSenha" type="password">
+                                <div ng-messages="form.novaSenha.$error">
+                                    <div ng-message="required">Nova Senha é obrigatório.</div>
+                                    <div ng-message="minlength">Nova Senha deve ter no mínimo 4 caracteres.</div>
+                                    <div ng-message="maxlength">Nova Senha deve ter no máximo 12 caracteres.</div>
+                                </div>                                        
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="100">
+                                <label>Confirmar Senha</label>
+                                <input ng-required="form.novaSenha.$valid && form.senhaAtual.$valid && vm.alterarSenha" 
+                                       name="senhaRepetida" 
+                                       match="vm.novaSenha"
+                                       ng-disabled="form.novaSenha.$invalid || form.novaSenha.$pristine || form.senhaAtual.$invalid" 
+                                       ng-model="vm.senhaRepetida" type="password">
+                                <div ng-messages="form.senhaRepetida.$error">
+                                <div ng-message="required">Confirmar a senha é obrigatório.</div>
+                                <div ng-message="match">Senhas não correspondem</div>
+                                </div>                                        
+                            </md-input-container>     
+                       </div>                 
+                    </div>
+                </div> 
+                <div flex-sm="50" layout layout-align="end center" class="padding-top-20" style="margin-top: 20px;">
+                        <md-button class="md-raised md-primary" aria-label="Close dialog" ng-disabled="form.$invalid" 
+                                    type="submit" ng-click="vm.edit()">Salvar
+                        </md-button>
+                </div> 
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+

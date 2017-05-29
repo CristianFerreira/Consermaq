@@ -1,5 +1,6 @@
 ﻿using ModernWebStore.Domain.Entities;
 using ModernWebStore.Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -140,6 +141,26 @@ namespace ModernWebStore.Api.Controllers
         {
             var OrdemServicoCanceled = _service.Cancel(ordemServico);
             return CreateResponse(HttpStatusCode.OK, OrdemServicoCanceled);
+        }
+
+        [HttpPost]
+        [Route("api/ordemServico/buscarPorData/")]
+        public Task<HttpResponseMessage> BuscarPorData([FromBody] dynamic parametros)
+        {
+
+            var dataInicial = (DateTime)parametros.dataInicial;
+            var dataEncerramento = parametros.dataEncerramento;
+            dataEncerramento = dataEncerramento != null ? dataEncerramento : null;
+
+            if (dataEncerramento != null)
+            {
+                dataEncerramento = (DateTime)dataEncerramento;
+                dataEncerramento = dataEncerramento.Date.AddDays(1).AddTicks(-1);
+            }
+
+            var ordemServicos = _service.BuscarPorData(dataInicial.Date, dataEncerramento);
+
+            return CreateResponse(HttpStatusCode.OK, ordemServicos);
         }
 
     }

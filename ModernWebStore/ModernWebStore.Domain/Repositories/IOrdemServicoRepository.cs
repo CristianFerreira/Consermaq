@@ -1,4 +1,5 @@
 ﻿using ModernWebStore.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 
@@ -17,5 +18,6 @@ namespace ModernWebStore.Domain.Repositories
         OrdemServico Pendente(int id);
         OrdemServico Finish(int id);
         OrdemServico Canceled(int id);
+        List<OrdemServico> BuscarPorData(DateTime dataInicial, DateTime? dataEncerramento);
     }
 }

@@ -1,0 +1,121 @@
+<md-toolbar class="md-accent" style="background-color: #e25a28" flex>
+    <div class="md-toolbar-tools">
+        <h4>Impressão de Ordem de Serviço</h4>
+    </div>
+</md-toolbar>
+<md-content layout-padding flex>
+    <div layout="row" flex>
+        <div layout="row" flex="40">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>N° Ordem de Serviço</label>
+                <input name="n°OrdemServico" ng-model="vm.numOrdemServico" ui-number-mask="0">
+            </md-input-container>
+            <md-button class="md-icon-button" ng-click="vm.buscarOrdemServico()" aria-label="Pesquisar">
+                <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
+                <md-icon style="color: #000" class="material-icons">search</md-icon>
+            </md-button>
+        </div>
+        <div ng-show="vm.ordemServico.id" flex="5"></div>
+        <div ng-show="vm.ordemServico.id" flex="40">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Cliente</label>
+                <input name="cliente" ng-model="vm.cliente" ng-disabled="true">
+            </md-input-container>
+        </div>
+        <div ng-show="vm.ordemServico.id" flex="5"></div>
+        <div flex="10" ng-show="vm.ordemServico.id" style="padding: 25px;">
+            <span style="float:right">
+                <img ng-show="vm.ordemServico.status == 1" src="app/assets/images/semaphore/semaphore-green-icon.ico" style="height: 26px; width: 26px;">
+                <img ng-show="vm.ordemServico.status == 2" src="app/assets/images/semaphore/semaphore-orange-icon.ico" style="height: 26px; width: 26px;">
+                <img ng-show="vm.ordemServico.status == 3" src="app/assets/images/semaphore/semaphore-red-icon.ico" style="height: 26px; width: 26px;">
+                <md-tooltip md-direction="bottom">{{vm.ordemServico.status == 1 ? 'Aberto' : (vm.ordemServico.status == 2 ? 'Pendente' : 'Finalizado')}}</md-tooltip>
+            </span>
+        </div>
+    </div>
+    <div layout="row" layout-align="end center" flex>
+        <md-button class="md-raised md-primary" ng-print print-element-id="ordemServico" ng-show="vm.ordemServico.id" ><i class="fa fa-print"></i> Imprimir</md-button>
+    </div>
+</md-content>
+
+
+<!--Ordem Servico Print-->
+<div id="ordemServico" class="impressaoOrdemServico">
+    <div layout="row" flex>
+        <img src="app/assets/images/cabecalho2.jpg" alt="Consermaq" style="width: 100%;float: left;">
+    </div>
+    <div>
+        <div flex=100>
+            </br>
+            <h4 style="margin-left: 15px;"><strong>ORDEM DE SERVIÇO:</strong>{{vm.ordemServico.id}} </h4>
+            <h4 style="margin-left: 230px;"><strong>DATA DE ABERTURA:</strong> {{vm.ordemServico.dataInicial | date:"dd/MM/yyyy"}}</h4>
+            </br>
+            </br>
+            <div ng-show="vm.ordemServico.dataEncerramento != null">
+                <h4 style="margin-left: 410px;"><strong>DATA DE ENCERRAMENTO:</strong> {{vm.ordemServico.dataEncerramento | date:"dd/MM/yyyy"}}</h4>
+                </br>
+                </br>
+            </div>
+        </div>
+        <div flex="100">
+            <h4 style="margin-left: 15px;"><strong><i>SERVIÇO SOLICITADO</i></strong></h4>
+            </br>
+             <h5 style="margin-left: 15px;">{{vm.ordemServico.servicoSolicitado}}</h5>
+            </br>
+        </div>
+        <div flex=100>
+            </br>
+            <h4 style="margin-left: 15px;"><strong><i>INFORMAÇÕES DO CLIENTE</i></strong></h4>          
+            </br>
+        </div>
+        <div style="margin-left: 15px;">
+            <h5><strong>Nome: </strong> {{vm.ordemServico.cliente.nome}} - {{vm.ordemServico.cliente.cpf}} {{vm.ordemServico.cliente.cnpj}}</h5>
+            </br>
+        </div>         
+        <div style="margin-left: 15px;">
+            <h5><strong>Rua: </strong> {{vm.ordemServico.cliente.rua}} - N° {{vm.ordemServico.cliente.numero}}</h5>
+            </br>
+        </div>
+        <div style="margin-left: 15px;">
+            <h5><strong>Bairro: </strong> {{vm.ordemServico.cliente.bairro}} - Porto Alegre</h5>
+            </br>
+        </div>
+        <div flex=100 style="margin-left: 15px;">
+            <h5><strong>Telefone:</strong> {{vm.ordemServico.cliente.telefone}} </h5>
+            </br>
+            </br>
+        </div>
+    </div>
+    <div ng-show="vm.ordemServico.status == 1" layout="row" flex>
+        <img src="app/assets/images/corpoOrdemServico.png" alt="Consermaq" style="width: 100%;">
+    </div>
+    <div ng-show="vm.ordemServico.servicos.length > 0" layout="row" flex>
+        <div ng-repeat="servico in vm.ordemServico.servicos">
+            <img src="app/assets/images/linha.png" alt="Consermaq" style="width: 100%;">
+                </br>
+                 </br>
+                <h4 style="margin-left: 15px;"><strong><i>SERVIÇO:</i></strong> {{servico.servicoEfetuado}} </h4>
+                </br>
+                </br>
+                <h5 style="margin-left: 15px;"><strong>Início do Serviço: </strong> {{servico.inicioServico | date:"dd/MM/yyyy"}} </h5>
+                <h5 style="margin-left: 350px;"><strong>Fim do Serviço:</strong> {{servico.fimServico | date:"dd/MM/yyyy"}} </h5>
+                </br>
+                </br>
+                <h5 style="margin-left: 15px;"><strong>Valor do serviço: </strong>{{servico.valor | finance:true:2}} </h5>
+                </br>
+                </br>
+                <h5 ng-show="servico.servicoItems.length > 0" style="margin-left: 15px;"><strong><i>MATERIAL USADO</i></strong></h5>
+                <div ng-repeat="item in servico.servicoItems">
+                    </br>
+                    <h5 style="margin-left: 15px;">{{item.product.title}} - <strong>{{item.quantity}} un. </strong>  
+                    </h5>
+                </div>
+                </br>
+                 </br>
+                <img ng-show="($index == (vm.ordemServico.servicos.length - 1))" 
+                src="app/assets/images/linha.png" alt="Consermaq" style="width: 100%;">
+        </div>
+        </br>
+        </br>
+        <h4 style="margin-left: 15px;"><strong>Valor total:</strong> {{vm.ordemServico.valorTotal | finance:true:2}} </h4>
+    </div>
+</div>

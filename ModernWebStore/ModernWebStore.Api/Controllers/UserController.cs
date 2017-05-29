@@ -1,5 +1,6 @@
 ﻿using ModernWebStore.Api.Security;
 using ModernWebStore.Domain.Commands.UserCommands;
+using ModernWebStore.Domain.Entities;
 using ModernWebStore.Domain.Services;
 using System.Net;
 using System.Net.Http;
@@ -27,21 +28,21 @@ namespace ModernWebStore.Api.Controllers
         }
 
         [HttpPost]
-        [Route("api/users")]
-        public Task<HttpResponseMessage> Post([FromBody]dynamic body)
+        [Route("api/user/create")]
+        public Task<HttpResponseMessage> Create(User usuario)
         {
-            var command = new RegisterUserCommand(
-                email: (string)body.email,
-                password: (string)body.password,
-                isAdmin: (bool)body.isAdmin,
-                login: (string)body.login,
-                nome: (string)body.nome
-
-            );
-
-            var user = _service.Register(command);
+            var user = _service.Register(usuario);
 
             return CreateResponse(HttpStatusCode.Created, user);
+        }
+
+        [HttpPost]
+        [Route("api/user/update")]
+        public Task<HttpResponseMessage> Update(User usuario)
+        {
+            var user = _service.Update(usuario);
+
+            return CreateResponse(HttpStatusCode.OK, user);
         }
     }
 }

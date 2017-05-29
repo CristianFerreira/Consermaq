@@ -40,7 +40,7 @@ module Consermaq {
                     this.$location.url("/");
                 })
                 .catch((response) => {
-                    this.toastr.error("Usuário ou senha inválido ", 
+                    this.toastr.error(response.data.error_description, 
                                 "Erro ao autenticar");
                 });
         }

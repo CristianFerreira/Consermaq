@@ -3,7 +3,8 @@
 module Consermaq {
     export class OrdemServicoController {
 
-        static $inject = ['$location', 'OrdemServicoService', 'toastr', '$mdDialog', '$timeout','$q','$mdToast'];
+        static $inject = ['$location', 'OrdemServicoService', 'toastr', '$mdDialog',
+                          '$timeout','$q','$mdToast', '$rootScope'];
 
      
         private $location: ILocationService;
@@ -13,6 +14,7 @@ module Consermaq {
         public timeout: ITimeoutService;
         public $q: ng.IQService;
         public $mdToast: any;
+        private $rootScope: IRootScope;
         public selected: Array<any>;
         public limitOptions: Array<any>;
         public options: any;
@@ -22,6 +24,7 @@ module Consermaq {
         public filterSearch: string;
         public ordemServicos: Array<OrdemServico>;
         public ordemServicosTotal: Array<OrdemServico>;
+        public isAdmin: Boolean;
 
         //filtros table
         public status :any;
@@ -41,7 +44,8 @@ module Consermaq {
                     mdDialog: any,
                     timeout: ITimeoutService,
                     $q: ng.IQService,
-                    $mdToast: any) {
+                    $mdToast: any,
+                    $rootScope: IRootScope) {
 
             this.$location = $location;
             this.ordemServicoService = ordemServicoService;
@@ -50,6 +54,7 @@ module Consermaq {
             this.timeout = timeout;
             this.$q = $q;
             this.$mdToast = $mdToast;
+            this.$rootScope = $rootScope;
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
             this.options = {
@@ -69,6 +74,8 @@ module Consermaq {
             };
             this.ordemServicos = new Array<OrdemServico>();
             this.ordemServicosTotal =  new Array<OrdemServico>();
+            this.isAdmin = this.$rootScope.sistemaContexo.usuarioLogado.isAdmin;
+
             this.statusFiltro = new Array<number>();
             this.status = [{id:1, nome:'Aberto'}, {id:2, nome:'Pendente'}, {id:3, nome:'Finalizado'}];
             this.tiposClientes = [{id:1, nome:'Pessoa Física'}, {id:2, nome:'Pessoa Jurídica'}];

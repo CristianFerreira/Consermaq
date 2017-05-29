@@ -143,7 +143,7 @@
                                                 </div> 
                                                  <div layout="row" flex="100" ng-show="$index == vm.selectedUserIndex">
                                                             <md-input-container class="md-block" flex="30">
-                                                                <label>Valor</label>
+                                                                <label>Valor do serviço</label>
                                                                 <input name="valor" ng-model="servico.valor" ui-money-mask="2" ng-disabled="true">                                       
                                                             </md-input-container>
                                                 </div>
@@ -177,7 +177,7 @@
                         </div>
                 </md-content>
                  <div ng-show="vm.ordemServico.valorTotal > 0" layout="row" flex="100">
-                             <h4>Valor Total: <strong>R$ {{vm.ordemServico.valorTotal}}</strong></h4>
+                             <h4>Valor Total: <strong>R$ {{vm.ordemServico.valorTotal | finance:true:2}}</strong></h4>
                  </div>
                 <div layout="row" layout-align="end center" flex="100">
                        <md-button class="md-raised md-primary" ng-click="vm.save()" ng-show="vm.ordemServico.id" ng-disabled="ordemServicoForm.$invalid">Salvar</md-button>

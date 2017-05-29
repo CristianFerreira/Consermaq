@@ -8,22 +8,21 @@ namespace ModernWebStore.Domain.Entities
     {
         public User() { }
 
-        public User(string email, string password, bool isAdmin, string login, string nome)
-        {
-            this.Email = email;
-            this.Password = StringHelper.Encrypt(password);
-            this.IsAdmin = isAdmin;
-            this.Login = login;
-            this.Nome = nome;
-        }
-
-        public int Id { get; private set; }
-        public string Email { get; private set; }
-        public string Login { get; private set; }
-        public string Password { get; private set; }
-        public bool IsAdmin { get; private set; }
-        public string Nome { get; private set; }
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public bool IsAdmin { get; set; }
+        public string Nome { get; set; }
+        public bool Bloqueado { get; set; }
         
+
+        public string criptografaPassword(string password)
+        {
+            password = StringHelper.Encrypt(password);
+
+            return password;
+        }
 
         public void Authenticate(string email, string login, string password)
         {

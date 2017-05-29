@@ -1,0 +1,71 @@
+<div layout="row" flex>
+    <div layout="row" layout-align="center center" flex>
+        <mdp-date-picker name="dataInicioFiltro" mdp-placeholder="Data Inicial Encerramento" flex="25" mdp-format="DD/MM/YYYY" ng-model="vm.dataInicialFiltro"
+            mdp-max-date="vm.dataMaxCalendarioInicio">
+            <div ng-messages="dataInicioFiltro.$error">
+                <div ng-message="format">Formato inválido</div>
+            </div>
+        </mdp-date-picker>
+        <span layout="row" style="padding: 0px 0px 12px 15px;" flex="3">Até</span>
+        <mdp-date-picker flex="25" name="dataFinalFiltro" mdp-placeholder="Data Final  Encerramento" flex mdp-format="DD/MM/YYYY" ng-model="vm.dataFinalFiltro"
+            mdp-disabled="!vm.dataInicialFiltro" mdp-min-date="vm.dataInicialFiltro" mdp-max-date="vm.dataMaxCalendarioInicio">
+            <div ng-messages="dataFinalFiltro.$error">
+                <div ng-message="format">Formato inválido</div>
+            </div>
+        </mdp-date-picker>
+        <md-button flex="3" style="margin-bottom: 25px;" class="md-icon-button" ng-click="vm.buscarOrdemServico()" ng-disabled="!vm.dataInicialFiltro"
+            aria-label="Pesquisar">
+            <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
+            <md-icon style="color: #000" class="material-icons">search</md-icon>
+        </md-button>
+    </div>
+</div>
+<div layout="row" layout-align="end center" flex="100" ng-show="vm.ordemServico.length > 0">
+        <md-button class="md-raised md-primary" ng-print print-element-id="ordemServicos">
+            <i class="fa fa-print"></i> Imprimir
+        </md-button>
+</div>
+<div layout="row" flex="100" ng-show="vm.ordemServico.length > 0">
+    <md-list ng-cloak flex>
+        <md-subheader class="md-no-sticky">Ordem de Serviços Finalizados</md-subheader>
+        <md-list-item ng-repeat="ordemServico in vm.ordemServico">
+            <p flex><strong>N° Ordem Serviço: </strong> {{ ordemServico.id }} </p> 
+            <p flex="50"> <strong>Cliente: </strong> {{ordemServico.cliente.nome}} </p>
+            <p flex="20"><strong>Encerramento: </strong>{{ordemServico.dataEncerramento | date:"dd/MM/yyyy"}}</p>
+            <p layout="row" layout-align="end center" flex><strong>{{ ordemServico.valorTotal | finance:true:2}} </strong></p>
+        </md-list-item>
+        <md-divider></md-divider>
+        </br>
+        <span layout="row" layout-align="end center" flex="100" ><strong>Valor Total:</strong> 
+             {{vm.valor | finance:true:2}}
+        </span>
+    </md-list>
+</div>
+
+
+
+<!--Ordem Servico Print-->
+<div id="ordemServicos" class="impressaoOrdemServico">
+    <div layout="row" flex>
+        <img src="app/assets/images/cabecalho2.jpg" alt="Consermaq" style="width: 100%;float: left;">
+    </div>
+        <div flex=100>
+            </br>
+            </br>
+            <h3 style="margin-left: 15px;"><strong><i>Ordem de Serviços</i></strong></h3>
+            </br>
+            </br>
+            <img src="app/assets/images/linha.png" alt="Consermaq" style="width: 100%;">
+            <div ng-repeat="ordemServico in vm.ordemServico">
+            </br>
+            <h4 style="margin-left: 10px;"><strong>Ordem de serviço:</strong>{{ordemServico.id}} </h4>
+            <h4 style="margin-left: 100px;"><strong>Encerramento:</strong> {{ordemServico.dataEncerramento | date:"dd/MM/yyyy"}}</h4>
+            <h4 style="margin-left: 120px;"><strong></strong> {{ordemServico.valorTotal | finance:true:2}}</h4>
+            </br>
+            </div>
+            <img src="app/assets/images/linha.png" alt="Consermaq" style="width: 100%;">
+            </br>
+            </br>
+            <h4 style="margin-left: 510px;"><strong><i>VALOR TOTAL:</i></strong> {{vm.valor | finance:true:2}}</h4>
+        </div>
+</div>

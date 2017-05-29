@@ -16,12 +16,14 @@ namespace ModernWebStore.ApplicationService
         private IServicoItemRepository _repositoryServicoItem;
         private IProductRepository _productRepository;
         private IUserRepository _userRepository;
+        private IClienteRepository _clienteRepository;
 
         public OrdemServicoApplicationService(IOrdemServicoRepository repository,
                                               IServicoApplicationService servicoApplicationService, 
                                               IServicoItemRepository repositoryServicoItem,
                                               IProductRepository productRepository, 
                                               IUserRepository userRepository,
+                                              IClienteRepository clienteRepository,
                                               IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             this._repository = repository;
@@ -29,6 +31,7 @@ namespace ModernWebStore.ApplicationService
             this._repositoryServicoItem = repositoryServicoItem;
             this._productRepository = productRepository;
             this._userRepository = userRepository;
+            this._clienteRepository = clienteRepository;
         }
 
         public OrdemServico Create(OrdemServico ordemServico)
@@ -87,6 +90,7 @@ namespace ModernWebStore.ApplicationService
             var ordemServico = _repository.Get(id);
             if (ordemServico != null)
             {
+                var cliente = _clienteRepository.Get(ordemServico.ClienteId);
                 var servicos = _servicoApplicationService.GetOrdemServico(id);
 
                 if (servicos.Count > 0)
@@ -99,7 +103,7 @@ namespace ModernWebStore.ApplicationService
                         item.ServicoItems = servicoItem;
                     }
                 }
-
+                ordemServico.Cliente = cliente;
                 ordemServico.Servicos = servicos;
             }
 
@@ -411,6 +415,11 @@ namespace ModernWebStore.ApplicationService
                 return ordemServico;
 
             return null;
+        }
+
+        public List<OrdemServico> BuscarPorData(DateTime dataInicial, DateTime? dataEncerramento)
+        {
+            return _repository.BuscarPorData(dataInicial, dataEncerramento);
         }
     }
 }

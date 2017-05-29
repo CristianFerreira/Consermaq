@@ -35,6 +35,11 @@ namespace ModernWebStore.Api.Security
                 context.SetError("invalid_grant", "Usuário ou senha inválidos");
                 return;
             }
+            else if (user.Bloqueado)
+            {
+                context.SetError("invalid_grant", "Usuário bloqueado");
+                return;
+            }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 

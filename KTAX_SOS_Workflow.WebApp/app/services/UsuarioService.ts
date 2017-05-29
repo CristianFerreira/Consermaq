@@ -20,14 +20,12 @@ module Consermaq {
               return super.postFromUrl(appConfig.serviceUrls().usuario.bloquearAlot, usuarios);
         }
 
-        public edit(usuario: User): any{
-          
+        public edit(usuario: User): any{ 
               return super.updateByUrl(appConfig.serviceUrls().usuario.edit, usuario);
          }
         
 
          public save(usuario: User): any{
-          
               return super.postFromUrl(appConfig.serviceUrls().usuario.save, usuario);
          }
     }

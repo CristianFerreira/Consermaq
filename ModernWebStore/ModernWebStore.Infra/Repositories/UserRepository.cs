@@ -3,6 +3,7 @@ using ModernWebStore.Domain.Repositories;
 using ModernWebStore.Domain.Specs;
 using ModernWebStore.Infra.Persistence.DataContexts;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace ModernWebStore.Infra.Repositories
@@ -19,6 +20,11 @@ namespace ModernWebStore.Infra.Repositories
         public void Register(User user)
         {
             _context.Users.Add(user);
+        }
+
+        public void Update(User user)
+        {
+            _context.Entry<User>(user).State = EntityState.Modified;
         }
 
         public User Authenticate(string username, string password)

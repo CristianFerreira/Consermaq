@@ -45,6 +45,16 @@ module Consermaq {
                 controller: "EditOrdemServicoController",
                 controllerAs: "vm"
             })
+            .when("/usuarios", {
+                templateUrl: "app/views/usuario/usuario.html",
+                controller: "UsuarioController",
+                controllerAs: "vm"
+            })
+            .when("/relatorios", {
+                templateUrl: "app/views/relatorio/relatorios.html",
+                controller: "RelatorioController",
+                controllerAs: "vm"
+            })
             .when("/logout", {
                 templateUrl: "app/views/autenticacao/login.html",
                 controller: "LogoutController",

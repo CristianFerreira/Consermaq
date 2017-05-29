@@ -3,7 +3,7 @@
 module Consermaq {
     export class PessoaJuridicaController {
 
-        static $inject = ['$location', 'ClienteService', 'toastr', '$mdDialog', '$timeout'];
+        static $inject = ['$location', 'ClienteService', 'toastr', '$mdDialog', '$timeout','$rootScope'];
 
      
         private $location: ILocationService;
@@ -12,6 +12,7 @@ module Consermaq {
         public toastr: Toastr;
         public mdDialog: any;
         public timeout: ITimeoutService;
+        public $rootScope: IRootScope;
         public selected: Array<any>;
         public limitOptions: Array<any>;
         public options: any;
@@ -20,18 +21,21 @@ module Consermaq {
         public promise: any;
         public filterShow: boolean;
         public filterSearch: string;
+        public isAdmin: Boolean;
 
         constructor($location: ILocationService, 
                     clienteService: ClienteService, 
                     toastr: Toastr,
                     mdDialog: any,
-                    timeout: ITimeoutService) {
+                    timeout: ITimeoutService,
+                    $rootScope: IRootScope) {
 
             this.$location = $location;
             this.clienteService = clienteService;
             this.toastr = toastr;
             this.mdDialog = mdDialog;
             this.timeout = timeout;
+            this.$rootScope = $rootScope;
             this.pessoasJuridicas = new Array<Cliente>();
             this.selected =  [];
             this.limitOptions = [5, 10, 15];
@@ -51,6 +55,7 @@ module Consermaq {
                             page: 1
             };
             this.showCheck = {};
+            this.isAdmin = this.$rootScope.sistemaContexo.usuarioLogado.isAdmin;
 
             this.loadPessoaJuridica();
         }

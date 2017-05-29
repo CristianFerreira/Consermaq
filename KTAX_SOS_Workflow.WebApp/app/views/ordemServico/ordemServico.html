@@ -6,12 +6,12 @@
                 <span flex></span>               
                 <md-button class="md-icon-button" ng-click="vm.modalCreateOrdemServico($event)">
                     <md-tooltip md-direction="bottom">Nova Ordem de Serviço</md-tooltip>
-                    <md-icon class="material-icons">add circle</md-icon>
+                    <md-icon style="color: #000" class="material-icons">add circle</md-icon>
                 </md-button>
-                <md-button ng-show="vm.ordemServicos.length > 0" class="md-fab md-mini"
-                           style="background-color: #f59145;" ng-click="vm.filterShow = true" aria-label="Filtrar">
+                <md-button ng-show="vm.ordemServicos.length > 0" class="md-icon-button"
+                           ng-click="vm.filterShow = true" aria-label="Filtrar">
                     <md-tooltip md-direction="bottom">Pesquisar</md-tooltip>
-                    <md-icon style="color: #fff" class="material-icons">search</md-icon>
+                    <md-icon style="color: #000" class="material-icons">search</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
@@ -19,10 +19,9 @@
             <form flex name="filter.form" class="ng-pristine ng-valid flex">
                 <div class="md-toolbar-tools" flex>
                     <md-input-container md-no-float class="md-block" flex style="margin-top: 40px;">
-                        <md-icon style="color: #f59145" class="material-icons">search</md-icon>
+                        <md-icon style="color: #000" class="material-icons">search</md-icon>
                         <input ng-model="vm.filterSearch" type="text" placeholder="Pesquisar">
                     </md-input-container>
-
                     <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.removeFilter()" aria-label="close">
                         <md-tooltip md-direction="bottom">Fechar</md-tooltip>
                         <md-icon class="material-icons">close</md-icon>
@@ -44,7 +43,7 @@
         </div>
         <form flex name="filtroTable" class="ng-pristine ng-valid flex">
             <div layout="row" style="font-size: 14px; padding: 0 24px;" flex="100">
-                <md-input-container flex="15">
+                <md-input-container flex="10">
                     <label>Filtrar Status</label>
                     <md-select ng-model="vm.statusFiltro" multiple ng-change="vm.filterTable()">
                         <md-optgroup label="Status">
@@ -53,7 +52,7 @@
                     </md-select>
                 </md-input-container>
                 <div flex="5"></div>
-                <md-input-container flex="15">
+                <md-input-container flex="13">
                     <label>Filtrar Tipo Cliente</label>
                     <md-select ng-model="vm.tipoClienteFiltro" ng-change="vm.filterTable()">
                         <md-optgroup label="Tipo de Cliente">
@@ -63,8 +62,8 @@
                     </md-select>
                 </md-input-container>
                 <div flex="5"></div>
-                <div layout="row" flex="60">
-                    <md-input-container flex="15">
+                <div layout="row" flex="67">
+                    <md-input-container flex="22">
                         <label>Filtrar Data</label>
                         <md-select ng-model="vm.filtrarData" ng-change="vm.filtrarData == 'Nenhuma' ? vm.filterTable() : ''">
                             <md-optgroup label="Filtrar por Data">
@@ -103,7 +102,7 @@
                         <th md-column md-numeric md-order-by="id" style="text-align: center; width: 180px"><span>N°</span></th>
                         <th md-column md-numeric md-order-by="servicoSolicitado"><span>Solicitação</span></th>
                         <th md-column md-order-by="status">
-                            <span>Solicitação</span>
+                            <span>Status</span>
                         </th>
                         <th md-column md-numeric md-order-by="dataInicial" style="text-align: left;"><span>Abertura</span></th>
                         <th md-column md-numeric md-order-by="dataEncerramento" style="text-align: left;"><span>Encerramento</span></th>
@@ -140,19 +139,23 @@
                                     <md-icon>zoom_in</md-icon>
                                     <md-tooltip md-direction="bottom">Visualizar</md-tooltip>
                                 </md-button>
-                                <md-button ng-disabled="ordemServico.status==3" class="md-icon-button" ng-click="vm.editOrdemServico(ordemServico.id)">
+                                <md-button ng-show="vm.isAdmin" ng-disabled="ordemServico.status==3" class="md-icon-button"
+                                           ng-click="vm.editOrdemServico(ordemServico.id)">
                                     <md-icon ng-style="(ordemServico.status==3) ? '' : {'color':'#000'};">edit</md-icon>
                                     <md-tooltip md-direction="bottom">Editar</md-tooltip>
                                 </md-button>
-                                <md-button ng-disabled="ordemServico.status==1 || ordemServico.status==3" class="md-icon-button" ng-click="vm.finalizar(ordemServico)">
+                                <md-button ng-show="vm.isAdmin" ng-disabled="ordemServico.status==1 || ordemServico.status==3" 
+                                           class="md-icon-button" ng-click="vm.finalizar(ordemServico)">
                                     <md-icon ng-style="(ordemServico.status==1 || ordemServico.status==3) ? '' : {'color':'#01257b'}">check_circle</md-icon>
                                     <md-tooltip md-direction="bottom">Finalizar ordem de serviço</md-tooltip>
                                 </md-button>
-                                <md-button ng-show="ordemServico.status==3" class="md-icon-button" ng-click="vm.retornarPendente(ordemServico)">
+                                <md-button ng-show="ordemServico.status==3 && vm.isAdmin" class="md-icon-button" 
+                                           ng-click="vm.retornarPendente(ordemServico)">
                                     <md-icon style="color:#f59145;">undo</md-icon>
                                     <md-tooltip md-direction="bottom">Retornar para pendente</md-tooltip>
                                 </md-button>
-                                <md-button ng-show="ordemServico.status==1 || ordemServico.status==2" class="md-icon-button" ng-click="vm.abrirModalCancelar($event, ordemServico)">
+                                <md-button ng-show="(ordemServico.status==1 || ordemServico.status==2) && vm.isAdmin" 
+                                          class="md-icon-button" ng-click="vm.abrirModalCancelar($event, ordemServico)">
                                     <md-icon style="color:#da0000;">cancel</md-icon>
                                     <md-tooltip md-direction="bottom">Cancelar</md-tooltip>
                                 </md-button>

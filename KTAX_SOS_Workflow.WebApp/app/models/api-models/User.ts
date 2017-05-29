@@ -1,6 +1,4 @@
-﻿
-
-/// <reference path="../../configs/_all.ts" />
+﻿/// <reference path="../../configs/_all.ts" />
 module Consermaq {
     export class User {
         public id: number;
@@ -9,6 +7,7 @@ module Consermaq {
         public isAdmin: boolean;
         public login: string;
         public nome: string;
+        public bloqueado: Boolean;
 
         constructor() {
 
