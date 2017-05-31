@@ -115,7 +115,7 @@ module Consermaq {
                      }
         }).then(response => {
                 if(response){
-                    this.usuarios[index] = response.UpdateUsuarios;
+                    this.usuarios[index] = response.UpdateUsuario;
                     this.selected = new Array<any>();        
                     this.loadStuff();
                 }
